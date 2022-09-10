@@ -1,0 +1,57 @@
+<ion-view>
+  <ion-nav-bar class="bar bg-blue">
+  
+      <ion-nav-title>
+        <b>Transactions</b>
+      </ion-nav-title>
+  
+      <ion-nav-buttons side="left">
+        <button class="button button-clear" back-button>
+          <i class="icon ion-ios-arrow-back light"></i></button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+  
+    <ion-content ng-init="refresh_profile()">
+  <br><Br>
+
+
+  
+    <div class="list">
+
+
+      <div ng-show="!user.naira_wallet.transactions || user.naira_wallet.transactions.length < 1">
+        <div class=" text-center item item-light">
+          <div class="padding">
+            <h2><b>No Transactions Yet.</b></h2> 
+          </div> 
+           <br>
+
+        </div>
+      </div>
+
+      
+      <div class="item" ng-click="view_transaction(payment)"  ng-class="payment.pending ? 'transparent':''" ng-repeat="payment in user.naira_wallet.transactions | orderBy:'-date'">
+        <div class="pull-right text-right" style="float: right;margin-top: 10px !important;">
+          <h2 ng-class="payment.credit ? 'balanced':'assertive'">
+            <v ng-if="!payment.credit">-</v>  
+            <v ng-if="payment.credit">+</v>  
+            <b ng-if="user.in_currency=='ngn'">{{payment.amount || 0  | currency}}</b>
+            <b ng-if="user.in_currency=='usd'">USD {{payment.amount  / btc.sell_rates || 0 | number:2}}</b>
+          </h2>
+          <small ng-if="user.in_currency=='ngn'" class="dark">USD{{payment.amount / btc.sell_rates || 0 | number:2}}</small>
+          <small ng-if="user.in_currency=='usd'" class="dark">{{payment.amount || 0  | currency}}</small>
+        </div>
+        <div style="color: #2f2f2f" class="item-body">
+          <small>{{payment.description}}</small>
+          <h3 class="dark" ng-if="payment.credit"><span class="ti ti-caret-up balanced"></span> Recieved </h3>
+          <h3 class="dark" ng-if="!payment.credit"><span class="ti ti-caret-up assertive"></span> Transfer </h3>
+          <h5 ng-if="payment.pending">Pending...</h5>
+          <h6 class="dark">{{payment.date | date}}</h6>
+        </div>
+      </div>
+    </div>
+
+</ion-content>
+
+
+</ion-view>

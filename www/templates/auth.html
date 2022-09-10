@@ -1,0 +1,35 @@
+<ion-view cache-view="false" class="bg-blue">
+
+    <ion-content class="padding text-center bg-blue">
+     <br><br>
+     <img src="/img/icon.png" height="90"/>
+     <br>
+     <h3 class="light">Welcome to Obic!</h3>
+     <h5 class="light">Type in your phone number to sign up or sign in.</h5>
+     <br>
+      <form ng-submit="auth(det)">
+       <div class="padding">
+
+          <div class="item item-input text-left">
+            <div class="row">
+              <b class="text-center" style="padding-top:8px;"><i class="ion-android-call oran"></i></b>  &nbsp;&nbsp;&nbsp;
+            <select class="col-20" ng-model="det.phone_format" style="font-size: 15px;border:none !important;background-color: none !important;">
+                <option value="{{country.format}}" ng-repeat="country in countries">({{country.format}})</option>
+            </select>         
+            <input class="col-80" ng-model="det.phone" name="phone" type="tel" style="font-size: 15px;border:none !important;" placeholder="Phone Number">
+            </div>
+          </div>
+          <br>
+    
+          <p><a ui-sref="auth2" class="orange">Login with email.</a></p>
+ 
+
+    </div>
+       <button ng-disabled="!det.phone" type="submit" class="button button-full button-orange">Continue</button>
+    
+       <br>
+       <!-- <h5 class="light">Already registered? <a style="text-decoration:underline !important;">Sign In</a></h5> -->
+  </form>
+  </ion-content>
+  </ion-view>
+   

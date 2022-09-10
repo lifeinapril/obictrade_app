@@ -1,0 +1,19 @@
+<div class="item item-avatar bg-grey" ng-hide="!user.ethereum_wallet.affiliate.allow_buy && !user.ethereum_wallet.affiliate.allow_sell" ng-click="view_wallet(user.ethereum_wallet)">
+    <img src="{{media+user.ethereum_wallet.icon}}" class="avatar"/>
+    <div class="pull-right" style="float: right !important;width:  auto;">
+        <h3 class="blue" ng-if="user.ethereum_wallet.affiliate.allow_sell">
+            <span class="ion ion-arrow-up-b"></span> <b>NGN {{user.ethereum_wallet.affiliate.sell_rate}} / $</b>
+         </h3>
+        <h3 style="margin-top: 18px;" class="orange" ng-if="user.ethereum_wallet.affiliate.allow_buy">
+            <span class="ion ion-arrow-down-b"></span> <b>NGN {{user.ethereum_wallet.affiliate.buy_rate || 0}} / $</b>
+         </h3>   
+    </div>
+    <h4 class="pull-left dark">
+        <b ng-if="user.in_currency=='ngn'">NGN {{eth.selling.usd * eth.sell_rates || 0 | number:0}}</b> 
+        <b ng-if="user.in_currency=='usd'">USD {{eth.selling.usd || 0 | number:2}}</b>&nbsp;<br>
+        <small ng-class="gains(eth) <= 0 ? 'assertive':'balanced'">
+                <span ng-if="gains(eth) >= 0">+</span>
+                {{gains(eth) || 0 | number:2}}%
+        </small>
+    </h4> 
+</div>

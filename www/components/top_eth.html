@@ -1,0 +1,8 @@
+<div ng-init="topten_eth()">
+    <div class="padding" ng-if="eth_rates.length > 0">
+        <h4>
+            ETH traders</h4>
+        <div ng-include="'components/traders/eth.html'" ng-repeat="trader in eth_rates | orderBy:['sell_rate','buy_rate'] | limitTo:5"></div>
+    
+<br></div>
+    </div>

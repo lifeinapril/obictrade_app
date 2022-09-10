@@ -1,0 +1,69 @@
+
+<ion-view  cache-view="false" class="bg-blue">
+
+  
+      <ion-nav-bar class="bar-grey bg-blue" style="display:block;">
+          
+      <ion-nav-title class="text-center" align="center">
+            <b>Added Cards</b>
+            </ion-nav-title>
+         <ion-nav-buttons side="left">
+          <button class="button button-clear" back-button>
+            <i class="icon ion-ios-arrow-back light"></i></button>
+            </ion-nav-buttons>
+      </ion-nav-bar>
+   
+         <ion-content class="text-center bg-white padding" ng-init="refresh_profile()">
+      <ion-refresher pulling-text="Pull to refresh" on-refresh="refresh_profile()"></ion-refresher>
+   
+          <BR>
+         <ion-list class="text-left" style="width: 100% !important;" ng-init="refresh_profile()">
+           
+          <div class="padding text-center" ng-if="!user.cards || user.cards.length < 1">
+            <Br>
+              <i style="font-size: 49px;" class="ti ti-credit-card"></i>
+              <br>
+            <h5>you have no card added.</h5>
+          </div>
+                       <div ng-if="user.cards.length > 0">
+<br>                      
+                           <div class="item item-light text-left padding" ng-repeat="card in user.cards">
+                            <button class="button button-sm assertive pull-right" style="float:right !important;" ng-click="deletecard(card)">
+                              &nbsp;&nbsp;<i class="ti ti-trash"></i>&nbsp;&nbsp;
+                            </button>
+                            <br>
+                             <div ng-if="card.card_type=='mastercard' || card.type=='MASTERCARD'" class="card_type mastercard">
+                              </div>
+                              <div ng-if="card.type=='visa' || card.card_type=='VISA'" class="card_type visa">
+                              </div>
+                              <div ng-if="card.type=='verve' || card.card_type=='VERVE'" class="card_type verve">
+                              </div>
+                              <b>{{card.bank || 'joliebank' | uppercase}}: .... {{card.number || '09876'}}</b><br>  
+                              <small><h5>{{card.type}}</h5></small>  
+                             </div>
+                              
+                       </div>
+                
+         </ion-list>
+
+         <br>
+
+         <br>
+
+         <br>
+
+         <br>
+
+         <br>
+         <div class="text-center" style="width:100% !important;margin:auto;line-height: 13px !important;color: #686767; float: left !important;">      
+          <small>secured by <b>&nbsp;&nbsp;<img src="/img/fw.png" height="17" />&nbsp;&nbsp;&nbsp;Flutterwave</b></small>
+        </div>
+<Br><br>
+         <button disabled class="button button-block button-oran-alt" ng-click="newcard_box.show()">&nbsp;&nbsp;&nbsp;<i class="ti ti-plus"></i> Add a new card&nbsp;&nbsp;&nbsp;</button>
+      
+   
+         </ion-content>
+   
+   
+   </ion-view>
+   

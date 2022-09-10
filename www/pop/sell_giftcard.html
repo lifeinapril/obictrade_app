@@ -1,0 +1,123 @@
+<ion-modal-view class="bar-light">
+        
+    <ion-header-bar class="bar bar-header bar-light">
+          <ion-title><b>Sell {{selected_asset.name}}</b></ion-title>
+          <button ng-click="sell_giftcard_box.hide()" class="button button-clear"  style="float:right;font-weight: bold;color: rgb(23, 29, 46) !important;">&nbsp;<span class="ti ti-close dark"></span>&nbsp;</button>          
+    </ion-header-bar>
+  
+    <ion-content class="text-center bg-grey">
+        
+          <div>
+          <div ng-if="error" class="padding text-center">
+             <h6 class="red">{{error}}</h6>
+          </div>
+            <div class="padding">
+              <br><br>
+                            <div class="display-img" style="margin:auto !important;margin-bottom:10px !important;" ng-style="{'background-image':'url(' + media + selected_asset.photo +')'}">
+                            </div>
+                            <b style="color: black !important;font-size: 20px !important;">{{selected_asset.name | capitalize}}</b><br>
+                            <small ng-if="selected_asset.description">{{selected_asset.description}}</small>
+                            <br>
+
+                            <div class="list text-left" ng-if="selected_asset.currencies">
+                                
+                                <div class="item">
+                                    <h4>Rates</h4> 
+                                  <select class="input-energized" name="rates" ng-options="curr as curr.name for curr in selected_asset.currencies" ng-model="currency" ng-change="change_card_currency(currency)">
+                                  </select>  
+                                  <b class="oran pull-right" style="float: right !important;">₦{{selected_asset.rates || 0 | number:0}}/{{selected_asset.symbol || '$'}}</b>
+                                </div>
+                                       
+                                <div class="item"> 
+                                  <b>Select card type</b>
+                                  <select name="type" class="pull-right input-energized" style="float: right !important;" ng-options="ty as ty for ty in selected_asset.card_types" ng-model="selected_asset.card_type" ng-change="change_card_type(selected_asset.card_type)">
+                                  </select>
+                                </div>
+                    
+                            </div>
+
+                             <h5 class="oran">Upload Card Pictures / Files</h5>
+                              <h6>Please Upload your cards</h6>
+                              <label class="item item-input text-left">
+                                <input ng-model="selected_asset.files" name="files" ngf-select="select_photos($files)" multiple="multiple" type="file" style="font-size: 15px;border:none !important;" placeholder="Your Document">
+                              </label>   
+                                <div class="row" ng-if="selected_asset.files.length > 0">
+                                     <div ng-repeat="file in files" style="padding: 10px !important;float: left !important;">
+                                      <img ngf-src="file" height="50" style="opacity: 1 !important;"/>
+                                  </div>
+                               </div>
+                
+                  <div class="padding">
+                   
+
+                            <div class="list">
+
+                                  <div class="item" style="margin-bottom: 10px !important;" ng-repeat="card in selected_asset.cards">
+                                  <a ng-if="$index > 0 && !card.custom" class="pull-right red" ng-click="remove_card(card)">Remove</a>
+                                  <v>Card Value ({{selected_asset.symbol || '$'}})</v>
+                                  <b ng-if="card.custom" class="pull-right" style="float: right !important;">{{selected_asset.symbol || '$'}} {{card.amount || 0}}</b>
+                                   <div ng-if="!card.custom">
+                                    <input ng-model="card.amount" type="number" style="width:100%;color:#333 !important;" placeholder="Enter Amount" required>
+                                   </div>
+                                   <br>
+                                   <br>
+                                   <small class="text-left">Card Quantity</small>
+                                   <br>
+                                    <div class="row">
+
+                                        <div class="col">
+                                          <button class="button button-small button-clear button-dark" ng-disabled="card.quantity < 1" ng-click="quantity_minus()">
+                                          <span class="ion black ion-minus"></span>
+                                          </button>
+                                          </div>
+                                          <div class="col">
+                                            <input type="number" ng-model="card.quantity" name="quantity" value="1" style="text-align: center !important;"/>
+                                            </div>
+                                            <div class="col">
+                                          <button class="button button-small button-clear button-dark" class="btn btn-sm" ng-click="quantity_plus()">
+                                          <span class="ion black ion-plus"></span>
+                                          </button>
+                                          </div>
+                                    </div>
+                                      <div class="item item-divider text-left">
+                                        <b class="pull-right" style="float: right !important;" style="font-size: 15px !important;color:rgb(51, 104, 51) !important;">{{card.sub_total() || 0 | currency:"₦"}}</b>        
+                                        <small>Estimated Value</small><br>
+                                      </div>
+                                   </div>
+
+                                  <br>
+                                  <a class="pull-right btn-link" ng-click="add_card(0,1,false)">Add Value +</a>
+                                  <br><br>
+
+
+                             </div>
+
+                             <div class="item text-left item-divider">
+                                <b class="pull-right" style="font-size: 25px !important;color:rgb(39, 202, 39) !important;float: right !important;">{{total_card(selected_asset.cards) || 0 | currency:"₦"}}</b>
+                                <h3>Total Payout</h3>
+                             </div>
+
+
+                        </div>
+                        <br>   
+                        <h4 style="color:#333;">Photo Description <small>(optional)</small></h4>
+                        <br>
+                        <textarea ng-model="selected_asset.card_description"  style="color:#000 !important;height: 35px !important;width:100% !important;border: 1px solid rgba(128, 128, 128, 0.801) !important;height: 90px !important;padding:5px !important;border-radius: 5px !important;" tabindex="4" placeholder="Please Provide further details about your uploaded file">
+                        </textarea>
+                  
+                        <br>
+                  <h5 class="black text-center">Average confirmation time : .10 -  30 mins</h5>
+                  <br>     
+         
+         
+                  <button ng-click="sell_asset(selected_asset)" ng-disabled="(total_card(selected_asset.cards) < 1) || (selected_asset.files.length < 1)" style="background:rgb(199, 96, 0) !important;color:#fff;" class="button button-full button-balanced">&nbsp;&nbsp;Sell&nbsp;&nbsp;</button>
+          
+                </div>
+
+
+               
+      
+              </div>
+
+          </ion-content>
+          </ion-modal-view>

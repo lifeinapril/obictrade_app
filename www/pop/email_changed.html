@@ -1,0 +1,15 @@
+<ion-modal-view class="bg-blue">
+    <ion-content class="padding text-center bg-blue">
+        <br>
+        <br>
+        <br>
+        <br>
+        <i class="icon ion-ios-checkmark light" style="font-size: 60px;"></i>
+      <h4 class="light"><b>Verification Successfully!</b></h4>
+      <h6 class="light">Hello {{user.full_name || user.first_name || '...' | capitalize}}, your email <b>({{user.email}})</b> has been verified</h6>
+      <br><Br>
+       <button ui-sref="front.wallet" ng-click="email_changed_box.hide()" class="button button-full button-orange">Continue &nbsp;<i class="iocn ion-arrow-right-b"></i></button> 
+      <br>
+    </ion-content>
+
+  </ion-modal-view>

@@ -1,0 +1,17 @@
+<ion-item class="item-dark text-center padding" ng-if="user.affiliate">
+    <br>
+    <h2 class="text-left light">Hello {{user.full_name}}</h2>
+    <h6 class="text-left light">Today's sales progress</h6>
+    <div  ng-include="'components/today_chart.html'"></div>
+
+      <div class="item item-dark text-left padding">
+        <h2 style="margin-top: 8px !important;" class="light"><span class="ion ion-pricetag orange"></span> Today's sales <b class="orange pull-right" style="float: right;">{{(trades | filter:TodaySales).length || 0}}</b></h2>
+      </div>
+      <div class="item item-dark2 text-left padding" style="margin-top: 14px !important;">
+        <h2 style="margin-top: 8px !important;" class="light"><span class="ion ion-pie-graph orange"></span> Total Sales <b class="orange pull-right" style="float: right;">{{trades.length || 0}}</b></h2>
+      </div>
+     <br>
+      <a class="text-center orange" ui-sref="sales_history">view history</a>
+      <br>
+</ion-item>
+

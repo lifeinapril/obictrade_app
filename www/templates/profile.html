@@ -1,0 +1,167 @@
+<ion-view class="bg-blue" align-title="left" cache-view="false">
+
+  <ion-nav-bar class="bar bg-blue">
+    <ion-nav-title>
+        <b>More</b>
+      </ion-nav-title>
+  <!-- <ion-nav-buttons side="right">
+    <div ng-if="(notifications | filter:{read:false}).length > 0" class="badge badge-energized">{{(notifications | filter:{read:false}).length || 0}}</div>
+    <button ui-sref="front.notification" class="button button-clear button-light">
+      <span class="ion ion-ios-bell light"></span>
+    </button>
+  </ion-nav-buttons> -->
+
+</ion-nav-bar>
+
+
+    <ion-content class="bg-blue bg2" ng-init="refresh_profile()">
+        
+        <ion-refresher  icon="ion-loading-d" 
+        pulling-text="Pull to refresh"
+        on-refresh="refresh_profile()">
+        </ion-refresher>
+
+    
+
+<div class="padding list">
+
+  <div ui-sref="edit_profile" class="item item-dark item-avatar bg-dark-blue text-left item-icon-left">
+    <img title="image" class="avatar" src="{{media+user.photo}}" height="40" style="display: block !important;opacity: 1 !important;"/>
+    <i class="ti-angle-right pull-right" style="float: right !important;"></i>
+    <h3 class="light">{{user.full_name || user.first_name+' '+user.last_name | capitalize}}</h3>
+    <h6 class="light">My Profile</h6>
+  </div>
+
+        <!-- <div ng-include="'components/verification_alert.html'"></div> -->
+        <br>
+
+   
+
+    <div ui-sref="front.earnings" class="item item-dark bg-dark-blue text-left item-icon-left">
+      <i class="ti-angle-right pull-right" style="float: right !important;"></i>
+      <i class="icon ion-trophy oran"></i>
+      <h3 class="light">Earnings</h3>
+      <h6 class="light">Earn with obic</h6>
+    </div>
+<br>
+
+<div ui-sref="verification" class="item item-dark bg-dark-blue text-left item-icon-left">
+  <i class="ti-angle-right pull-right" style="float: right !important;"></i>
+  <i class="icon ion-ios-checkmark oran"></i>
+  <h3 class="light">Verification Status</h3>
+  <h6 class="light">Verify your account</h6>
+</div>
+<br>
+
+
+<div ui-sref="contacts" class="item item-dark bg-dark-blue text-left item-icon-left">
+  <i class="ti-angle-right pull-right" style="float: right !important;"></i>
+  <i class="icon ion-android-add oran"></i>
+  <h3 class="light">Contacts</h3>
+  <h6 class="light">Contacts you connected to</h6>
+</div>
+<br>
+
+<div ui-sref="connections" class="item item-dark bg-dark-blue text-left item-icon-left">
+  <i class="ti-angle-right pull-right" style="float: right !important;"></i>
+  <i class="icon ion-fork-repo oran"></i>
+  <h3 class="light">Connections</h3>
+  <h6 class="light">Accounts that added you</h6>
+</div>
+<br>
+
+
+
+
+<div ng-if="(verification_level >= 3)">
+
+
+<div ui-sref="sales_history" class="item item-dark bg-dark-blue text-left item-icon-left">
+  <i class="ti-angle-right pull-right" style="float: right !important;"></i>
+  <i class="icon ion-pricetag oran"></i> 
+
+  <h3 class="light">Sales history</h3>
+  <h6 class="light">See your sales progress
+  </h6>
+</div>
+<br>
+</div>
+
+
+<div ui-sref="add_bank" class="item item-dark bg-dark-blue text-left item-icon-left">
+  <i class="ti-angle-right pull-right" style="float: right !important;"></i>
+  <i class="icon ti-widget oran"></i>
+  <h3 class="light">Bank Details</h3>
+  <h6 class="light">Manage external accounts</h6>
+</div>
+<br>
+
+<!-- <div ui-sref="cards" class="item item-dark bg-dark-blue text-left item-icon-left">
+  <i class="ti-angle-right pull-right" style="float: right !important;"></i>
+  <i class="icon ti-credit-card oran"></i>
+  <h3 class="light">Added Cards</h3>
+  <h6 class="light">Manage your added cards</h6>
+</div>
+<br> -->
+<div ui-sref="security" class="item item-dark bg-dark-blue text-left item-icon-left">
+  <i class="ti-angle-right pull-right" style="float: right !important;"></i>
+  <i class="icon ti-lock oran"></i> 
+
+  <h3 class="light">Security</h3>
+  <h6 class="light">Protect yourself from intruders
+  </h6>
+</div>
+<br>
+
+
+
+        <div ng-click="support()" class="item item-dark bg-dark-blue text-left item-icon-left">
+          <i class="ti-angle-right pull-right" style="float: right !important;"></i>
+          <i class="icon ion-help-buoy oran"></i>
+        <h3 class="light">Support</h3>
+        <h6 class="light">Get support or send feedback</h6>
+        </div>
+
+        <div ng-if="!user.pool_id && (verification_level >= 3)">
+      <br>
+
+      <div ui-sref="affiliate" class="item item-dark bg-dark-blue text-left item-icon-left">
+        <i class="ti-angle-right pull-right" style="float: right !important;"></i>
+        <i class="icon ion-flag oran"></i>
+        <h3 class="light">Affiliate Programme</h3>
+        <h6 class="light">Drive the market</h6>
+      </div>
+    </div>
+  <br>
+  
+    <div ui-sref="legal" class="item item-dark bg-dark-blue text-left item-icon-left">
+      <i class="ti-angle-right pull-right" style="float: right !important;"></i>
+      <i class="icon ti-list oran"></i> 
+      <h3 class="light">Legal</h3>
+      <h6 class="light">About our contract with you
+      </h6>
+    </div>
+    
+<br>
+
+<!-- 
+<div class="item item-dark bg-dark-blue">
+  <ion-toggle class="no-border toggle-dark transparent item-dark" ng-change="change_mode()" ng-model="settings.dark_mode">Dark Mode</ion-toggle>
+    </div> -->
+
+    <br>
+
+        <div ng-click="logout()" class="item item-clear text-center item-assertive assertive">
+          Log out
+        </div>
+
+  </div>
+
+  <br><br><br>
+  <br><br><br>
+  <br><br><br>
+    </ion-content>
+
+
+</ion-view>
+

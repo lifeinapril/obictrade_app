@@ -1,0 +1,60 @@
+<ion-modal-view>
+      <ion-header-bar class="bar bar-header bar-light">
+              <ion-title><small><b>Add A New Card</b></small></ion-title>
+              <button ng-click="pin_box.hide()" class="button button-light"  style="float:right;font-weight: bold;border:none !important;">&nbsp;X&nbsp;</button>          
+        </ion-header-bar>
+      
+        <ion-content class="padding text-center">
+         
+  <form class="card padding" ng-submit="add_creditcard(new_card)">       
+      <br>
+         <h5>Please provide the billing details of the card</h5>
+         <br>
+          <div class="row">
+               <div class="col col-90">
+               <label for="ccnum">Billing Zip-code</label>
+               <input type="text" name="billingzip" ng-model="new_card.billingzip" placeholder="07205">
+               </div>
+           </div>
+           <div class="row">
+               <div class="col col-90">
+               <label for="ccnum">Billing City</label>
+               <input type="text" name="billingcity" ng-model="new_card.billingcity" placeholder="Hillside">
+               </div>
+           </div>
+           <div class="row">
+               <div class="col col-90">
+               <label for="ccnum">Billing Address</label>
+               <input type="text" name="billingaddress" ng-model="new_card.billingaddress" placeholder="470 Mundet PI">
+               </div>
+           </div>
+           <div class="row">
+               <div class="col col-90">
+               <label for="ccnum">Billing State</label>
+               <input type="text" name="billingstate" ng-model="new_card.billingstate" placeholder="NJ">
+               </div>
+           </div>
+    
+           <div class="row">
+               <div class="col col-90">
+               <label for="ccnum">Billing State</label>
+               <input type="text" name="billingcountry" ng-model="new_card.billingcountry" placeholder="US">
+               </div>
+           </div>
+    
+    <Br>
+  
+      <button type="submit" ng-disabled="!new_card.billingcountry || !new_card.billingstate || !new_card.billingaddress || !new_card.billingcity || !new_card.billingzip" style="border-radius: 20px;color:#fff !important;font-size:14px;width: 100%;background-color: rgb(216, 141, 1) !important;" class="button button-full button-dark">
+          confirm
+      </button>
+          <br>
+      <div class="text-center" style="width:100% !important;margin:auto;line-height: 13px !important;color: #686767;">
+              <small>secured by <b>MunchPay</b>&trade;</small>
+          </div>
+          <br>
+  </form>
+  
+  
+    </ion-content>
+  
+    </ion-modal-view>

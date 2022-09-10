@@ -1,0 +1,42 @@
+<ion-view cache-view="false" ng-init="refresh_profile()">
+
+    <ion-nav-bar class="bar bg-blue">
+  
+      <ion-nav-title>
+        <b>Verification</b>
+      </ion-nav-title>
+  
+      <ion-nav-buttons side="left">
+        <button class="button button-clear" back-button nav-direction="back">
+          <i class="icon ion-ios-arrow-back light"></i></button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+  
+    <ion-content class="bg-blue bg2">
+  <br>
+   <ion-refresher pulling-text="Pull to refresh" on-refresh="refresh_profile()"></ion-refresher>
+
+
+  <div ui-sref="verify_phone" class="item item-dark bg-dark-blue text-left item-icon-left">
+    <i class="ti-angle-right pull-right" style="float: right !important;"></i>
+    <i class="icon" ng-class="user.phone_verified ? 'ion-ios-checkmark balanced':'ion-close red'"></i> 
+    Verify phone number
+  </div>
+
+  <div ui-sref="verify_email" class="item item-dark bg-dark-blue text-left item-icon-left">
+    <i class="ti-angle-right pull-right" style="float: right !important;"></i>
+    <i class="icon" ng-class="user.email_verified ? 'ion-ios-checkmark balanced':'ion-close red'"></i> 
+    Verify email
+  </div>
+
+  <div ui-sref="add_bank" class="item item-dark bg-dark-blue text-left item-icon-left">
+    <i class="ti-angle-right pull-right" style="float: right !important;"></i>
+    <i class="icon" ng-class="user.bank_verified ? 'ion-ios-checkmark balanced':'ion-close red'"></i> 
+    Verify bank details
+  </div>
+
+    
+  
+    </ion-content>
+  </ion-view>
+  

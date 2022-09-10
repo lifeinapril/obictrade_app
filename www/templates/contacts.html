@@ -1,0 +1,51 @@
+<ion-view class="bg-blue" align-title="center" cache-view="false" ng-init="refresh_contacts()">
+    <ion-nav-bar class="bar bg-blue">
+  
+        <ion-nav-title class="text-center" align="center">
+              <b>Contacts</b>
+        </ion-nav-title>
+        
+        <ion-nav-buttons side="left">
+        <button class="button button-clear" back-button nav-direction="back">
+        <i class="icon ion-ios-arrow-back oran"></i></button>
+        </ion-nav-buttons>
+        
+        <ion-nav-buttons side="right">
+          
+        </ion-nav-buttons>
+        
+    </ion-nav-bar>
+ 
+   <ion-content class="text-center bg-white" ng-init="refresh_profile()">
+    <ion-refresher pulling-text="Pull to refresh" on-refresh="refresh_contacts()"></ion-refresher>
+ 
+        <BR>
+       <ion-list class="text-left">
+         
+        <div class="padding text-center" ng-if="!contacts || contacts.length < 1">
+          <h5>you have no contacts.</h5>
+        </div>
+
+                     <div ng-if="contacts.length > 0">
+
+                         <div class="item text-left item-avatar padding" ng-repeat="contact in contacts">
+                          <img  ng-click="view_profile(contact)" class="avatar" src="{{media+contact.photo}}" height="30" />
+                            <div ng-click="view_profile(contact)">
+                              <h2><b>{{contact.full_name || contact.first_name +' '+ contact.last_name}}</b></h2>
+                              <h4 class="oran">@{{contact.user_name}}</h4>
+                            </div>
+                            <button class="button button-sm assertive button-small button-full pull-right" style="float:right !important;" ng-click="remove_contact(contact)">
+                                &nbsp;&nbsp;<i class="ti ti-cancel"></i> Remove contact&nbsp;&nbsp;
+                              </button>
+                           </div>
+                            
+                     </div>
+              
+       </ion-list>
+
+       <br>
+       </ion-content>
+ 
+ 
+ </ion-view>
+ 

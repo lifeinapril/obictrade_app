@@ -1,0 +1,31 @@
+<ion-view cache-view="false" class="bg-blue" ng-init="uname_box.hide()">
+
+    <ion-nav-bar class="bar bg-blue">
+    <ion-nav-buttons side="left">
+      <button class="button button-clear" back-button>
+        <i class="icon ion-ios-arrow-back light"></i></button>
+    </ion-nav-buttons>
+  
+  
+    <ion-nav-title>
+      <b>Verify Username</b>
+    </ion-nav-title>
+  
+  </ion-nav-bar>
+  
+    <ion-content class="padding text-center bg-blue">
+  <br><br>
+      <h6 class="light" style="font-size: 13px;">Choose a username for other users to find you and send funds to you. </h6>
+      <br>
+      <div class="list">
+        <label class="item item-input text-left">
+          <b>@</b> 
+          <input type="text" ng-model="user.user_name" placeholder="Username"/>
+        </label>
+        <br><br>
+        <button ng-disabled="!user.user_name" ng-click="verify_username(user)" class="button button-outline button-block button-orange">Update</button>
+      </div>
+    
+    </ion-content>
+  </ion-view>
+  

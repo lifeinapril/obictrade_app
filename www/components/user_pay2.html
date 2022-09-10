@@ -1,0 +1,5 @@
+<div ng-click="send_funds(profile)" class="item item-avatar padding" style="padding-bottom: 20px !important;">
+    <img  class="avatar" src="{{media+profile.photo + '?token='+token}}" height="30" />
+    <h2><b>{{profile.full_name || profile.first_name +' '+ profile.last_name}}</b></h2>
+    <h3>@{{profile.user_name || '...'}}</h3>
+</div>

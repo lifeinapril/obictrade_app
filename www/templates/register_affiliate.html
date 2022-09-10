@@ -1,0 +1,39 @@
+<ion-view class="bg-blue">
+   
+    <ion-nav-bar class="bar-grey bg-blue" style="display:block;">
+          
+        <ion-nav-title class="text-center" align="center">
+              <b>Affiliate</b>
+              </ion-nav-title>
+           <ion-nav-buttons side="left">
+            <button class="button button-clear" back-button>
+              <i class="icon ion-ios-arrow-back light"></i></button>
+              </ion-nav-buttons>
+        </ion-nav-bar>
+     
+    <ion-content class="padding text-center bg-blue">
+        <br>
+        <h5 class="light">Please provide a means of identification: (Passport / National ID card / Voters card)</h5>
+       <br>
+     <label class="item item-input item-dark text-left">
+        <select ng-model="user.document_type" style="border: none !important;width: 100vw;height:60px !important;color: white !important;background-color: transparent !important;padding: 10px !important;">
+          <option value="Passport" selected>Passport</option>
+          <option value="National ID Card">National ID card</option>
+          <option value="Driver's License">Driver's License</option>
+          <option value="Voter's Card">Voter's card</option>
+      </select>
+     </label>
+      <label class="item item-input text-left">
+        <input ng-model="user.files" name="files" ngf-select="select_document($files)" multiple="multiple" type="file" style="font-size: 15px;border:none !important;" placeholder="Your Document"/>
+      </label>
+        <br>
+        <br>
+        <br>
+      <small class="text-center">
+        By continuing you agree to our <a ng-click="affiliate_terms_box.show()">Affiliate T&Cs</a>.
+    </small>
+       <button ng-disabled="!files" ng-click="join_affiliate(user)" class="button button-full button-dark">Send Request</button> 
+      <br>
+    </ion-content>
+  </ion-view>
+  

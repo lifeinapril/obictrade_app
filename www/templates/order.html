@@ -1,0 +1,129 @@
+<ion-view cache-view="false" class="bg-grey">
+    <ion-nav-bar class="bar bg-grey">
+      <ion-nav-buttons side="left">
+        <button class="button button-clear" back-button>
+          <i class="icon ion-ios-arrow-back oran"></i>
+         </button>
+      </ion-nav-buttons>
+       <ion-nav-buttons ng-hide="order.done || order.cancelled" side="right">
+        <a href="tel:{{order.store.phone || base.manager.phone}}" class="button button-clear">
+          <i class="icon ion-android-call oran"></i>
+        </a>
+      </ion-nav-buttons>
+       <ion-nav-title>
+         <b>Order details</b>
+       </ion-nav-title>
+    </ion-nav-bar>
+     
+         <ion-content class="padding" style="background-color: #fff !important;">
+               <ion-refresher pulling-text="Pull to refresh" on-refresh="fetch_order(order.transaction_id)"></ion-refresher>
+     <br>
+ 
+      <div class="text-center padding">
+          <h5>ORDER CODE</h5>
+          <h3>{{order.transaction_id || '...'}}</h3>
+      </div>
+        <div class="item item-divider">
+          <a ng-hide="order.done || order.cancelled" class="oran link pull-right" style="float: right !important;" ng-if="order.pickup" ng-click="view_map(order.store.location)">Map  <span class="ion ion-location"></span></a>
+           <h4 ng-if="order.delivery">Ordered From</h4>
+          <h4 ng-if="order.pickup">Pickup At</h4>
+          <br>
+          <div class="item-thumbnail">
+            <div style="float: right !important;" ng-style="{'background-image':'url('+media + order.store.photo ')'}" class="small-box pull-right">
+            </div>
+            <h4 style="font-size: 18px !important;"><b>{{order.store.name || '...' | capitalize}}</b></h4>
+            <h5>{{order.store.type | capitalize}}</h5>
+          </div>
+          <h6>on {{order.date_created | date:'dd, MMM, yyyy -  h:mm a'}}</h6>
+          <h6 ng-bind="timediff(order.date_created)"></h6>   
+          </div>
+        <div class="item item-divider" ng-if="order.delivery">
+          <a ng-hide="order.done || order.cancelled" class="oran link pull-right" style="float: right !important;" ng-if="order.delivery" ng-click="view_map(order.location)">Map <span class="ion ion-location"></span></a>
+          <h4>Deliver To</h4>
+            <b class="oran">{{order.location.name}}</b>
+            <b class="oran">{{order.location.address || 'current location'}}</b><br>
+            <h5 class="black"><span class="ti ti-mobile"></span> {{order.location.phone}}</h5>
+        </div>
+
+
+        <div class="item item-divider text-left">
+          <h4>Order Duration</h4>
+          <b class="oran">{{order.duration || 0 | number:0}} Mins</b>
+      </div>
+        <br>
+          <div class="item item-divider item-light ">
+            <h4>Status</h4>
+            <h5 ng-if="!order.sorted && !order.done">{{order.store.name | capitalize}} is preparing your order...</h5>
+            <h5 ng-if="order.sorted && order.delivery && !order.done">Your order is on it's way</h5>
+            <h5 ng-if="order.sorted && order.pickup && !order.done" class="balanced">Your order is ready for pickup</h5>
+            <h5 ng-if="order.done && !order.cancelled" class="balanced">
+                <v ng-if="order.delivery">Delivered</v> 
+                <v ng-if="order.pickup">Successful</v>
+            </h5>
+            <h5 ng-if="order.cancelled" class="assertive red">Refunded</h5>
+          </div>
+
+     
+  
+<br>
+
+      <div class="item item-divider text-left">
+          <h4>ITEMS & PAYMENT</h4>
+      </div>
+
+
+      <div class="text-left">
+      <div class="item text-left" ng-repeat="product in order.products">
+          <div style="float: right !important;" class="pull-right balanced">
+            {{(product.total * (product.selected_quantity || 1)) || 0 | currency}}
+          </div>
+          <h4>{{product.data.name | capitalize}}</h4>
+          <h6 class="balanced">
+            {{product.selected_price.price || 0 | currency}}
+            <small class="black"> x {{product.selected_quantity || 1}}</small>
+          </h6>
+          <h5 ng-repeat="special in product.specials | filter:{selected:true}">
+               {{special.name}} &nbsp; <b class="balanced">{{special.price || 0 | currency}}</b> ({{special.selected_quantity || 1}})
+          </h5>
+      </div>
+
+      <br>
+
+      <div class="pull-right padding text-right" style="float: right;">
+        Paid with
+        <span ng-if="order.payment_method.type=='wallet'" class="icon ti-wallet"></span>
+        <span ng-if="order.payment_method.type=='card'" class="icon ti-creditcard"></span>
+        <v ng-if="order.payment_method.type=='card'"> Ending {{order.payment_method.number | limitTo:4}} ({{payment_method.card_type || '...'}})</v>
+      </div>   
+      <br>
+
+      <div class="item text-left item-divider">
+        <b>Sub-Total</b>
+        <div class="pull-right" style="float: right;">
+        <b>{{order.sub_total || 0 | currency}}</b>
+        </div>
+      </div>
+      <div ng-if="order.pickup" class="item text-left item-divider">
+        <b>Pickup Fee</b>
+        <div class="pull-right" style="float: right;">
+        <b>{{order.fee || 0 | currency}}</b>
+        </div>
+      </div>
+      <div ng-if="order.delivery" class="item text-left item-divider">
+        <b>Delivery fee</b>
+        <div class="pull-right" style="float: right;">
+        <b>{{order.fee || 0 | currency}}</b>
+        </div>
+      </div>
+      <div class="item text-left item-divider">
+        <b>Total</b>
+        <div class="pull-right" style="float: right;">
+        <b>{{order.total || 0 | currency}}</b>
+        </div>
+      </div>
+      <br>
+   
+    </div>
+    
+        </ion-content>
+    </ion-view>

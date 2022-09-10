@@ -1,0 +1,23 @@
+<div class="item item-avatar item-light" ng-click="view_wallet(user.bitcoin_wallet)" style="border:1px solid #d4d1d1af !important;margin-bottom: 0px !important;border-radius: 5px !important;">  
+    <img title="image" src="{{media+btc.icon}}" class="avatar"/>
+    <!-- <div class="pull-right dark text-right" style="float: right !important;;">
+        <h3 class="dark">{{user.bitcoin_wallet.balance || 0 | number:8}} {{user.bitcoin_wallet.symbol || 'BTC'}}</h3>
+        <h6 ng-if="user.in_currency=='ngn'" class="balanced">NGN {{user.bitcoin_wallet.balance * (btc.selling.usd * btc.sell_rates) || 0 | number:0}}</h6>
+        <h6 ng-if="user.in_currency=='usd'" class="balanced">USD {{(user.bitcoin_wallet.balance * btc.selling.usd) || 0 | number:2}}</h6>
+    </div> -->
+    <div class="pull-right dark text-right" style="float: right !important;;">
+        <button class="button button-small button-dark">&nbsp;&nbsp;&nbsp;Trade&nbsp;&nbsp;&nbsp;</button>
+    </div>
+    <h2>BTC
+        <i ng-if="user.bitcoin_wallet.affiliate.allow_sell" class="icon oran ion-flag"></i>
+        <i ng-if="user.bitcoin_wallet.affiliate.allow_buy" class="icon orange ion-flag"></i>
+    </h2>
+    <h4 class="pull-left dark">
+        <b ng-if="user.in_currency=='ngn'">NGN {{btc.selling.usd * btc.sell_rates || 0 | number:0}}</b> 
+        <b ng-if="user.in_currency=='usd'">USD {{btc.selling.usd || 0 | number:2}}</b>&nbsp;
+        <small ng-class="gains(btc) <= 0 ? 'assertive':'balanced'">
+                <span ng-if="gains(btc) >= 0">+</span>
+                {{gains(btc) || 0 | number:2}}%
+        </small>
+    </h4> 
+  </div>

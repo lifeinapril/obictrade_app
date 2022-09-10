@@ -1,0 +1,76 @@
+<ion-view cache-view="false">
+
+    <ion-nav-bar class="bar bg-blue" style="display:block;">
+         <ion-nav-buttons side="left">
+            <button class="button button-clear" back-button>
+            <i class="icon ion-ios-arrow-back light"></i></button>
+         </ion-nav-buttons>
+  
+          <ion-nav-buttons side="right">
+          <!-- <button ui-sref="login" style="font-weight: bold;" class="button button-clear button-oran">SIGN IN</button> -->
+          </ion-nav-buttons>
+          <ion-nav-title>
+            <b>Bank Transfer</b>
+          </ion-nav-title>
+    </ion-nav-bar>
+   
+   
+    <ion-content class="padding bg-white">
+      <br>
+        <div>
+        <h4>Amount</h4>
+        <div class="item item-input">
+         <b>₦ &nbsp;</b>
+         <input type="number" ng-model="peer.amount" placeholder="0">
+         </div>
+         <br>
+
+
+       
+
+
+         <div class="text-center">
+            <!-- <h4>You are now peered with {{peer.first_name || 'Obic'}}</h4> -->
+            <h6>Transfer this amount to the bank account below and confirm you transaction</h6>
+        </div>
+         <b>Bank</b>
+         <div class="item item-input">
+            <input type="text" disabled ng-model="peer.bank_account.bank.Name" placeholder="">
+            </div>
+            <br>
+
+            <b>Account Number</b>
+            <div class="item item-input">
+               <input type="text" disabled ng-model="peer.bank_account.account_number" placeholder="">
+               <button ng-click="copy(peer.bank.account_number)" class="button button-sm button-small button-dark">&nbsp;&nbsp;Copy&nbsp;&nbsp;</button>&nbsp;&nbsp;&nbsp;
+            </div>
+<br>
+         <h6 class="text-center">Once you've made transfer to this account, Tap confirm. Confirmation takes approximately 2 to 4 mins</h6>
+         <br>
+         <button ng-click="fund_peer(peer)" ng-disabled="!peer.amount" class="button button-block button-orange">
+          Confirm
+        </button>
+        <br>
+        <button back-button class="button button-block button-assertive bg-red">
+         Cancel
+       </button>
+      </div>
+
+      <br>
+
+      <div class="item item-divider assertive text-center">
+        <div class="item-body">
+          <b>Attention</b>
+       <h4>Your transfer should be from your verified bank details you've added</h4>
+      </div>
+      <div ng-if="user.bank_account.account_number" class="item item-light text-center padding padding">
+        <h4><b>{{user.bank_account.bank.Name}}</b></h4>
+        <h5 class="oran">{{user.bank_account.account_number}}</h5>
+        <h6>{{user.bank_account.account_name | uppercase}}</h6>
+     </div>
+     <button class="button button-full button-clear button-dark" ui-sref="add_bank">Edit Bank Details</button>
+    </div>
+
+    </ion-content>
+
+</ion-view>

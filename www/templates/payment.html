@@ -1,0 +1,106 @@
+<ion-view>
+    <ion-nav-bar class="bar bg-blue">
+      
+      <ion-nav-buttons side="left">
+        <button class="button button-clear" back-button>
+          <i class="icon ion-ios-arrow-back light"></i>
+        </button>
+      </ion-nav-buttons>
+
+      <ion-nav-title>
+        <b>Wallet</b>
+      </ion-nav-title>
+
+      <ion-nav-buttons side="right">
+        <div ng-include="'components/usd_ngn.html'"></div>
+      </ion-nav-buttons>
+  
+    </ion-nav-bar>
+  
+    <ion-content ng-init="refresh_profile()">
+      <ion-refresher pulling-text="Pull to refresh" on-refresh="refresh_profile()"></ion-refresher>
+           
+
+
+
+      <div class="item padding">
+
+      <div ng-include="'components/naira_wallet.html'"></div>
+
+      <div class="button-bar"  ng-if="!user.isagent">
+        <button ui-sref="method" class="button button-block button-outline button-dark">
+          Deposit &nbsp;&nbsp;
+          <i class="icon ti-plus pull-right"></i>
+        </button>
+        &nbsp;&nbsp;
+         <button ng-click="cashout_box.show()" class="button button-block button-oran">
+           Withdraw &nbsp;&nbsp;
+           <i class="icon ti-download pull-right"></i>
+         </button>
+        </div>
+
+        </div>
+
+<div class="padding list">
+  
+
+
+  <div ui-sref="send_money" class="item item-light text-left item-icon-left">
+    <i class="ti-angle-right pull-right" style="float: right !important;"></i>
+    <i class="icon ion-paper-airplane oran"></i> Transfer to bank
+  </div>
+   <div ng-disabled="user.isagent" ng-click="search_pay2.show()" class="item item-light text-left item-icon-left">
+    <i class="ti-angle-right pull-right" style="float: right !important;"></i>
+    <i class="icon ion-at oran"></i> Send to username
+  </div>
+
+</div>
+
+
+<div class="padding">
+  <div class="item item-divider">
+        <a class="pull-right orange" style="float:right;" ui-sref="transaction_history">See All</a>
+        <h3 class="dark">Most Recent</h3>
+      </div>
+
+
+      <div ng-show="!user.naira_wallet.transactions || user.naira_wallet.transactions.length < 1">
+        <div class=" text-center item item-light">
+          <div class="padding">
+            <h2><b>No Transactions Yet.</b></h2> 
+          </div> 
+           <br>
+
+        </div>
+      </div>
+
+
+
+  
+      <div class="list">
+        <div class="item" ng-click="view_transaction(payment)"  ng-class="payment.pending ? 'transparent':''" ng-repeat="payment in user.naira_wallet.transactions | orderBy:'-date' | limitTo:6">
+                <div class="pull-right text-right" style="float: right;margin-top: 10px !important;">
+                  <h2 ng-class="payment.credit ? 'balanced':'assertive'">
+                    <v ng-if="!payment.credit">-</v>  
+                    <v ng-if="payment.credit">+</v>  
+                    <b ng-if="user.in_currency=='ngn'">{{payment.amount || 0  | currency}}</b>
+                    <b ng-if="user.in_currency=='usd'">USD {{payment.amount  / btc.sell_rates || 0 | number:2}}</b>
+                  </h2>
+                  <small ng-if="user.in_currency=='ngn'" class="dark">USD{{payment.amount / btc.sell_rates || 0 | number:2}}</small>
+                  <small ng-if="user.in_currency=='usd'" class="dark">{{payment.amount || 0  | currency}}</small>
+                </div>
+                <div style="color: #2f2f2f" class="item-body">
+                  <small>{{payment.description}}</small>
+                  <h3 class="dark" ng-if="payment.credit"><span class="ti ti-caret-up balanced"></span> Recieved </h3>
+                  <h3 class="dark" ng-if="!payment.credit"><span class="ti ti-caret-up assertive"></span> Transfer </h3>
+                  <h5 ng-if="payment.pending">Pending...</h5>
+                  <h6 class="dark">{{payment.date | date}}</h6>
+                </div>
+        </div>
+      </div>
+    </div>
+
+<br><br><br>
+    </ion-content>
+  </ion-view>
+  

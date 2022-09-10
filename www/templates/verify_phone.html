@@ -1,0 +1,41 @@
+<ion-view cache-view="false" class="bg-blue">
+
+    <ion-nav-bar class="bar bg-blue">
+    <ion-nav-buttons side="left">
+      <button class="button button-clear" back-button>
+        <i class="icon ion-ios-arrow-back light"></i></button>
+    </ion-nav-buttons>
+  
+  
+    <ion-nav-title>
+      <b>Verify Phone</b>
+    </ion-nav-title>
+  
+  </ion-nav-bar>
+  
+    <ion-content class="padding text-center bg-blue">
+  <br><br>
+      <h6 class="light" style="font-size: 13px;">A verification code would be sent to your phone number for verification. </h6>
+      <br>
+      <div class="list">
+
+
+        <div class="item item-input text-left">
+
+            <div class="row">
+                <b class="text-center" style="padding-top:8px;"><i class="ion-android-call oran"></i></b>  &nbsp;&nbsp;&nbsp;
+                <select class="col-20" ng-model="user.phone_format" style="font-size: 15px;border:none !important;background-color: none !important;">
+                    <option value="{{country.format}}" ng-repeat="country in countries">({{country.format}})</option>
+                </select>         
+                <input class="col-80" ng-model="user.phone" name="phone" type="tel" style="font-size: 15px;border:none !important;" placeholder="Phone Number">
+            </div>
+
+        </div>
+
+        <br><br>
+        <button ng-disabled="!user.phone" ng-click="verify_phone(user)" class="button button-outline button-block button-orange">Send code</button>
+      </div>
+    
+    </ion-content>
+  </ion-view>
+  

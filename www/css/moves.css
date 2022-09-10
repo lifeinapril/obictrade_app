@@ -1,0 +1,147 @@
+@keyframes slideInSmooth {
+   0% {
+     -webkit-transform: translate3d(-100%,0,0);
+   }
+ 
+   50% {
+     -webkit-transform: translate3d(50%,0,0);
+   }
+ 
+   100% {
+     -webkit-transform: translate3d(0,0,0);
+   }
+ }
+
+ @keyframes animateInPrimary {
+   0% {
+     -webkit-transform: translate3d(-100%,0,0);
+   }
+ 
+   100% {
+     -webkit-transform: translate3d(0,0,0);
+   }
+ }
+ 
+ @keyframes animateInSecondary{
+ 
+   0% {
+     opacity: 0;
+   }
+ 
+   50% {
+     opacity: 0;
+   }
+ 
+   100% {
+     opacity: 1;
+   }
+ }
+ 
+ h2,h3,.oran,.welcome_profile_photo,.tl_pps {
+     -webkit-animation: animateInPrimary;
+     animation: animateInPrimary;
+     animation-duration: 750ms;
+     -webkit-animation-duration: 750ms;
+     animation-duraton: 750ms;
+ }
+ 
+ b,h5,small,ion-footer,.item-floating-label,.on-post-button{
+   border-radius: 0px !important;
+     -webkit-animation: animateInSecondary ease-in 1;
+     animation: animateInSecondary ease-in 1;
+     animation-duration: 750ms;
+     -webkit-animation-duration: 750ms;
+     animation-duraton: 750ms;
+ }
+
+ @keyframes listGrow {
+   0% {
+     -webkit-transform: scale3d(1, 0, 1);
+   }
+ 
+   100% {
+     -webkit-transform: scale3d(1, 1, 0);
+   }
+ }
+
+ @keyframes heightgrow {
+  0% {
+    height:0px;
+  }
+
+  100% {
+    height: 290px;
+  }
+}
+@keyframes heightgrow2 {
+  0% {
+    height:0px;
+  }
+
+  100% {
+    height: 160px;
+  }
+}
+
+/* {
+   -webkit-animation: slideInSmooth ease-in 2; 
+   animation: slideInSmooth  ease-in 1;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  -webkit-animation-duration: 750ms;
+  animation-duration: 750ms;
+} */
+
+/* .map_case2{
+  -webkit-animation: heightgrow ease-in 1; 
+  animation: heightgrow ease-in 1;
+  -webkit-animation-duration: 600ms;
+  animation-duration: 600ms;
+} */
+
+
+.artist_dash{
+  -webkit-animation: heightgrow2 ease-in 1; 
+  animation: heightgrow2 ease-in 1;
+  -webkit-animation-duration: 600ms;
+  animation-duration: 600ms;
+}
+
+
+.request_board ,.item-input{
+   -webkit-animation: listGrow ease-in 1; 
+   animation: listGrow ease-in 1;
+   -webkit-animation-duration: 400ms;
+   animation-duration: 400ms;
+ }
+ 
+
+@keyframes bounce {
+   0% {
+     -webkit-transform: translate3d(0,0,0);
+   }
+ 
+   25% {
+     -webkit-transform: translate3d(0,-30%,0);
+   }
+ 
+   50% {
+     -webkit-transform: translate3d(0,0,0);
+   }
+ 
+   75% {
+     -webkit-transform: translate3d(0,-30%,0);
+   }
+ 
+   100% {
+     -webkit-transform: translate3d(0,0,0);
+   }
+ }
+ 
+  /* {
+   -webkit-animation: bounce ease-in 1; 
+   animation: bounce ease-in 1;
+   -webkit-animation-duration: 1000ms;
+   animation-duration: 1000ms;
+ } */
+

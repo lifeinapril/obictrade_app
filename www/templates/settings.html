@@ -1,0 +1,55 @@
+<ion-view>
+
+  <ion-nav-bar class="bar-light">
+
+    <ion-nav-title>
+      <b>Settings</b>
+    </ion-nav-title>
+
+    <ion-nav-buttons side="left">
+      <button class="button button-clear" back-button nav-direction="back">
+        <i class="icon ion-ios-arrow-back dark"></i></button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+  <ion-content>
+<br>
+    <div class="item item-divider"><b>Security settings</b></div>
+    <div ui-sref="changepassword" class="item text-left item-icon-right">
+      <i class="icon ti-lock  oran"></i> Change password
+    </div>
+
+<br>
+    <div class="item item-divider"><b>Personal settings</b></div>
+
+    <div ui-sref="edit_profile" class="item text-left item-icon-right">
+      <i class="icon ti-write  oran"></i> Edit profile
+    </div>
+
+
+    <div ui-sref="change_country" class="item text-left item-icon-right">
+      <i class="icon ti-flag  oran"></i>  Change your country
+    </div>
+
+
+      <ion-toggle class="item no-border toggle-dark" ng-change="change_mode()" ng-model="settings.dark_mode">Dark Mode</ion-toggle>
+  
+  
+    
+
+<Br>
+    <div class="item item-divider"><b>Assistance /  Help</b></div>
+    <!-- <a href="tel:{{tracy.phone}}" class="item text-left item-icon-right">
+      <i class="icon ti-mobile  oran"></i> Call Tracy
+    </a> -->
+    <a href="mailto:{{tracy.mail}}" class="item text-left item-icon-right">
+    <i class="icon ion-help-buoy oran"></i> Contact Support
+  </a>
+
+<br>
+    <div ng-click="logout()" class="item text-left item-icon-right assertive">
+   LOGOUT
+    </div>
+
+  </ion-content>
+</ion-view>

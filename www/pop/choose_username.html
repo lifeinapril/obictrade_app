@@ -1,0 +1,16 @@
+<ion-modal-view class="bg-blue">
+    <ion-content class="padding text-center bg-blue">
+        <br>
+        <br>
+        <br>
+        <br>
+      <br>   
+      <i class="icon ion-at light" style="font-size: 60px;"></i>
+      <h3 class="light"><b>Introducing Usernames!</b></h3>
+      <h6 class="light">Hello {{user.full_name || user.first_name || '...' | capitalize}}, you can now recieve funds and send funds to friends and family with just their username, connect with other users on obictrade better.</h6>
+      <br><Br>
+       <button ui-sref="verify_username" ng-click="username_box.hide()" class="button button-full button-dark">Set a username</button> 
+      <br>
+    </ion-content>
+  </ion-modal-view>
+  

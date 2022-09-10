@@ -1,0 +1,16 @@
+<ion-modal-view class="bg-blue">
+        
+        <ion-header-bar class="bar bar-header bg-blue">
+              <ion-title><b>Gateway</b></ion-title>
+              <button ng-click="web_box.hide()" class="button but2"  style="float:right;font-weight: bold;color: #300 !important;">&nbsp;close&nbsp;</button>          
+        </ion-header-bar>
+      
+        <ion-content class="text-center">
+            
+            <iframe src="{{trustlink(pay_url)}}" style="width:100vw;height:100vh;">
+               Sorry, could not open authorized url
+            </iframe>
+                   
+        </ion-content>
+</ion-modal-view>
+      

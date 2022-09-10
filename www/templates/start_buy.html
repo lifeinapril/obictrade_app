@@ -1,0 +1,46 @@
+
+<ion-view>
+
+    <ion-nav-bar class="bar bg-blue">
+  
+      <ion-nav-title>
+       Start Buying
+      </ion-nav-title>
+  
+      <ion-nav-buttons side="left">
+        <button class="button button-clear" back-button>
+          <i class="icon ion-ios-arrow-back light"></i></button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+  
+    <ion-content class="padding">
+        <br><br><br>
+        <div class="text-center padding">
+            <img src="{{media+coin.icon}}" height="80"/>
+            <br>
+             <h5>Start buying {{coin.symbol | uppercase}} from other traders</h5>
+        </div>
+        <div class="box padding">
+        <h4>Your Rate</h4>
+        <div class="item text-left item-input">
+         <b>₦ &nbsp;</b>
+         <input type="number" ng-disabled="coin.affiliate.allow_sell" ng-model="coin.affiliate.sell_rate" placeholder="0">
+         <b>/$</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+         <small class="text-center balanced">NGN {{coin.affiliate.sell_rate * coin.buying.usd || 0 | number:2}} / {{coin.symbol}}</small>
+        <br>
+        <br>  
+        <div class="item item-divider assertive text-center">
+            <div class="item-body">
+              <b>Attention</b>
+           <h4>Your price update would be sent to your contacts and connects on obic</h4>
+          </div>
+        </div>
+  
+        <button  ng-show="coin.affiliate.allow_sell" ng-click="stop_buying(coin)" class="button button-block button-assertive">Stop buying</button>
+        <button  ng-hide="coin.affiliate.allow_sell" ng-click="start_buying(coin)" ng-disabled="!coin.affiliate.sell_rate" class="button button-block button-balanced">Start buying</button>
+        </div>
+    </ion-content>
+  </ion-view>
+  
+  

@@ -1,0 +1,43 @@
+<ion-modal-view class="bg-blue-2">
+    <ion-header-bar class="bar bar-header bg-blue-2">    
+        <button ng-click="buy_box.hide()" class="button button-clear button-light"  style="float:left;font-weight: bold;">&nbsp;<i class="ti ti-close light"></i>&nbsp;</button>
+        <ion-title><b>Buy {{coin.symbol || 'BTC' | uppercase}}</b></ion-title>
+      </ion-header-bar>
+   
+    <ion-content class="padding text-left bg-grey">
+
+           
+         
+        <br>
+
+      <div class="list">
+
+        <div ng-include="'components/buying-input.html'"></div>
+
+      </div>
+    <div class="item item-divider" ng-if="show_coin">
+    <v>Naira value</v> <b class="balanced pull-right" style="float: right !important;">{{naira_amount || 0 | currency}}</b>
+    </div>
+    <div class="item item-divider" ng-if="!show_coin">
+    <v>Buying</v> <b class="orange pull-right" style="float: right !important;">{{coin_amount || 0 | number:8}} {{coin.symbol | uppercase}}</b>
+    </div>
+
+
+    <div class="padding text-center">
+        
+      <h6 ng-if="user.in_currency=='ngn'" class="black" style="font-size: 13px !important;">Buying at <b style="color: rgb(20, 248, 31) !important;">{{coin.buying.usd * coin.buy_rates || 0 | currency}}</b> / {{coin.symbol | uppercase}}</h6>
+      <h6 ng-if="user.in_currency=='usd'" class="black" style="font-size: 13px !important;">Buying at <b style="color: rgb(20, 248, 31) !important;">${{coin.buying.usd || 0 | number:2}}</b> / {{coin.symbol | uppercase}}</h6>
+      
+    </div>             
+
+
+
+    <br>
+    <button ng-click="buy_coin(coin_amount)" ng-disabled="!coin_amount" style="color:#fff !important;font-size:14px;width: 100%;background-color: rgb(216, 141, 1) !important;" class="button button-full button-dark">
+       BUY
+    </button>
+
+
+    </ion-content>
+
+</ion-modal-view>

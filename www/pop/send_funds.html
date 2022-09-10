@@ -1,0 +1,66 @@
+<ion-modal-view class="bg-blue-2">
+    <ion-header-bar class="bar bar-header bg-blue-2">    
+        <button ng-click="funds_box.hide()" class="button button-clear button-light"  style="float:left;font-weight: bold;">&nbsp;<i class="ti ti-close light"></i>&nbsp;</button>
+        <ion-title><b>send {{coin.symbol || 'NGN' | uppercase}}</b></ion-title>
+      </ion-header-bar>
+   
+    <ion-content class="padding text-left bg-grey">
+
+      
+
+      <!-- <div class="list">
+
+        <div ng-if="!coin" ng-include="'components/input.html'"></div>
+        <div ng-if="coin" ng-include="'components/buying-input.html'"></div>
+
+      </div> -->
+
+      <br>
+      <b class="black">Sending to</b>
+      <div class="item item-avatar" style="margin: 5px !important;">
+        <img src="{{media + trader.photo}}" class="avatar" />  
+        <h3 class="dark">{{trader.full_name}}</h3>
+          <small class="oran">@{{trader.user_name}}</small>
+      </div>
+      <div ng-show="coin" class="item item-divider"> 
+        <h3 class="dark">Address</h3>
+        <div class="item-body"> 
+          <button ng-click="copy(trader.coin.address)" style="float: right;" class="button button-small button-dark">copy</button>
+          <small class="oran">{{trader.coin.address}}</small>
+          </div>
+      </div>
+<br>
+       
+
+      <!-- <div class="item item-divider" ng-if="!coin">
+        <v>Fee</v> <b class="orange pull-right" style="float: right !important;">{{fee || 0 }} NGN</b>
+        </div>
+        <div class="item item-divider" ng-if="coin">
+        <v>Fee</v> <b class="orange pull-right" style="float: right !important;">{{coin.fee || 0 | number:8}} {{coin.symbol  || coin.coin || 'NGN' | uppercase}}</b><br>
+        <h5 class="text-center pull-right" style="float: right !important;">
+          <b class="balanced">${{coin_usd(coin.fee,coin.symbol) || 0 | number:2}}</b>
+        </h5>
+        </div>
+
+      <div class="item item-divider" ng-if="!coin">
+      <v>Total</v> <b class="orange pull-right" style="float: right !important;">{{naira_amount + fee || 0}} NGN</b>
+      </div>
+
+      <div class="item item-divider" ng-if="coin">
+      <v>Total</v> <b class="orange pull-right" style="float: right !important;">{{(coin_amount + coin.fee) || 0 | number:8}} {{coin.symbol || coin.coin | uppercase}}</b><br>
+      <h5 class="text-center pull-right" style="float: right !important;">
+        <b class="balanced">${{coin_usd(int(coin_amount) + coin.fee,coin.symbol) || 0 | number:2}}</b>
+      </h5>
+      </div>
+
+
+
+    <br>
+    <button ng-click="send_pay(coin_amount,naira_amount)" ng-disabled="!naira_amount" style="color:#fff !important;font-size:14px;width: 100%;background-color: rgb(216, 141, 1) !important;" class="button button-full button-dark">
+       Send
+    </button> -->
+
+
+    </ion-content>
+
+</ion-modal-view>

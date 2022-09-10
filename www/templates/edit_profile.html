@@ -1,0 +1,85 @@
+
+<ion-view align="center" class="bg-blue">
+  <ion-nav-bar class="bar bg-blue">
+      <ion-nav-title>
+        <b>My Profile</b>
+        </ion-nav-title>
+    <ion-nav-buttons side="left">
+      <button class="button button-clear" back-button>
+        <i class="icon ion-ios-arrow-back light"></i></button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+      <ion-content class="has-header padding" style="text-align: center;background-color: white !important;">
+
+<br>
+  
+
+<ion-refresher  icon="ion-loading-d" 
+pulling-text="Pull to refresh"
+on-refresh="refresh_profile()">
+</ion-refresher>
+
+
+<br>
+<div class="profile_photo_big" ui-sref="edit_photo" ng-style="{'background-image':'url('+media+user.photo+')'}"></div>  
+<br>
+<div ng-if="user.verified">
+  <b class="balanced"><span class="ion ion-checkmark-circled"></span> verified</b>
+</div>
+<br>
+<br>
+  <form ng-submit="profile_update(user)" class="list text-left">
+
+    <b class="dark">Your Preferred Name</b>
+       <label class="item item-input">
+        <input type="text" ng-model="user.full_name" value="{{user.full_name || (user.first_name+' '+user.last_name)}}" placeholder="Your Preferred Name">
+      </label>
+
+
+      <br>
+
+
+
+    <b class="dark">Your User Name</b>
+       <label class="item item-input" ui-sref="verify_username">
+      <b class="text-center" style="padding-top:8px;"><i class="ion-at oran"></i></b>  &nbsp;&nbsp;&nbsp;
+      <input type="text" disabled ng-model="user.user_name" placeholder="Your User Name">
+      </label>
+
+
+      <br>
+
+      <b class="dark">Your Email</b>
+       <label class="item item-input" ui-sref="verify_email">
+      <b class="text-center" style="padding-top:8px;"><i class="ion-email oran"></i></b>  &nbsp;&nbsp;&nbsp;
+      <input type="text" disabled ng-model="user.email" placeholder="Email">
+  </label>
+
+  <br>
+
+  <b class="dark">Your Phone Number</b>
+  <br>
+
+      <div class="item item-input" ui-sref="verify_phone">
+        <b class="text-center" style="padding-top:8px;"><i class="ion-android-call oran"></i></b>  &nbsp;&nbsp;&nbsp;
+         <input class="col-80" disabled ng-model="user.phone" name="phone" type="tel" style="font-size: 15px;border:none !important;" placeholder="Phone Number">
+      </div>
+         <br>
+
+      <b class="dark">Bio <small>(optional)</small></b>
+      <br>
+    
+          <div class="item item-input">
+             <textarea ng-model="user.bio" style="font-size: 15px;border:none !important;"></textarea>
+          </div>
+         
+<br><br>
+
+
+    <button type="submit" class="button button-block button-dark">UPDATE</button>
+
+  </form>
+
+
+</ion-content>
+</ion-view>

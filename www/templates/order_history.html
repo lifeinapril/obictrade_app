@@ -1,0 +1,62 @@
+
+<ion-view cache-view="true">
+ 
+  
+    <ion-nav-bar class="bar-light" style="display:block;">
+        
+        <ion-nav-title class="text-center" align="center">
+              <b>Orders History</b>
+        </ion-nav-title>
+        
+        <ion-nav-buttons side="left">
+        <button class="button button-clear" back-button nav-direction="back">
+        <i class="icon ion-ios-arrow-back oran"></i></button>
+        </ion-nav-buttons>
+        
+        <ion-nav-buttons side="right">
+            
+        </ion-nav-buttons>
+        
+    </ion-nav-bar>
+ 
+    <ion-content ng-init="get_orders()">
+      <ion-refresher pulling-text="Pull to refresh" on-refresh="get_orders()"></ion-refresher>
+     <br>
+
+
+            
+      <div ui-sref="order({order_id:order.transaction_id})" class="item item-light item-avatar" style="display:block !important;" ng-repeat="order in orders | filter:{done:true} | orderBy:'-date_created'">
+            <h6><small style="float:right !important;" ng-bind="timediff(order.date)"></small></h6>
+            <div class="pps" ng-style="{'background-image':'url('+media + order.store.photo ')'}">
+            </div>
+            <span class="title">
+                    <h3><b>{{order.store.name || '...'}}</b></h3>
+                    <h4>
+                      <b class="oran" ng-if="order.delivery">Delivery</b>
+                      <b class="oran" ng-if="order.pickup">Pickup</b>
+                    </h4>
+                    <h5>{{order.products.length || 0}} Order<v ng-if="order.products.length > 1">s</v></h5>       
+                    <h6 ng-if="order.cancelled" style="float:right !important;" class="g-r-l assertive">Cancelled</h6>
+                    <h6 ng-if="order.done && !order.cancelled" style="float:right !important;" class="g-r-l balanced">Successful</h6>
+            </span>
+          </div>
+       
+  
+          <div ng-if="!orders || (orders | filter:{done:true}).length < 1" class="padding">
+            <div class="text-center item item-body item-light">
+              <div class="padding">
+                <br><br>
+                 <h2><b>No orders yet</b></h2>  <br>
+              </div> 
+               <br>
+            </div>
+          </div>
+      
+  
+  
+  
+  
+  
+    </ion-content>
+  </ion-view>
+  

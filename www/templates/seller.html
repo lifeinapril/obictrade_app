@@ -1,0 +1,64 @@
+<ion-view cache-view="false" style="background-color: rgb(255, 255, 255) !important;">
+
+  
+  
+    <ion-nav-bar class="bar bar-light">
+
+    <ion-nav-buttons side="left">
+        <button class="button button-clear" back-button>
+          <i class="icon ion-ios-arrow-back dark"></i></button>
+      </ion-nav-buttons>
+
+        <ion-nav-title>
+            <b>Giftcards</b>
+          </ion-nav-title>
+    
+    </ion-nav-bar>
+  
+  
+  
+  
+    
+      <ion-content style="background-color: rgb(250, 250, 250);" ng-init="fetch_cards()"> 
+    
+    
+            <ion-refresher  icon="ion-loading-d" 
+            pulling-text="Pull to refresh"
+            on-refresh="fetch_cards()">
+            </ion-refresher>
+  <br>
+<div class="padding">
+          <label class="item item-input">
+              <input type="text" style="color:black;" ng-model="srch" placeholder="Search for giftcards" value="" />
+              <i style="margin:10px" class="icon icon-placeholder ti-search orange"></i>
+            </label>
+</div>
+
+  
+      <ion-list ng-show="!srch" class="padding text-center" style="float: left;width: 100vw !important;margin-top: -10px !important;">
+        <div ng-style="{'background-image':'url('+media + card.photo+')'}" ng-click="view_card(card)" class="story_box" ng-repeat="card in assets | orderBy:'-score' | limitTo:12">
+    <br>
+      <h3 class="light"><b>{{card.name}}</b></h3>
+    </div>
+  </ion-list>
+
+    <div ng-hide="!srch" class="padding list">
+
+
+
+
+          
+      <div ng-include="'components/giftcard.html'"  ng-repeat="card in assets | orderBy:'-date_created' | filter:srch"></div>
+     
+    
+      </div>
+    
+      <br><br><br>
+      <br><br><br>
+      <br><br><br>
+        </ion-content>
+    
+    
+    </ion-view>
+    
+    

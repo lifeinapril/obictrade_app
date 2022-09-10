@@ -1,0 +1,44 @@
+<ion-modal-view class="bg-blue-2">
+    <ion-header-bar class="bar bar-header bg-blue-2">    
+        <button ng-click="recieve_coin_box.hide()" class="button button-clear"  style="float:left;font-weight: bold;color: rgb(247, 244, 244) !important;">&nbsp;<i class="ti ti-close light"></i>&nbsp;</button>
+        <ion-title><b>Recieve {{coin.symbol || '...' | uppercase}}</b></ion-title>
+    </ion-header-bar>
+   
+    <ion-content class="padding text-left bg-white">
+          <div class="padding text-center">
+
+              <br>
+
+            <div class="text-center padding">
+              <img src="{{media+coin.icon}}" height="40"/>
+          </div>
+          <br>
+            <div class="item-body">
+              <div style="background-color: black;width: 150px;height: 150px;margin: auto !important;direction: ltr;">
+                <qrcode data="{{coin.address || '...'}}" size="150"></qrcode>
+              </div>
+              <br>
+              <b class="dark">Recieve {{coin.name || 'Bitcoin' | capitalize}} to your {{coin.name || 'Bitcoin' | capitalize}} wallet</b>
+              <b ng-if="user.user_name" class="oran">@{{user.user_name}}</b>
+            <h6 class="dark">Scan bar code for wallet address</h6>
+            <br>
+            <h4>{{coin.symbol | capitalize}} Wallet Address</h4>
+            <h5 class="oran">{{coin.address}}</h5>
+            <br>
+
+
+
+      <div class="button-bar">
+        <button class="button button-full button-dark" ng-click="copy()">Copy</button>
+        &nbsp;&nbsp;
+        <button ng-click="share_address()" class="button button-full button-dark">Share</button>
+      </div>
+
+       
+
+            </div>
+          </div>
+
+    </ion-content>
+
+</ion-modal-view>

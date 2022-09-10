@@ -1,0 +1,47 @@
+<ion-view cache-view="false" class="bg-blue">
+
+    <ion-nav-bar class="bar text-center bg-blue" style="display:block;">
+        <ion-nav-buttons side="left">
+          <button class="button button-clear" back-button>
+            <i class="icon ion-ios-arrow-back oran"></i></button>
+        </ion-nav-buttons>
+    
+            <ion-nav-buttons side="right">
+            <!-- <button ui-sref="login" style="font-weight: bold;" class="button button-clear button-oran">SIGN IN</button> -->
+            </ion-nav-buttons>
+            <ion-nav-title>
+              <b>Log in</b>
+            </ion-nav-title>
+    
+    
+      </ion-nav-bar>
+    <ion-content class="padding bg-blue bg1">
+     <br><br>
+     <img src="/img/icon.png" height="90"/>
+     <br>
+     <h3 class="light">Welcome to Obic!</h3>
+     <h5 class="light">Type in your email sign in.</h5>
+     <br>
+      <form ng-submit="auth2(det)">
+       <div class="padding">
+
+          <div class="item item-input text-left">
+            <div class="row">
+              <b class="text-center" style="padding-top:8px;"><i class="ion-email oran"></i></b>  &nbsp;&nbsp;&nbsp;
+            <input class="col-80" ng-model="det.email" name="email" type="email" style="font-size: 15px;border:none !important;" placeholder="Your Email">
+            </div>
+          </div>
+
+    <br>
+          <p><a ui-sref="auth" class="orange">Login with phone number.</a></p>
+ 
+
+    </div>
+       <button ng-disabled="!det.email" type="submit" class="button button-full button-orange">Continue</button>
+    
+       <br>
+       <!-- <h5 class="light">Already registered? <a style="text-decoration:underline !important;">Sign In</a></h5> -->
+  </form>
+  </ion-content>
+  </ion-view>
+   

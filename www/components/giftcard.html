@@ -1,0 +1,12 @@
+<ion-item class="item-light padding" style="margin-bottom: 16px !important;">
+    <div class="card-img" ng-style="{'background-image':'url('+media + card.photo + '?token='+token+')'}">
+    </div>
+    <br>
+    <br>
+    <h2 class="text-left dark"><b>{{card.name}}</b></h2>
+    <br>
+    <div class="button-row row" style="width:100% !important;">
+        <button disabled ng-click="buy_giftcard(card)" class="button button-small button-dark col"> Buy</button>
+         <button ng-click="sell_giftcard(card)" class="button button-small button-energized col"> Sell</button>
+    </div>
+</ion-item>

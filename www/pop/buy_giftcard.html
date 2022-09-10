@@ -1,0 +1,26 @@
+<ion-modal-view class="bg-blue">
+        
+    <ion-header-bar class="bar bar-header bg-blue">
+          <ion-title><b>Buy {{selected_asset.name}}</b></ion-title>
+          <button ng-click="buy_giftcard_box.hide()" class="button button-clear"  style="float:right;font-weight: bold;color: rgb(247, 240, 240) !important;">&nbsp;<span class="ti ti-close light"></span>&nbsp;</button>          
+    </ion-header-bar>
+  
+    <ion-content class="text-center bg-grey">
+        
+          <form  enctype="multipart/form-data" ng-submit="buy_asset(selected_asset)">
+         
+            <div class="padding">
+              <br><br>
+                            <div class="display-img" style="margin:auto !important;margin-bottom:10px !important;" ng-style="{'background-image':'url(' + media + selected_asset.photo  + ')'}">
+                            </div>
+                            <b style="color: black !important;font-size: 20px !important;">{{selected_asset.name | capitalize}}</b><br>
+                            <small ng-if="selected_asset.description">{{selected_asset.description}}</small>
+                            <br>
+
+               
+                </div>
+
+          </form>
+
+          </ion-content>
+          </ion-modal-view>

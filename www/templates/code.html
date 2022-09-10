@@ -1,0 +1,45 @@
+<ion-view cache-view="false" class="bg-light">
+
+    <ion-nav-bar class="bar bg-blue" style="display:block;">
+      <ion-nav-buttons side="left">
+        <button class="button button-clear" back-button>
+          <i class="icon ion-ios-arrow-back light"></i></button>
+      </ion-nav-buttons>
+  
+          <ion-nav-buttons side="right">
+          <!-- <button ui-sref="login" style="font-weight: bold;" class="button button-clear button-oran">SIGN IN</button> -->
+          </ion-nav-buttons>
+          <ion-nav-title>
+            <b>Verification</b>
+          </ion-nav-title>
+  
+  
+    </ion-nav-bar>
+   
+   
+    <ion-content ng-init="counter()" class="padding text-center bg-blue">
+     <Br>
+        <small class="light">Please provide the code sent to your phone number / email to verify it is you.</small>
+        <br><br>
+       <div class="col-99">
+        <label class="item item-input text-left">
+            <div class="row">
+            <input class="col-90" ng-model="code" name="code" type="password" style="font-size: 15px;border:none !important;" placeholder="Your Code">
+            </div>
+          </label>
+    </div>
+           <br>
+           <small ng-if="timer < 59" class="text-center">
+            Please wait until <b class="orange">{{timer || 0}}s</b> before you resend the code.
+            </small>
+            <br><Br>
+            <small class="text-center">
+                If you didn't recieve any code please tap <br><button ng-disabled="timer < 59" class="button button-small button-clear button-light" ng-click="resend_code()">Resend Code</button>
+                </small>
+               <Br>
+           <br>
+       <button ng-disabled="!code" ng-click="verify_code(code)" class="button button-full button-orange">Continue</button>
+    
+  </ion-content>
+  </ion-view>
+   

@@ -1,0 +1,9 @@
+<div class="list" ng-if="assets.length > 0">
+    <h4>Best Rates</h4>
+    <div ng-include="'components/giftcard2.html'"  ng-repeat="card in assets  | orderBy:'-rates' | limitTo:5"></div>
+
+<div class="text-center padding">
+    <a ui-sref="front.seller" class="oran">see more</a>
+  </div>
+</div>
+  

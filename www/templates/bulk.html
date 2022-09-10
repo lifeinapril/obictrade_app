@@ -1,0 +1,44 @@
+
+<ion-view>
+
+    <ion-nav-bar class="bar bg-blue">
+  
+      <ion-nav-title>
+       Affiliate Sales
+      </ion-nav-title>
+  
+      <ion-nav-buttons side="left">
+        <button class="button button-clear" back-button>
+          <i class="icon ion-ios-arrow-back light"></i></button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+  
+    <ion-content class="padding">
+        <br><br><br>
+        <div class="text-center padding">
+            <img src="{{media+coin.icon}}" height="80"/>
+            <br>
+            <h4>{{coin.name | capitalize}} Affiliate</h4>
+            <h5>Start selling {{coin.symbol | uppercase}} and get paid instantly</h5>
+        </div>
+        <div class="box padding">
+        <h4>Your Rate</h4>
+        <div class="item text-left item-input">
+         <b>₦ &nbsp;</b>
+         <input type="number" ng-disabled="coin.affiliate.allow_buy" ng-model="coin.affiliate.buy_rate" placeholder="0">
+         <b>/$</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         </div>
+         <small class="text-center balanced">NGN {{coin.affiliate.buy_rate * coin.selling.usd || 0 | number:2}} / {{coin.symbol}}</small>
+        <br>  
+        <br>  
+        <br>
+        <div class="padding text-center"> 
+            <h6 class="black" style="font-size: 13px !important;">Currently selling at <b style="color: rgb(248, 149, 20) !important;">NGN {{coin.selling.usd * coin.sell_rates || 0 | number:2}}</b> / {{coin.symbol | uppercase}}</h6>
+        </div>  
+        <button  ng-show="coin.affiliate.allow_buy" ng-click="stop_selling(coin)" class="button button-block button-assertive">Stop selling</button>
+        <button  ng-hide="coin.affiliate.allow_buy" ng-click="start_selling(coin)" ng-disabled="!coin.affiliate.buy_rate" class="button button-block button-balanced">Start selling</button>
+        </div>
+    </ion-content>
+  </ion-view>
+  
+  

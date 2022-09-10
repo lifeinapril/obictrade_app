@@ -1,0 +1,38 @@
+<ion-view class="bg-grey" ng-init="read_notes()">
+    <!-- <ion-nav-bar class="bar bg-blue">
+        <ion-nav-title>
+            <b>Feeds</b>
+          </ion-nav-title>
+                  <ion-nav-buttons side="left">
+   </ion-nav-buttons>
+    </ion-nav-bar> -->
+  
+    <ion-content ng-init="get_notifications()" class="text-left bg-grey">
+      <ion-refresher pulling-text="Pull to refresh" on-refresh="get_notifications()"></ion-refresher>
+       <br>    
+    <div class="padding">
+      <h2>Feeds</h2>
+      <h6 style="line-height: 15px !important;">Get update on your account here.</h6>
+    </div>
+      <div ng-show="!notifications || notifications.length < 1">
+        <div class=" text-center item item-light">
+          <div class="padding">
+            <h2><b>No Update.</b></h2> 
+          </div> 
+           <br>
+        </div>
+      </div>
+  
+      <div class="list">
+        <div class="item" ng-class="note.user.o_id ? 'item-avatar':''" ng-click="open_note(note)" ng-repeat="note in notifications | orderBy:'-date'" style="margin: 5px !important;">
+          <img ng-if="note.user.o_id" src="{{media + note.user.photo}}" class="avatar" />  
+          <h3 class="oran">{{note.title}}</h3>
+            <small style="color: #2f2f2f">{{note.message}}</small>
+            <h6 class="orange">{{note.date | date:"MMMM d, y,  hh:mm a"}}</h6>
+        </div>
+      </div>
+
+
+    </ion-content>
+  </ion-view>
+  

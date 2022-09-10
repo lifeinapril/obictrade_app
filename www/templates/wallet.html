@@ -1,0 +1,114 @@
+<ion-view cache-view="false" style="background-color: rgba(13, 45, 94, 0.788) !important;">
+
+  
+  <div  style="height: 140px !important;width: 100vw !important;margin-top: 0px;padding-top:8px !important;border-bottom-right-radius: 10px;border-bottom-left-radius: 10px;" class="bg-blue bg2">
+      
+    <div class="row">
+        <div class="item item-avatar item-dark" style="border: none !important;background-color: transparent !important; width: 100vw !important;">
+          <img ui-sref="front.profile" src="{{media+user.photo}}" height="40" style="display: block !important;opacity: 1 !important;"/>
+         <div ng-include="'components/usd_ngn.html'"></div>
+          <h3 ui-sref="front.profile" class="light" style="margin-top:15px !important;">Hi, {{user.full_name || user.first_name | capitalize}}</h3>
+        </div>
+     </div>
+  
+
+
+
+
+     <div class="padding">
+      <div class="item item-light text-center bg-blue-2" style="box-shadow: 0px 1px 8px 0px rgba(31, 30, 30, 0.144) !important;">
+       <br>
+        <small>
+        <b>Total Balance</b> 
+        &nbsp;
+         <a ng-if="!user.hidden_balance" ng-click="hide_balance()" style="text-decoration: underline !important;" class="link orange">Hide</a>
+         <a ng-if="user.hidden_balance" ng-click="show_balance()" style="text-decoration: underline !important;" class="link orange">Show</a>
+        </small>
+        <h3 ng-if="!user.hidden_balance" style="margin-top:5px;font-size:25px;" class="padding orange">
+          <b ng-if="user.in_currency=='usd'">USD {{total_usd() || 0 | number:2}}</b>
+          <b ng-if="user.in_currency=='ngn'">NGN {{total_balance() || 0 | number:2}}</b>      
+        </h3>  
+        <h3 ng-if="user.hidden_balance" style="margin-top:5px;font-size:25px;" class="padding oran"><b>* * * *</b></h3>  
+        
+<div class="button-bar" ng-if="!user.isagent">
+<button ui-sref="method"  class="button button-block button-outline button-light">
+  Deposit &nbsp;&nbsp;
+  <i class="icon ti-plus pull-right"></i>
+</button>
+
+&nbsp;&nbsp;
+
+ <button ng-click="cashout_box.show()" class="button button-block button-oran">
+   Withdraw &nbsp;&nbsp;
+   <i class="icon ti-download pull-right"></i>
+ </button>
+
+</div>
+
+    </div>
+    
+    </div>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+  
+    <ion-content class="padding" style="margin-top: 180px !important;background-color: rgb(230, 225, 225);" ng-init="refresh_profile()"> 
+  
+       
+        <div class="list">
+          <div ng-if="!user.isagent">
+          <br>
+          <br>
+          <br>
+          <br>
+          </div>
+           <ion-refresher pulling-text="Pull to refresh" on-refresh="fetch_rates()"></ion-refresher>
+
+          <div ng-include="'components/verification_alert.html'"></div>
+          
+          <div ng-if="market_gain() || market_gain() > 0" class="text-center padding">
+            <h5>The market is 
+              <v ng-if="market_gain() > 0">up today by
+                 <b class="balanced">+{{market_gain() || 0 | number:2}}%</b>
+                 <!-- <ion-chip class="text-center">
+                  <ion-label class="text-center">{{market_gain() || 0 | number:2}}%</ion-label>
+                </ion-chip> -->
+                </v>
+              <v ng-if="market_gain() < 0">down by 
+                <b class="assertive">{{market_gain() || 0 | number:2}}%</b></v>
+            </h5>
+          </div>
+          <div ng-include="'components/naira_wallet.html'"></div>
+
+          <br>
+
+          <div ng-include="'components/wallets/btc.html'"></div>
+          <br>
+          <div ng-include="'components/wallets/eth.html'"></div>
+          <br>
+          <div ng-include="'components/wallets/usdt.html'"></div>
+
+          <br>
+        </div>
+
+
+  
+  
+     <br>
+     <br>
+     <br>
+     <br>
+     <br>
+  
+    </ion-content>
+  </ion-view>
+  

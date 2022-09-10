@@ -1,0 +1,71 @@
+{
+  "_from": "cordova-plugin-intercom",
+  "_id": "cordova-plugin-intercom@12.1.0",
+  "_inBundle": false,
+  "_integrity": "sha512-jo0STXVigNVWVonGWwUGl2+J9UUu1++ALtnn2enV9m55MvLA+epHDPUpglTxhYn19Db58Y1nJkCG91C1rK3RRg==",
+  "_location": "/cordova-plugin-intercom",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "cordova-plugin-intercom",
+    "name": "cordova-plugin-intercom",
+    "escapedName": "cordova-plugin-intercom",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#DEV:/",
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-intercom/-/cordova-plugin-intercom-12.1.0.tgz",
+  "_shasum": "654d6dfbbae5233a0ec296b7fb5519776e0ddc22",
+  "_spec": "cordova-plugin-intercom",
+  "_where": "/Users/abraham/Desktop/Projects/ObicTrade/app",
+  "author": {
+    "name": "Intercom"
+  },
+  "bugs": {
+    "url": "https://github.com/intercom/intercom-cordova/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-plugin-intercom",
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  },
+  "deprecated": false,
+  "description": "Official Cordova/PhoneGap plugin for Intercom",
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=9.0.0"
+    },
+    {
+      "name": "cordova-android",
+      "version": ">=9.0.0"
+    },
+    {
+      "name": "cordova-ios",
+      "version": ">=6.1.1"
+    }
+  ],
+  "homepage": "https://github.com/intercom/intercom-cordova#readme",
+  "keywords": [
+    "intercom",
+    "intercom-cordova",
+    "ecosystem:cordova",
+    "cordova-ios",
+    "cordova-android"
+  ],
+  "license": "MIT License",
+  "name": "cordova-plugin-intercom",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/intercom/intercom-cordova.git"
+  },
+  "version": "12.1.0"
+}

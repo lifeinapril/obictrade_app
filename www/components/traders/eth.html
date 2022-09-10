@@ -1,0 +1,7 @@
+<div ng-click="view_profile(trader)" class="item item-avatar padding" style="padding-bottom: 20px !important;">
+    <img  class="avatar" src="{{media+trader.photo}}" height="30" />
+    <img  style="float: right !important;" src="{{media+trader.ethereum_wallet.icon}}" height="30" />
+    <h2><b>{{trader.full_name || trader.first_name +' '+ trader.last_name}}</b></h2>
+    <h3 class="oran">@{{trader.user_name || '...'}}</h3>
+    <div ng-include="'components/pay/eth.html'"></div>
+</div>

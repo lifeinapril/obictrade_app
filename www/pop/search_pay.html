@@ -1,0 +1,42 @@
+
+<ion-modal-view class="bg-blue">
+    <ion-header-bar class="bar bar-header bg-blue">
+      <label class="item item-input" style="margin-top:-4px;background-color:#fff !important;width:100vw !important;height: 38px !important;border-radius: 20px !important;">
+        <input type="text" autofocus ng-keyup="search(srch)" ng-model="srch" placeholder="Search" style="border:none !important;color:rgb(8, 8, 8) !important; width: 80% !important;">
+      </label>
+      <button ng-click="search_pay.hide()" class="button button-clear button-light button-sm button-small"  style="float:left;font-weight: bold;">&nbsp;<i class="ion ion-close-round"></i>&nbsp;</button>          
+    </ion-header-bar>
+            
+    <ion-content class="padding text-left bg-white">
+           
+                    
+              <div ng-show="srch" style="width:100% !important;height:90vh;padding-bottom:40px !important;background:#fff;color:#000 !important;margin:0px !important;">
+                
+                
+                <div class="search-results" ng-show="srch">
+                    
+                  <div class="text-center padding">
+                      <h5 class="dark" style="color: rgb(39, 38, 38) !important;">{{search_results || 0 | number}} results</h5>
+                  </div>
+  
+                  <div  ng-repeat="profile in profile_results" ng-include="'components/user_pay.html'">
+                  </div>
+                
+                  <br><br><br>
+                  <div class="text-center" ng-if="!search_results">
+                      <br>
+                      <ion-spinner icon="crescent"></ion-spinner>         
+                  </div>
+  
+                  <div class="text-center" ng-if="search_results == 0">
+                      <h5 class="dark padding">No result found</h5>
+                  </div>
+                  
+                  </div>
+
+                  
+              </div>
+
+
+    </ion-content>
+</ion-modal-view>

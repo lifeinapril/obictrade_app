@@ -1,0 +1,63 @@
+<ion-modal-view class="bg-blue">
+      <ion-header-bar class="bar bar-header bg-blue">       
+        <button ng-click="cashout_box.hide()" class="button button-clear"  style="float:left;font-weight: bold;">&nbsp;<b><i class="ti ti-close light"></i></b>&nbsp;</button>          
+        <ion-title><small><b>Withdraw</b></small></ion-title>
+      </ion-header-bar>
+      
+        <ion-content class="padding text-left" style="background-color: white !important;">
+
+            <br>
+
+            
+           
+         
+  <div class="padding" ng-init="transaction.bank==user.bank_account">       
+   
+         <label class="dark">Amount</label><br>
+        <div class="item item-input">
+          <b>₦ &nbsp;</b>
+          <input type="number" ng-model="transaction.amount" placeholder="0">
+          <button ng-click="max_naira()" class="button button-sm button-small button-energized">&nbsp;&nbsp;MAX&nbsp;&nbsp;</button>&nbsp;&nbsp;&nbsp;
+        </div>
+
+       
+        <div ng-if="!user.bank_account.account_number" class="padding text-center">
+        <e>You don't have any beneficiary bank account added</e>
+        <br>
+      </div>
+
+
+     
+       <h6 class="text-center">Your payout would be sent to your added bank account below</h6>
+       
+        <div ng-if="user.bank_account.account_number" class="item item-light text-center padding padding">
+            <h4><b>{{user.bank_account.bank.Name}}</b></h4>
+            <h5 class="oran">{{user.bank_account.account_number}}</h5>
+            <h6>{{user.bank_account.account_name | uppercase}}</h6>
+         </div>
+         <button class="button button-clear button-full button-dark" ng-click="cashout_box.hide()" ui-sref="add_bank">Edit Bank Details</button>
+    
+
+         <br>
+         <div class="item item-divider item-light" width="100%">
+          <h4 class="dark">Fee
+          <b class="badge-stable oran" style="float: right;">{{100 || 0  | currency}}</b>
+          </h4>
+      </div>
+
+      <div class="item item-divider item-light" width="100%">
+          <h4 class="dark">Total
+          <b class="badge-stable oran" style="float: right;">{{100+transaction.amount || 0  | currency}}</b>
+          </h4>
+      </div>
+      <br>
+      <button ng-click="cashout(transaction)" ng-disabled="!transaction.amount || !user.bank_account.account_number" style="border-radius: 20px;color:#fff !important;font-size:14px;width: 100%;background-color: rgb(216, 141, 1) !important;" class="button button-full button-dark">
+         Cash Out
+      </button>
+          <br>
+    </div>
+  
+  
+    </ion-content>
+  
+    </ion-modal-view>

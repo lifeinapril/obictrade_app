@@ -1,0 +1,37 @@
+
+<ion-modal-view class="bg-blue">
+        
+    <ion-header-bar class="bar bar-header bg-blue">
+        <button ng-click="pay_box.hide()" class="button button-clear"  style="float:right;font-weight: bold;color: rgb(248, 244, 244) !important;">&nbsp;<span class="ti ti-close light"></span>&nbsp;</button>          
+        <ion-title><b>Send Funds</b></ion-title>
+    </ion-header-bar>
+  
+    <ion-content class="bg-grey padding">
+        <br>
+        <b class="black">Sending to</b>
+<div class="item item-avatar" style="margin: 5px !important;">
+  <img src="{{media + trader.photo}}" class="avatar" />  
+  <h3 class="dark">{{trader.full_name}}</h3>
+    <small class="oran">@{{trader.user_name}}</small>
+</div>
+<div class="item item-avatar padding" ng-click="send_funds(trader)" style="padding-bottom: 20px !important;">
+    <img  ng-if="user.in_currency=='ngn'" src="/img/ng.png" class="avatar"/>
+    <img ng-if="user.in_currency=='usd'" src="/img/usd.png" class="avatar"/>
+    <h4  style="padding-top: 20px !important;">Send NGN</h4>
+</div>
+<div class="item item-avatar padding" ng-click="send_funds(trader,btc)" style="padding-bottom: 20px !important;">
+    <img src="{{media+btc.icon}}" height="30" />
+    <h4 style="padding-top: 20px !important;">Send BTC</h4>
+</div>
+<div class="item item-avatar padding" ng-click="send_funds(trader,eth)" style="padding-bottom: 20px !important;">
+    <img src="{{media+eth.icon}}" height="30" />
+    <h4 style="padding-top: 20px !important;">Send ETH</h4>
+</div>
+<div class="item item-avatar padding" ng-click="send_funds(trader,usdt)" style="padding-bottom: 20px !important;">
+    <img src="{{media+usdt.icon}}" height="30" />
+    <h4 style="padding-top: 20px !important;">Send USDT</h4>
+</div>
+
+</ion-content>
+
+</ion-modal-view>

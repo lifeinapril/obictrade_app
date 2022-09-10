@@ -1,0 +1,59 @@
+{
+  "_from": "git+https://github.com/Anuj-Raghuvanshi/cordova-clipboard-plugin.git",
+  "_id": "cordova-clipboard-plugin@0.0.3",
+  "_inBundle": false,
+  "_integrity": "",
+  "_location": "/cordova-clipboard-plugin",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "git",
+    "raw": "https://github.com/Anuj-Raghuvanshi/cordova-clipboard-plugin",
+    "rawSpec": "https://github.com/Anuj-Raghuvanshi/cordova-clipboard-plugin",
+    "saveSpec": "git+https://github.com/Anuj-Raghuvanshi/cordova-clipboard-plugin.git",
+    "fetchSpec": "https://github.com/Anuj-Raghuvanshi/cordova-clipboard-plugin.git",
+    "gitCommittish": null
+  },
+  "_requiredBy": [
+    "#DEV:/",
+    "#USER"
+  ],
+  "_resolved": "git+https://github.com/Anuj-Raghuvanshi/cordova-clipboard-plugin.git#03ab5b1524aaa24e3386847bebc1ce30a304c580",
+  "_spec": "https://github.com/Anuj-Raghuvanshi/cordova-clipboard-plugin",
+  "_where": "/Users/USER/Desktop/Projects/OBIC/wallet-app",
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/VersoSolutions/CordovaClipboard/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "com.verso.cordova.clipboard",
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  },
+  "deprecated": false,
+  "description": "Clipboard management plugin for Cordova/PhoneGap",
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.0.0"
+    }
+  ],
+  "homepage": "https://github.com/VersoSolutions/CordovaClipboard#readme",
+  "keywords": [
+    "clipboard",
+    "copy",
+    "paste",
+    "ecosystem:cordova",
+    "cordova-ios",
+    "cordova-android"
+  ],
+  "license": "MIT",
+  "name": "cordova-clipboard-plugin",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Anuj-Raghuvanshi/cordova-clipboard-plugin.git"
+  },
+  "version": "0.0.3"
+}

@@ -1,0 +1,53 @@
+{
+  "_from": "cordova-plugin-codeplay-in-app-update",
+  "_id": "cordova-plugin-codeplay-in-app-update@0.0.4",
+  "_inBundle": false,
+  "_integrity": "sha512-eUr1sOVVO40befVcJL+R7E+lInDG92rbFmvGe5CcA5vsCGUhPUntEy718bzC7XB04g5bUBa1la3/tNgXEtNDww==",
+  "_location": "/cordova-plugin-codeplay-in-app-update",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "cordova-plugin-codeplay-in-app-update",
+    "name": "cordova-plugin-codeplay-in-app-update",
+    "escapedName": "cordova-plugin-codeplay-in-app-update",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#DEV:/",
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-codeplay-in-app-update/-/cordova-plugin-codeplay-in-app-update-0.0.4.tgz",
+  "_shasum": "649b1995166b9475a6813a387fe43570db5aa789",
+  "_spec": "cordova-plugin-codeplay-in-app-update",
+  "_where": "/Users/abraham/Desktop/Projects/ObicTrade/coins-app",
+  "author": {
+    "name": "Merbin Joe"
+  },
+  "bugs": {
+    "url": "https://github.com/merbin2012/cordova-plugin-codeplay-in-app-update/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-plugin-codeplay-in-app-update",
+    "platforms": [
+      "android"
+    ]
+  },
+  "deprecated": false,
+  "description": "Keeping your app up-to-date on your users’ devices enables them to try new features, as well as benefit from performance improvements and bug fixes. Although some users enable background updates when their device is connected to an unmetered connection, other users may need to be reminded to update. In-app updates is a Play Core library feature that introduces a new request flow to prompt active users to update your app.",
+  "homepage": "https://github.com/merbin2012/cordova-plugin-codeplay-in-app-update#readme",
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "license": "ISC",
+  "name": "cordova-plugin-codeplay-in-app-update",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/merbin2012/cordova-plugin-codeplay-in-app-update.git"
+  },
+  "version": "0.0.4"
+}

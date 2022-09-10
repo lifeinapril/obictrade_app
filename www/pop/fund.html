@@ -1,0 +1,58 @@
+<ion-modal-view class="bg-blue">
+      <ion-header-bar class="bar bar-header bg-blue">
+         <button ng-click="fund_box.hide()" class="button button-clear"  style="float:left;font-weight: bold;">&nbsp;<b><i class="ti ti-close light"></i></b>&nbsp;</button>          
+             <ion-title><small><b>Add Cash</b></small></ion-title>
+        </ion-header-bar>
+      
+        <ion-content class="padding text-left" style="background-color: white !important;">
+            
+          <!-- <div class="padding text-center">
+            <div class="item-body">
+              <div style="background-color: black;width: 70px;height: 70px;margin: auto !important;direction: ltr;">
+                <qrcode data="{{user.m_id || '...'}}" size="70"></qrcode>
+              </div>
+              <br>
+              <b>Recieve Funds</b>
+            <h6>Scan to send funds to your wallet</h6>
+            </div>
+          </div> -->
+        
+          <div class="padding text-center">
+                <h5>Select the card you want to use to fund your naira wallet from</h5>
+                <!-- <h6>You will be charged <b class="oran">1.4%</b> fee of the amount</h6> -->
+            </div>
+            <br>
+  <form id="paynote" class="padding" ng-submit="fund_wallet(transaction)"  ng-init="transaction.token==user.cards[0].token">       
+               <label>Amount</label><br>
+              <div class="item item-input">
+               <b>₦ &nbsp;</b>
+               <input type="number" ng-model="transaction.amount" placeholder="0">
+               </div>
+          <br>
+          <div ng-if="!user.cards || user.cards.length < 1" class="padding text-center">
+            <h4><b>You don't have any added card yet</b></h4>
+            <br>
+        </div>
+          <button class="button button-clear button-full button-balanced" ng-click="fund_box.hide()" ui-sref="cards" ng-if="!user.cards || user.cards.length < 1">Add A Debit Card</button>
+   
+            <label  ng-if="user.cards.length > 0" class="item item-input item-floating-label">
+                    <b class="text-left">Select a card</b><br>      
+                <select style="width: 100%; color:black !important;" ng-model="transaction.token">
+                <option selected ng-repeat="card in user.cards track by 'token'" value="{{card.token}}">{{card.type}} ...{{card.number}}</option>
+                </select>
+                </label>
+  
+    <Br>
+  
+      <button type="submit" ng-hide="!user.cards || user.cards.length < 1" ng-disabled="!transaction.amount || !transaction.token" style="border-radius: 20px;color:#fff !important;font-size:14px;width: 100%;background-color: rgb(216, 141, 1) !important;" class="button button-full button-dark">
+          Fund
+      </button>
+
+          <br>
+
+  </form>
+  
+  
+    </ion-content>
+  
+    </ion-modal-view>

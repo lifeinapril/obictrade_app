@@ -1,0 +1,46 @@
+<ion-view title="Profile Photo" class="bg-blue" align-title="center" cache-view="false">
+    <ion-nav-bar class="bar bg-blue">
+  
+  
+      <ion-nav-buttons side="left">
+        <button class="button button-clear button-light" back-button>
+          <i class="icon ion-ios-arrow-back"></i>
+        </button>
+  
+      </ion-nav-buttons>
+  
+      <ion-nav-buttons side="right">
+        <button ng-click="update_photo()" class="button button-small button-block button-balanced">&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
+      </ion-nav-buttons>
+  
+    </ion-nav-bar>
+    <ion-content class="padding bg-white">
+  
+
+        <br>
+      <div ng-switch="looking">
+        <div ng-switch-when="true">
+          <ion-spinner icon="ripple" style="margin-right: auto; margin-left: auto;"></ion-spinner>
+        </div>
+      </div>
+      <br><br>
+      <div class="ppa">
+        <img ngf-src="file || media+user.photo"  src='img/load2.gif' lazy-img="{{media + user.photo}}">
+      </div>
+      <h5 class="text-center">Upload a photo of you.</h5>
+      <button class="button button-full button-outline button-balanced" id="file_up" ngf-resize="{width: 850, height: 850,quality: 0.8,centerCrop: true}" ngf-accept="'image/*'" ngf-pattern="'.png,.jpg,.gif,.jpeg'" ng-model="file" name="file"  ngf-max-size="30000MB" ngf-select="photo_up($file)">
+        Select Photo
+      </button>
+      <div>
+      </div>
+  
+  
+  
+  
+  
+  
+      <br><br>
+  
+    </ion-content>
+  </ion-view>
+  

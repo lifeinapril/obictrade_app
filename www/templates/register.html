@@ -1,0 +1,74 @@
+<ion-view cache-view="false" class="bg-blue">
+
+    <ion-nav-bar class="bar bg-blue" style="display:block;">
+      <ion-nav-buttons side="left">
+        <button class="button button-clear" back-button>
+          <i class="icon ion-ios-arrow-back oran"></i></button>
+      </ion-nav-buttons>
+  
+          <ion-nav-buttons side="right">
+          <!-- <button ui-sref="login" style="font-weight: bold;" class="button button-clear button-oran">SIGN IN</button> -->
+          </ion-nav-buttons>
+          <ion-nav-title>
+            <b>Sign up</b>
+          </ion-nav-title>
+  
+  
+    </ion-nav-bar>
+   
+   
+    <ion-content class="padding bg-blue">
+     <br><br>
+      <form ng-submit="register(det)">
+       <div class="col-99">
+
+          <div class="item item-input">
+            <div class="row">
+              <b class="col-10" style="padding-top:8px;"><i class="ti-user oran"></i></b>  &nbsp;&nbsp;&nbsp;
+              <input class="col-90" ng-model="det.full_name" name="full_name" type="text" style="font-size: 15px;border:none !important;" placeholder="Full Name">
+            </div>
+          </div>
+
+
+          <div class="item item-input">
+            <div class="row">
+              <b class="col-10" style="padding-top:8px;"><i class="ion-at oran"></i></b>  &nbsp;&nbsp;&nbsp;
+              <input class="col-90" ng-model="det.email" name="email" type="text" style="font-size: 15px;border:none !important;" placeholder="Email">
+            </div>
+          </div>
+
+          <label class="item item-input">
+            <div class="row">
+                <b class="col-10" style="padding-top:8px;"><i class="ti-lock oran"></i></b> 
+                <input class="col-90" type="password" ng-model="det.password" placeholder="Your Password" required>
+            </div>
+          </label>
+  
+        <label class="item item-input">
+             <div class="row">
+                <b class="col-10" style="padding-top:8px;"><i class="ti-lock oran"></i></b> 
+                <input type="password" ng-model="det.rpassword" placeholder="Retype Password" required>
+            </div>
+        </label>
+
+
+  
+        <label class="item item-input">
+          <h6 class="input-label">Referral ID <small>(optional)</small></h6> 
+          <br><br>
+          <input type="password" ng-model="det.reffered_by" placeholder="Referral ID">
+       </label>
+
+    </div>
+           <br>
+           <small class="text-center">
+            By continuing you agree to our <a>T&Cs</a>.
+        </small>
+           <br>
+       <button ng-disabled="!det.full_name || !det.password || !det.rpassword || !det.email" type="submit" class="button button-full button-dark but1">Continue</button>
+    
+       <br>
+  </form>
+  </ion-content>
+  </ion-view>
+   

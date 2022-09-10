@@ -1,0 +1,9 @@
+<ion-item class="item-light padding ad_spotlight" ng-if="spotlight" style="margin-bottom: 0px !important;" >
+   
+    <div class="text-left item-body pull-left">
+        <div class="profile_photo_big" style="float: right !important;margin-top: 20px;" ng-style="{'background-image':'url('+media+spotlight.photo+')'}"></div>         
+        <h1 class="text-left light"><b>Spotlight</b></h1>
+        <h4 class="text-left light"><b>Connect with <b class="royal" style="font-size: 18px !important;">{{spotlight.full_name}}</b></b></h4>
+        <button   ng-click="trade_with(spotlight)" class="button button-small button-royal">&nbsp;&nbsp;Trade Now&nbsp;&nbsp;</button>
+    </div>
+</ion-item>

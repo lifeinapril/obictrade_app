@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "731389978186",
+    "project_id": "obic-wallet-64676",
+    "storage_bucket": "obic-wallet-64676.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:731389978186:android:c98193c957d5ef7a6f68b3",
+        "android_client_info": {
+          "package_name": "com.obic.wallet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "731389978186-pc45nks0bbn0iopfvmuqe58ie7hqq1i8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqgRUwJL7QeA-ErjpEUViGgRmTYNEjqFA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "731389978186-pc45nks0bbn0iopfvmuqe58ie7hqq1i8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

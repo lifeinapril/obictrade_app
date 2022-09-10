@@ -1,0 +1,65 @@
+<ion-modal-view class="bg-blue-2">
+    <ion-header-bar class="bar bar-header bg-blue-2">    
+        <button ng-click="send_coin_box.hide()" class="button button-clear"  style="float:left;font-weight: bold;color: rgb(248, 247, 247) !important;">&nbsp;<i class="ti ti-close light"></i>&nbsp;</button>
+        <ion-title><b>Withdraw {{coin.symbol || '...' | uppercase}}</b></ion-title>
+      </ion-header-bar>
+   
+    <ion-content class="padding text-left bg-grey">
+        
+         
+      <div>       
+        <br>
+        
+        <!-- <div ng-include="'components/send-input.html'"></div> -->
+     
+
+        <!-- <div class="list">
+          <b class="dark">Send Method</b><br>
+          <div class="item item-input">
+            <select ng-model="addressed"
+            ng-options="o.v as o.n for o in [{ n: 'By Username', v: false }, { n: 'By Wallet Address', v: true }]">
+            </select>
+           </div>
+         </div> -->
+
+           <div class="list">
+            <b class="dark">Wallet Address</b><br>
+            <div class="item item-input">
+             <input type="text" ng-model="to" placeholder="{{coin.symbol | capitalize}} Address">
+             </div>
+
+             <br>
+     
+           </div>
+
+
+       <!-- <div class="item item-divider item-light">
+            <v>Fee</v> 
+            <h4 class="orange pull-right" style="float: right !important;">
+              {{coin.fee || 0 | number:8 | limitTo:10}} {{coin.symbol | uppercase}}
+            </h4><br>
+            <h5 class="text-center pull-right" style="float: right !important;">
+              <b class="balanced">${{coin_usd(coin.fee,coin.symbol) || 0 | number:2}}</b>
+            </h5>
+       </div>
+       <div class="item item-divider item-light">
+            <v>Total</v>
+             <h4 class="orange pull-right" style="float: right !important;">
+              {{int(coin_amount) + coin.fee || 0 | number:8 | limitTo:10}} {{coin.symbol | uppercase}}
+             </h4><br>
+            <h5 class="text-center pull-right" style="float: right !important;">
+              <b class="balanced">${{coin_usd(int(coin_amount) + coin.fee,coin.symbol) || 0 | number:2}}</b>
+            </h5>
+      </div>
+
+       <br>
+
+
+      <button ng-click="send_coin(coin_amount,to)" ng-disabled="!coin_amount || !to || (!addressed && !verified_name)" style="color:#fff !important;font-size:14px;width: 100%;background-color: rgb(216, 141, 1) !important;" class="button button-full button-dark">
+         SEND
+      </button> -->
+    </div>
+
+    </ion-content>
+
+</ion-modal-view>

@@ -1,0 +1,93 @@
+<ion-view cache-view="true">
+    <style>
+
+
+.tabs-striped .tabs{
+      background-color: #01015f !important;
+      height: 80px !important;
+      opacity: 1;
+      border:none !important;
+}
+
+
+.tabs-striped .tabs .tab-item{
+border-top: 2px solid #01015f;
+font-size: 13px !important;
+color: rgb(230, 228, 228);
+}
+
+
+.tabs-striped .tabs .tab-item i {
+    font-size: 24px !important;
+    padding-top:10px !important;
+    margin-bottom: 5px !important;
+}
+
+.tabs-striped .tabs .tab-item span{
+    font-size: 11px !important;
+}
+
+
+
+.tabs-striped .tabs .tab-item-active{
+  border-top: 2px solid rgb(248, 172, 32) !important;
+  font-weight: bold !important;
+  color: rgb(255, 255, 255) !important;
+}
+
+
+.tabs-striped .tabs .tab-item-active i{
+  color: #ffb52c;
+  font-size: 24px !important;
+}
+
+
+
+  </style>
+    <ion-tabs class="tabs-striped">
+      
+
+
+
+
+      <ion-tab class="tabs-draco" icon="ion-earth" href="#/front/cards">
+        <ion-nav-view name="front-cards"></ion-nav-view>
+      </ion-tab>
+
+
+
+      <ion-tab class="tabs-draco" icon="ti-wallet" href="#/front/wallet">
+        <ion-nav-view name="front-wallet"></ion-nav-view>
+      </ion-tab>
+
+
+
+    
+
+      
+      
+      <ion-tab class="tabs-draco"  badge="(notifications | filter:{read:false}).length" badge-style="badge-energized" icon="ion-ios-bell" href="#/front/notification">
+        <ion-nav-view name="front-notification"></ion-nav-view>
+      </ion-tab>
+
+      
+
+
+
+
+      <ion-tab class="tabs-draco" icon="ion-more" href="#/front/profile">
+          <ion-nav-view name="front-profile"></ion-nav-view>
+      </ion-tab>
+
+    </ion-tabs>
+
+
+
+</ion-view>
+
+
+
+
+
+
+

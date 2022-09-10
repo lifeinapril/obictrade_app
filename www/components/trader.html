@@ -1,0 +1,5 @@
+<div ng-click="view_profile(user)" class="item item-avatar padding" style="padding-bottom: 20px !important;">
+    <img  class="avatar" src="{{media+user.photo + '?token='+token}}" height="30" />
+    <h2><b>{{user.full_name || user.first_name +' '+ user.last_name}}</b></h2>
+    <h3>@{{user.user_name || '...'}}</h3>
+</div>

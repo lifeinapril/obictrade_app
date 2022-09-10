@@ -1,0 +1,24 @@
+<div class="item item-avatar item-light" ng-click="view_wallet(user.usdt_wallet)" style="border:1px solid #d4d1d1af !important;margin-bottom: 0px !important;border-radius: 5px !important;">  
+    <img title="image" src="{{media+usdt.icon}}" class="avatar"/>
+    <!-- <div class="pull-right dark text-right" style="float: right !important;;">
+        <h3 class="dark">{{user.usdt_wallet.balance || 0}} {{user.usdt_wallet.symbol || 'USDT'}}</h3>
+        <h6 ng-if="user.in_currency=='ngn'" class="balanced">NGN {{user.usdt_wallet.balance * (usdt.selling.usd * usdt.sell_rates) || 0 | number:0}}</h6>
+        <h6 ng-if="user.in_currency=='usd'" class="balanced">USD {{(user.usdt_wallet.balance * usdt.selling.usd) || 0 | number:2}}</h6>
+    </div> -->
+
+    <div class="pull-right dark text-right" style="float: right !important;;">
+        <button class="button button-small button-dark">&nbsp;&nbsp;&nbsp;Trade&nbsp;&nbsp;&nbsp;</button>
+    </div>
+    <h2>USDT 
+        <i ng-if="user.usdt_wallet.affiliate.allow_sell" class="icon oran ion-flag"></i>
+        <i ng-if="user.usdt_wallet.affiliate.allow_buy" class="icon orange ion-flag"></i>
+    </h2>
+    <h4 class="pull-left dark">
+        <b ng-if="user.in_currency=='ngn'">NGN {{usdt.selling.usd * usdt.sell_rates || 0 | number:0}}</b> 
+        <b ng-if="user.in_currency=='usd'">USD {{usdt.selling.usd || 0 | number:2}}</b>&nbsp;
+        <small ng-class="gains(usdt) < 0  ? 'assertive':'balanced'">
+            <span ng-if="gains(usdt) > 0">+</span>
+            {{gains(usdt) || 0 | number:2}}%
+        </small>
+    </h4> 
+  </div>

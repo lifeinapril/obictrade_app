@@ -1,0 +1,12 @@
+<div class="item item-avatar item-light" ui-sref="front.payment" style="border:1px solid #d4d1d1af !important;margin-bottom: 0px !important;border-radius: 5px !important;">  
+  <img  ng-if="user.in_currency=='ngn'" src="/img/ng.png" class="avatar"/>
+  <img ng-if="user.in_currency=='usd'" src="/img/usd.png" class="avatar"/>
+  <div class="pull-right dark text-right" style="float: right !important;;">
+      <h3 ng-if="user.in_currency=='ngn'" class="dark">NGN {{user.naira_wallet.balance || 0 | number:0}}</h3>
+      <h3 ng-if="user.in_currency=='usd'" class="dark">USD {{user.naira_wallet.balance  / btc.sell_rates || 0 | number:2}}</h3>
+        <h6 ng-if="user.in_currency=='ngn'" class="balanced">USD{{user.naira_wallet.balance / btc.sell_rates || 0 | number:2}}</h6>
+        <h6 ng-if="user.in_currency=='usd'" class="balanced">NGN {{user.naira_wallet.balance || 0 | number:0}}</h6>
+    </div>
+    <h2 ng-if="user.in_currency=='ngn'" style="margin-top:10px !important;">NGN</h2>
+    <h2 ng-if="user.in_currency=='usd'" style="margin-top:10px !important;">USD</h2>
+  </div>

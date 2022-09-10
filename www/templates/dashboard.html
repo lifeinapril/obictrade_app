@@ -1,0 +1,55 @@
+<ion-view cache-view="false" style="background-color: rgb(19, 17, 18) !important;">
+
+  
+  
+    <ion-nav-bar class="bar bar-assertive bg-black">
+
+        <ion-nav-title>
+            <b>Dashboard</b>
+        </ion-nav-title>
+
+
+        <ion-nav-buttons side="left">
+            <button class="button button-clear" ui-sref="front.cards">
+            <i class="icon ion-ios-arrow-back light"></i>
+            </button>
+        </ion-nav-buttons>
+    
+    </ion-nav-bar>
+  
+  
+  
+<ion-content style="background-color: rgb(250, 250, 250);" ng-init="refresh_profile()"> 
+     
+    
+            <ion-refresher  icon="ion-loading-d" 
+            pulling-text="Pull to refresh"
+            on-refresh="refresh_profile()">
+            </ion-refresher>
+
+            <div ng-include="'components/ads/overview.html'">
+            </div>
+            <div  class="padding">
+
+            <div class="list">
+                <div class="item item-divider">
+                <h3>Your rates</h3>
+            </div>
+  
+    <div ng-include="'components/rates/btc.html'"></div>
+
+    <div ng-include="'components/rates/eth.html'"></div>
+
+    <div ng-include="'components/rates/usdt.html'"></div>
+    </div>
+
+    <br><br><br>
+    <br><br><br>
+    </div>
+          
+</ion-content>
+    
+    
+    </ion-view>
+    
+    

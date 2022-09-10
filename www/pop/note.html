@@ -1,0 +1,30 @@
+
+<ion-modal-view style="background-color: #fff !important;" class="text-center">
+   
+    <ion-header-bar class="bar bar-header bar-light">    
+      <button ng-click="note_box.hide()" class="button button-clear but2"  style="float:left;font-weight: bold;color: #300 !important;">&nbsp;<i class="ti ti-close"></i>&nbsp;</button>
+      <ion-title><b>Activity</b></ion-title>
+    </ion-header-bar>
+ 
+   <ion-content class="padding text-center" style="background-color: #fff !important;">
+    <br>
+    <h2 class="oran" style="font-size: 20px !important;">{{note.title}}</h2>
+    <a class="dark" style="font-size: 12px !important;">{{note.message}}</a>
+    <br>
+    <br>
+
+    <div class="list text-left">
+
+<div ng-if="note.user.o_id" class="item item-divider text-left"><h5>Update by</h5></div>
+      <div ng-if="note.user.o_id" class="item item-avatar" style="margin: 5px !important;">
+        <img src="{{media + note.user.photo}}" class="avatar" />  
+        <h3 class="dark">{{note.user.full_name}}</h3>
+          <small class="oran">@{{note.user.user_name}}</small>
+      </div>
+    </div>
+
+    <h6 class="orange">{{note.date | date:"MMMM d, y,  hh:mm a"}}</h6>
+
+   </ion-content>
+
+</ion-modal-view>

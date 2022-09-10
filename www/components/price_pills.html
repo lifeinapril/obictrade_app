@@ -1,0 +1,45 @@
+<div>  
+    <!-- <div style="float: left;width: 100vw; height: 80px !important;">   -->
+        <ion-scroll direction="x" style="float: left;width: 100vw;overflow-x:scroll !important; height: 80px !important;padding-top: 15px !important;">  
+            <!-- <marquee style="width:100vw !important;float: left !important;overflow-x:scroll !important;display: inline;padding-top: 15px !important;">  -->
+                <div style="float: left;width:auto; height: 80px !important;min-width: 800px !important;">  
+<div class="pill pill-light" ng-click="view_prices(btc)">  
+    <img src="{{media+btc.icon + '?token='+token}}" height="20"/>
+   <b>BTC 
+    <small>
+        <b ng-if="user.in_currency=='ngn'">NGN {{btc.selling.usd * btc.sell_rates || 0 | number:0}}</b> 
+        <b ng-if="user.in_currency=='usd'">USD {{btc.selling.usd || 0 | number:2}}</b> 
+        <small ng-class="gains(btc) <= 0 ? 'assertive':'balanced'">
+            <v ng-if="gains(btc) >= 0">+</v>{{gains(btc) || 0 | number:2}}%
+        </small>
+    </smll> </b>
+  </div>
+  <div class="pill pill-light" ng-click="view_prices(eth)">  
+    <img src="{{media+eth.icon + '?token='+token}}" height="20"/>
+   <b>ETH 
+    <small>
+        <b ng-if="user.in_currency=='ngn'">NGN {{eth.selling.usd * eth.sell_rates || 0 | number:0}}</b> 
+        <b ng-if="user.in_currency=='usd'">USD {{eth.selling.usd || 0 | number:2}}</b>&nbsp;
+        <small ng-class="gains(eth) <= 0 ? 'assertive':'balanced'">
+                <v ng-if="gains(eth) >= 0">+</v>{{gains(eth) || 0 | number:2}}%
+        </small>
+    </small> 
+</b>
+  </div>
+  <div class="pill pill-light" ng-click="view_prices(usdt)">  
+    <img src="{{media+usdt.icon + '?token='+token}}" height="20"/>
+   <b>USDT 
+    <small>
+        <b ng-if="user.in_currency=='ngn'">NGN {{usdt.selling.usd * usdt.sell_rates || 0 | number:0}}</b> 
+        <b ng-if="user.in_currency=='usd'">USD {{usdt.selling.usd || 0 | number:2}}</b>&nbsp;
+        <small ng-class="gains(usdt) <= 0 ? 'assertive':'balanced'">
+                <v ng-if="gains(usdt) >= 0">+</v>{{gains(usdt) || 0 | number:2}}%
+        </small>
+    </small> 
+</b>
+</div>
+</div>
+        <!-- </marquee> -->
+</ion-scroll>
+<!-- </div> -->
+</div>

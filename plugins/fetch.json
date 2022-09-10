@@ -1,0 +1,309 @@
+{
+  "cordova-plugin-file-transfer": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-file-transfer@^1.7.1"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-file": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-file@^6.0.2"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-camera": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-camera@^4.1.0"
+    },
+    "is_top_level": true,
+    "variables": {
+      "CAMERA_USAGE_DESCRIPTION": "This app requires photo library access for artists to post their works and photos for users requesting",
+      "PHOTOLIBRARY_USAGE_DESCRIPTION": "This app requires photo library access for artists to post their works and photos for users requesting",
+      "ANDROID_SUPPORT_V4_VERSION": "27.+"
+    }
+  },
+  "cordova-plugin-x-socialsharing": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-x-socialsharing@^5.6.8"
+    },
+    "is_top_level": true,
+    "variables": {
+      "PHOTO_LIBRARY_ADD_USAGE_DESCRIPTION": "This app requires photo library access for artists to post their works and photos for users requesting",
+      "PHOTO_LIBRARY_USAGE_DESCRIPTION": "This app requires photo library access for artists to post their works and photos for users requesting",
+      "ANDROID_SUPPORT_V4_VERSION": "24.1.1+"
+    }
+  },
+  "es6-promise-plugin": {
+    "source": {
+      "type": "registry",
+      "id": "es6-promise-plugin@^4.1.0"
+    },
+    "is_top_level": false,
+    "variables": {}
+  },
+  "cordova-android-play-services-gradle-release": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-android-play-services-gradle-release@^4.0.0"
+    },
+    "is_top_level": true,
+    "variables": {
+      "PLAY-SERVICES-ADS": "18.0.0",
+      "PLAY-SERVICES-ADS-IDENTIFIER": "17.0.0",
+      "PLAY-SERVICES-ADS-LITE": "18.0.0",
+      "PLAY-SERVICES-AFS-NATIVE": "17.0.0",
+      "PLAY-SERVICES-ANALYTICS": "17.0.0",
+      "PLAY-SERVICES-ANALYTICS-IMPL": "17.0.0",
+      "PLAY-SERVICES-APPINVITE": "18.0.0",
+      "PLAY-SERVICES-AUDIENCE": "17.0.0",
+      "PLAY-SERVICES-AUTH": "17.0.0",
+      "PLAY-SERVICES-AUTH-API-PHONE": "17.0.0",
+      "PLAY-SERVICES-AWARENESS": "17.0.0",
+      "PLAY-SERVICES-BASE": "17.0.0",
+      "PLAY-SERVICES-BASEMENT": "17.0.0",
+      "PLAY-SERVICES-CAST": "17.0.0",
+      "PLAY-SERVICES-CAST-FRAMEWORK": "17.0.0",
+      "PLAY-SERVICES-CLEARCUT": "17.0.0",
+      "PLAY-SERVICES-CRONET": "17.0.0",
+      "PLAY-SERVICES-DRIVE": "17.0.0",
+      "PLAY-SERVICES-FIDO": "18.0.0",
+      "PLAY-SERVICES-FITNESS": "17.0.0",
+      "PLAY-SERVICES-FLAGS": "17.0.0",
+      "PLAY-SERVICES-GAMES": "18.0.0",
+      "PLAY-SERVICES-GASS": "18.0.0",
+      "PLAY-SERVICES-GCM": "17.0.0",
+      "PLAY-SERVICES-IDENTITY": "17.0.0",
+      "PLAY-SERVICES-IID": "17.0.0",
+      "PLAY-SERVICES-INSTANTAPPS": "17.0.0",
+      "PLAY-SERVICES-LOCATION": "17.0.0",
+      "PLAY-SERVICES-MAPS": "17.0.0",
+      "PLAY-SERVICES-MEASUREMENT": "17.0.0",
+      "PLAY-SERVICES-MEASUREMENT-API": "17.0.0",
+      "PLAY-SERVICES-MEASUREMENT-IMPL": "17.0.0",
+      "PLAY-SERVICES-MEASUREMENT-SDK": "17.0.0",
+      "PLAY-SERVICES-MEASUREMENT-SDK-API": "17.0.0",
+      "PLAY-SERVICES-NEARBY": "17.0.0",
+      "PLAY-SERVICES-OSS-LICENSES": "17.0.0",
+      "PLAY-SERVICES-PANORAMA": "17.0.0",
+      "PLAY-SERVICES-PHENOTYPE": "17.0.0",
+      "PLAY-SERVICES-PLACES": "17.0.0",
+      "PLAY-SERVICES-PLACES-PLACEREPORT": "17.0.0",
+      "PLAY-SERVICES-PLUS": "17.0.0",
+      "PLAY-SERVICES-SAFETYNET": "17.0.0",
+      "PLAY-SERVICES-STATS": "17.0.0",
+      "PLAY-SERVICES-TAGMANAGER": "17.0.0",
+      "PLAY-SERVICES-TAGMANAGER-API": "17.0.0",
+      "PLAY-SERVICES-TAGMANAGER-V4-IMPL": "17.0.0",
+      "PLAY-SERVICES-TASKS": "17.0.0",
+      "PLAY-SERVICES-VISION": "18.0.0",
+      "PLAY-SERVICES-VISION-COMMON": "18.0.0",
+      "PLAY-SERVICES-VISION-IMAGE-LABEL": "18.0.0",
+      "PLAY-SERVICES-WALLET": "17.0.0",
+      "PLAY-SERVICES-WEARABLE": "17.0.0"
+    }
+  },
+  "cordova-plugin-geolocation": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-geolocation@^4.1.0"
+    },
+    "is_top_level": true,
+    "variables": {
+      "GPS_REQUIRED": "true"
+    }
+  },
+  "cordova-plugin-ionic-webview": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-ionic-webview@^5.0.0"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-android-firebase-gradle-release": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-android-firebase-gradle-release@^4.0.0"
+    },
+    "is_top_level": true,
+    "variables": {
+      "FIREBASE-CORE": "17.0.0",
+      "FIREBASE-MESSAGING": "20.1.+",
+      "FIREBASE-ADS": "18.0.0",
+      "FIREBASE-ANALYTICS": "17.0.0",
+      "FIREBASE-APPINDEXING": "19.0.0",
+      "FIREBASE-AUTH": "18.0.0",
+      "FIREBASE-FIRESTORE": "20.0.0",
+      "FIREBASE-FUNCTIONS": "18.0.0",
+      "FIREBASE-STORAGE": "18.0.0",
+      "FIREBASE-CRASH": "16.2.1",
+      "CRASHLYTICS": "2.10.1",
+      "FIREBASE-DYNAMIC-LINKS": "18.0.0",
+      "FIREBASE-INVITES": "17.0.0",
+      "FIREBASE-INAPPMESSAGING": "18.0.1",
+      "FIREBASE-INAPPMESSAGING-DISPLAY": "18.0.1",
+      "FIREBASE-ML-VISION": "21.0.0",
+      "FIREBASE-ML-VISION-IMAGE-LABEL-MODEL": "18.0.0",
+      "FIREBASE-ML-VISION-FACE-MODEL": "18.0.0",
+      "FIREBASE-ML-VISION-OBJECT-DETECTION-MODEL": "17.0.0",
+      "FIREBASE-ML-NATURAL-LANGUAGE": "20.0.0",
+      "FIREBASE-ML-NATURAL-LANGUAGE-LANGUAGE-ID-MODEL": "20.0.0",
+      "FIREBASE-ML-NATURAL-LANGUAGE-TRANSLATE-MODEL": "20.0.0",
+      "FIREBASE-ML-NATURAL-LANGUAGE-SMART-REPLY-MODEL": "20.0.0",
+      "FIREBASE-ML-MODEL-INTERPRETER": "20.0.0",
+      "FIREBASE-ML-VISION-AUTOML": "17.0.0",
+      "FIREBASE-PERF": "18.0.0",
+      "FIREBASE-DATABASE": "18.0.0",
+      "FIREBASE-CONFIG": "18.0.0"
+    }
+  },
+  "cordova-plugin-cocoapod-support": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-cocoapod-support"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-googleplus": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-googleplus"
+    },
+    "is_top_level": true,
+    "variables": {
+      "PLAY_SERVICES_VERSION": "15.0.1"
+    }
+  },
+  "cordova-plugin-qr-barcode-scanner": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-qr-barcode-scanner@^8.0.3"
+    },
+    "is_top_level": true,
+    "variables": {
+      "ANDROID_SUPPORT_V4_VERSION": "27.+"
+    }
+  },
+  "cordova-plugin-qrscanner": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-qrscanner"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "phonegap-plugin-barcodescanner": {
+    "source": {
+      "type": "registry",
+      "id": "phonegap-plugin-barcodescanner@8.1.0"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-navigationbar-color": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-navigationbar-color@0.0.8"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "com.verso.cordova.clipboard": {
+    "source": {
+      "type": "registry",
+      "id": "https://github.com/Anuj-Raghuvanshi/cordova-clipboard-plugin"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-proguard": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-proguard"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-filepath": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-filepath@^1.5.8"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-inappbrowser": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-inappbrowser@^4.0.0"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-codeplay-in-app-update": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-codeplay-in-app-update"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-firebasex": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-firebasex@11"
+    },
+    "is_top_level": true,
+    "variables": {
+      "FIREBASE_ANALYTICS_COLLECTION_ENABLED": "true",
+      "FIREBASE_PERFORMANCE_COLLECTION_ENABLED": "true",
+      "FIREBASE_CRASHLYTICS_COLLECTION_ENABLED": "true",
+      "ANDROID_ICON_ACCENT": "#FF00FFFF",
+      "ANDROID_FIREBASE_PERFORMANCE_MONITORING": "false",
+      "ANDROID_PLAY_SERVICES_TAGMANAGER_VERSION": "17.0.0",
+      "ANDROID_PLAY_SERVICES_AUTH_VERSION": "18.1.0",
+      "ANDROID_FIREBASE_ANALYTICS_VERSION": "17.5.0",
+      "ANDROID_FIREBASE_MESSAGING_VERSION": "20.3.0",
+      "ANDROID_FIREBASE_CONFIG_VERSION": "19.2.0",
+      "ANDROID_FIREBASE_PERF_VERSION": "19.0.9",
+      "ANDROID_FIREBASE_AUTH_VERSION": "19.4.0",
+      "ANDROID_FIREBASE_INAPPMESSAGING_VERSION": "19.1.1",
+      "ANDROID_FIREBASE_FIRESTORE_VERSION": "21.7.0",
+      "ANDROID_FIREBASE_CRASHLYTICS_VERSION": "17.2.2",
+      "ANDROID_FIREBASE_CRASHLYTICS_NDK_VERSION": "17.2.2",
+      "ANDROID_GSON_VERSION": "2.8.6",
+      "ANDROID_FIREBASE_PERF_GRADLE_PLUGIN_VERSION": "1.3.1"
+    }
+  },
+  "cordova-plugin-splashscreen": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-splashscreen@^6.0.0"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-device": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-device@^2.0.3"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-intercom": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-intercom"
+    },
+    "is_top_level": true,
+    "variables": {}
+  }
+}

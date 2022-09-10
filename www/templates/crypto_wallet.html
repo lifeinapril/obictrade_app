@@ -1,0 +1,188 @@
+<ion-view cache-view="false">
+
+  
+    <ion-nav-bar class="bar bg-blue" style="border: none !important;">
+
+            <ion-nav-buttons side="left">
+              <button title="back" class="button button-clear" back-button>
+                <i class="icon ion-ios-arrow-back light"></i></button>
+            </ion-nav-buttons>
+
+            <ion-nav-title>
+               <b>{{coin.symbol}}</b>
+            </ion-nav-title>
+
+            <ion-nav-buttons side="right">
+              <div ng-include="'components/usd_ngn.html'"></div>
+            </ion-nav-buttons>
+  
+    </ion-nav-bar>
+
+<!-- 
+    <div  style="height: 140px !important;width: 100vw !important;margin-top: 10px;padding-top:8px !important;border-bottom-right-radius: 10px;border-bottom-left-radius: 10px;" class="bg-blue">
+       <div class="padding">
+      
+           <br><br><br>
+        <div class="item item-light text-center bg-dark-blue" style="box-shadow: 0px 1px 8px 0px rgba(31, 30, 30, 0.144) !important;border: none !important;">
+          <div ng-include="'components/usd_ngn.html'"></div>
+          <br><br><br>
+          <h3 style="margin-top:5px;font-size:25px;" class="padding light-blue">
+            <b>{{coin.balance || 0.00000000  | number:8}} {{coin.symbol}}</b>     
+          </h3>  
+          <b ng-if="user.in_currency=='ngn'" class="orange">NGN {{coin.balance * (coin.sell_rates * coin.selling.usd) || 0 | number:2}}</b>
+          <b ng-if="user.in_currency=='usd'" class="orange">USD {{coin.balance * coin.selling.usd || 0 | number:2}}</b>  
+          <br><br>
+  <div class="button-bar">
+  <button ng-click="buy_box.show()" class="button button-block button-outline button-light">
+    Buy&nbsp;&nbsp;
+    <i class="icon ion-arrow-up-b pull-right"></i>
+  </button>
+  
+  &nbsp;&nbsp;
+  
+   <button ng-click="sell_box.show()" class="button button-block button-outline button-light">
+     Sell&nbsp;&nbsp;
+     <i class="icon ion-arrow-down-b pull-right"></i>
+   </button>
+  </div>
+  
+      </div>
+      
+      </div>
+  
+  
+  
+  
+  
+  
+  
+  </div> -->
+  
+  
+  
+  
+    
+      <ion-content style="background-color: rgb(235, 232, 232);">
+        <ion-refresher pulling-text="Pull to refresh" on-refresh="refresh_profile()"></ion-refresher>
+                  <div class="padding">
+
+        <div class="item item-avatar item-light" style="border:1px solid #d4d1d100 !important;margin-bottom: 0px !important;border-radius: 5px !important;">  
+          <img title="coin" src="{{media+coin.icon}}" class="avatar"/>
+          <div class="pull-right dark text-right" style="float: right !important;;">
+            <h6 ng-if="coin.connected" class="balanced">wallet connected</h6>
+            <h6 ng-if="!coin.connected" class="assertive">wallet disconnected</h6>
+            <button ng-if="coin.connected" class="button button-small button-dark">&nbsp;&nbsp;&nbsp;Edit wallet&nbsp;&nbsp;&nbsp;</button>
+            <button ng-if="!coin.connected" class="button button-small button-balanced">&nbsp;&nbsp;&nbsp;Connect&nbsp;&nbsp;&nbsp;</button>
+          </div>
+        </div>
+  
+        <div class="button-bar">
+          <button ng-click="buy_box.show()" ng-disabled="user.isagent" class="button button-block button-dark-blue">
+            Buy&nbsp;&nbsp;
+            <i class="icon ion-arrow-up-b pull-right"></i>
+           </button>
+          &nbsp;&nbsp;
+           <button ng-click="sell_box.show()" class="button button-block button-outline button-oran">
+            Sell&nbsp;&nbsp;
+            <i class="icon ion-arrow-down-b pull-right"></i>
+            </button>
+          </div>
+  
+          </div>
+  
+          <div class="list">
+            <div ng-if="user.pool_id && coin.affiliate">
+            <div class="item item-divider">
+              <h3 class="black">Set your rates</h3>
+            </div>
+    <div ui-sref="start_buy" ng-if="user.pool_id && coin.affiliate" class="item text-left">
+  <i class="ti-angle-right pull-right" style="float: right !important;"></i>
+      <i class="icon ion-flag" ng-class="coin.affiliate.allow_sell ? 'oran':'dark'"></i> Buy at
+      <br>
+      <small ng-if="coin.affiliate.allow_sell"><b class="oran">NGN {{coin.affiliate.sell_rate}} / $</b></small>
+    </div>
+
+
+        
+    <div ui-sref="start_sell" ng-if="user.pool_id && coin.affiliate" class="item text-left">   
+  <i class="ti-angle-right pull-right" style="float: right !important;"></i>
+  <i class="icon ion-flag" ng-class="coin.affiliate.allow_buy ? 'orange':'dark'"></i> Sell at
+      <br>
+      <small ng-if="coin.affiliate.allow_buy"><b class="orange">NGN {{coin.affiliate.buy_rate}} / $</b></small>
+    </div>
+  </div>
+
+    <!-- <div class="text-center padding">
+        
+      <h6 class="black" style="font-size: 13px !important;">
+      <b ng-if="user.in_currency=='ngn'">Buying at <b style="color: rgb(20, 248, 31) !important;">{{coin.buying.usd * coin.buy_rates || 0 | currency}}</b> / {{coin.symbol | uppercase}}</b>
+      <b ng-if="user.in_currency=='usd'">Buying at <b style="color: rgb(20, 248, 31) !important;">${{coin.buying.usd || 0 | number:2}}</b> / {{coin.symbol | uppercase}}</b>
+      </h6>
+      <h6 style="margin-top:15px !important;" ng-class="gains(coin) < 0 ? 'assertive':'balanced'">
+        (<span ng-if="gains(coin) > 0">+</span>
+        {{gains(coin) || coin.gains || 0 | number:2}}%)
+      </h6>
+    </div>   -->
+
+        
+<div class="padding">
+  
+  <div ng-click="recieve_coin_box.show()" class="item item-light text-left item-icon-left">
+    <i class="ti-angle-right pull-right" style="float: right !important;"></i>
+    <i class="icon ion-android-add-circle oran"></i> Deposit {{coin.symbol | uppercase}}
+  </div>
+
+  <!-- <div ng-click="send_coin_box.show()" ng-hide="user.isagent" class="item item-light text-left item-icon-left">
+    <i class="ti-angle-right pull-right" style="float: right !important;"></i>
+    <i class="icon ti-download oran"></i> Withdraw {{coin.symbol | uppercase}}
+  </div> -->
+        
+  <div ng-click="search_pay.show()" ng-hide="user.isagent" class="item item-light text-left item-icon-left">
+    <i class="ti-angle-right pull-right" style="float: right !important;"></i>
+    <i class="icon ion-at oran"></i> Send to username
+  </div>
+        
+
+  </div>
+
+
+<br>
+
+  <div class="item item-divider">
+    <a class="pull-right orange" style="float:right;" ui-sref="coin_history">See All</a>
+    <h3 class="dark">Most Recent</h3>
+  </div>
+  
+        <div ng-show="coin.transactions.length < 1">
+          <div class=" text-center item item-light">
+            <div class="padding">
+              <h2><b>No Transactions Yet.</b></h2> 
+            </div>  <br>
+          </div>
+        </div>
+    
+        <div class="list">
+          <div class="item" ng-click="view_transaction(payment)" ng-repeat="payment in coin.transactions | orderBy:'-date' | limitTo:6">
+                  <h4 class="pull-right text-right" style="float: right;" ng-class="payment.credit ? 'balanced':'assertive'">
+                    <v ng-if="!payment.credit">-</v>  
+                    <v ng-if="payment.credit">+</v>  
+                    {{payment.amount || 0.00000000 | number:8}} {{coin.symbol}}
+                    <br>
+                    <small ng-if="user.in_currency=='ngn'" class="dark">NGN {{payment.amount * (coin.sell_rates * coin.selling.usd) || 0 | number:2}}</small>
+                    <small ng-if="user.in_currency=='usd'" class="dark">USD {{payment.amount * coin.selling.usd || 0 | number:2}}</small>  
+                  </h4>
+                  <div style="color: #2f2f2f">
+                    <small>{{payment.description}}</small>    
+                    <h6 class="dark">{{payment.date | date}}</h6>
+                  </div>
+          </div>
+        </div>
+  
+          </div>
+  
+  
+    
+    
+      </ion-content>
+    </ion-view>
+    

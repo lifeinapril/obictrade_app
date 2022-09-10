@@ -1,0 +1,9 @@
+<div class="item item-thumbnail item-light"  ui-sref="store({store_id:store.m_id})" style="border:1px solid #d4d1d1af !important;margin-bottom: 0px !important;">
+    <div style="float: right !important;" ng-style="{'background-image':'url('+media + store.photo + '?token='+token+')'}" class="small-box pull-right">
+    </div>
+    <h2>{{store.name | capitalize}}
+     </h2>
+    <p class="oran">{{store.type}}
+        &nbsp; <v class="oran">{{store.score}}</v> <small ng-if="store.reviews.length > 5">({{store.reviews.length || 0}}+)</small><i class="icon ti-star oran"></i>
+    </p> 
+  </div>

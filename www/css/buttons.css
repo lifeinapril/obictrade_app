@@ -1,0 +1,29 @@
+.but1{
+   background-color: rgb(236, 153, 27) !important;
+}
+
+
+.oran{
+   color: rgb(27, 65, 236) !important;
+}
+
+.orange{
+   color: rgb(236, 152, 27) !important;
+}
+
+.button-round, .button{
+   border-radius: 5px !important;
+   border:2px solid !important;
+}
+
+.button-oran{
+   color: rgb(255, 255, 255) !important;
+   background-color: rgb(30, 102, 210) !important;
+   border:none !important;
+}
+
+.button-orange{
+   color: rgb(255, 255, 255) !important;
+   background-color: rgb(245, 169, 29) !important;
+   border:none !important;
+}

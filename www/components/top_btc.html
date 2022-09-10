@@ -1,0 +1,9 @@
+<div ng-init="topten_btc()">
+<div class="padding" ng-if="btc_rates.length > 0">
+    <br>
+    <h4>BTC traders</h4>
+    <div ng-include="'components/traders/btc.html'" ng-repeat="trader in btc_rates | orderBy:['sell_rate','buy_rate'] | limitTo:5"></div>
+
+    <br>
+</div>
+</div>

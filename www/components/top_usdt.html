@@ -1,0 +1,7 @@
+<div ng-init="topten_usdt()">
+    <div class="padding" ng-if="usdt_rates.length > 0">
+        <h4>USDT traders</h4>
+        <div ng-include="'components/traders/usdt.html'" ng-repeat="trader in usdt_rates | orderBy:['sell_rate','buy_rate'] | limitTo:5"></div>
+   
+<br> </div>
+    </div>

@@ -1,0 +1,55 @@
+<ion-view>
+    <ion-nav-bar class="bar bg-blue">
+      
+      <ion-nav-buttons side="left">
+        <button title="button" class="button button-clear" back-button>
+          <i class="icon ion-ios-arrow-back light"></i>
+        </button>
+      </ion-nav-buttons>
+
+      <ion-nav-title>
+        <b>Earnings</b>
+      </ion-nav-title>
+
+  
+    </ion-nav-bar>
+  
+    <ion-content ng-init="refresh_profile()" class="padding text-center">
+      <ion-refresher pulling-text="Pull to refresh" on-refresh="refresh_profile()"></ion-refresher>
+           <br>
+
+      <div class="">
+
+        <div ng-include="'components/earnings_wallet.html'"></div>
+  
+           <button ng-click="withdraw_box.show()" ng-disabled="(user.naira_wallet.earnings < 5000) || !user.naira_wallet.earnings" class="button button-block button-oran">
+             Withdraw &nbsp;&nbsp;
+             <i class="icon ti-download pull-right"></i>
+           </button>
+  
+          </div>
+  
+      <br><br>
+      <small>Your referral code :</small>
+      <h1 style="margin-top:-1px;" class="assertive"><b>{{user.o_id}}</b></h1>
+      <br>
+     
+      <h4 style="color: #666666;">Share your promo code with friends and you get free promo offers.</h4>
+      <small>Thanks for using obic.</small>
+      <small>Share your referral code</small>
+      <br>
+      <br>
+      <div class="row">
+          <div class="col"><i style="font-size: 40px;" class="icon ti-facebook oran" ng-click="sharefb()"></i> </div>
+          <div class="col"><i style="font-size:  40px;" class="icon ti-twitter oran" ng-click="sharetwitter()"></i> </div>
+          <div class="col"><i style="font-size:  40px;" class="icon ti-email oran" ng-click="shareemail()"></i> </div>
+          <div class="col"><i style="font-size:  40px;" class="icon ion-social-whatsapp oran" ng-click="sharewa()"></i> </div>
+      </div>
+
+
+    
+
+<br><br><br>
+    </ion-content>
+  </ion-view>
+  

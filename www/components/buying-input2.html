@@ -1,0 +1,42 @@
+
+     
+<div class="text-center">
+    <img src="{{media+coin.icon}}" class="text-center" height="40" />
+    </div>
+       <br><br>
+       <div  ng-if="show_coin">     
+          <a class="pull-right link" style="float: right !important;" ng-click="show_usd_input()">Enter amount in US Dollars</a>
+          <br>
+          <b class="dark">Amount in <small>{{coin.symbol | uppercase}}</small>*</b>
+          <div class="item item-input">
+            <input ng-model="coin_amount" maxlength="10" ng-keyup="buying_converter2('',coin_amount)" type="text" placeholder="0.000000" required>
+            <button ng-click="max_coin3()" class="button button-sm button-small button-energized">&nbsp;&nbsp;MAX&nbsp;&nbsp;</button>&nbsp;&nbsp;&nbsp;
+         </div>
+           <h5 class="text-center"><b class="balanced">${{usd_amount || 0 | number:2}}</b></h5>
+       </div>
+        
+  
+  
+  
+      <div ng-if="!show_coin && !show_usd">
+          <a class="pull-right link" style="float: right !important;" ng-click="show_coin_input()">Enter amount in {{coin.symbol | uppercase}}</a>
+          <br>
+          <b class="dark">Amount in naira <small>(₦)</small>*</b>
+          <div class="item item-input">
+            <input ng-model="naira_amount" maxlength="10" ng-keyup="buying_converter2('ngn',naira_amount)" type="number" placeholder="0" required>
+          </div> 
+          <h5 class="text-center"><b class="balanced">${{usd_amount || 0 | number:2}}</b></h5>
+      </div>
+  
+  
+  
+          
+        <div  ng-if="show_usd">
+              <a class="pull-right link"  style="float: right !important;" ng-click="show_naira_input()">Enter amount in Naira</a>
+              <br>
+              <b class="dark">Amount in USD <small>($)</small>*</b>
+              <div class="item item-input">
+                <input ng-model="usd_amount" maxlength="10" ng-keyup="buying_converter2('usd',usd_amount)" type="number" placeholder="0" required>
+              </div> 
+              <h5 class="text-center"><b class="balanced">{{naira_amount || 0 | currency}}</b></h5>
+        </div>

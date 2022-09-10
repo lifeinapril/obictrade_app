@@ -1,0 +1,84 @@
+<ion-modal-view class="bg-blue">
+      <ion-header-bar class="bar bar-header bg-blue">
+              <button ng-click="newcard_box.hide()" class="button button-light button-clear"  style="float:left;font-weight: bold;border:none !important;">&nbsp;<i class="icon ti-close"></i>&nbsp;</button>          
+              <ion-title><small><b>Add A New Card</b></small></ion-title>
+        </ion-header-bar>
+      
+        <ion-content class="padding" style="background-color: white !important;">
+            <div ng-show="card_type" class="row text-center">
+                <div ng-switch="" on="card_type">
+                    <div ng-switch-when="mastercard" class="card_type mastercard1">
+                     </div>
+                     <div ng-switch-when="visa" class="card_type visa">
+                     </div>
+                     <div ng-switch-when="verve" class="card_type verve">
+                     </div>
+                </div>
+            </div>
+
+
+           
+  <form id="paynote" class="list list-inset padding text-left" ng-submit="add_creditcard(new_card)" style="background:none !important;">       
+        
+    <b class="oran">Card Number</b><br>
+            <label class="item item-input">
+                <input type="text" ng-keyup="card_identity(new_card.cardno)" style="width: 100% !important;font-size: 19px;height: 26px;" ng-model="new_card.cardno" placeholder="Enter Card Number">
+            </label>
+
+            <br>
+
+            <div class="row">
+            <div class="col">
+            <b class="oran">Month</b><br>
+            <select class="item item-input" style="width: 100% !important;" ng-model="new_card.expirymonth" name="expirymonth">
+                <option value="1" selected>Jan</option>
+                <option value="2">Feb</option>
+                <option value="3">Mar</option>
+                <option value="4">Apr</option>
+                <option value="5">May</option>
+                <option value="6">Jun</option>
+                <option value="7">Jul</option>
+                <option value="8">Aug</option>
+                <option value="9">Sep</option>
+                <option value="10">Oct</option>
+                <option value="11">Nov</option>
+                <option value="12">Dec</option>
+            </select>
+            </div>
+            &nbsp;/&nbsp;
+            <div class="col">
+            <b class="oran">Year</b><br>
+           <label class="item item-input">
+            <input type="number" style="width: 100% !important;font-size: 19px;height: 26px;" name="expiryyear"  maxlength="4" ng-model="new_card.expiryyear" placeholder="22">
+            </label>
+            </div>
+            </div>
+            <br>
+
+            <b class="oran">Cvv</b><br>
+            <label class="item item-input">
+                <input type="number" style="width: 100% !important;font-size: 19px;height: 26px;" name="cvv" maxlength="3"  ng-model="new_card.cvv" placeholder="352">
+            </label>
+
+
+                            
+        
+            <Br>
+        
+                <Br>
+        
+            <button type="submit" ng-disabled="!new_card.expirymonth || !new_card.expiryyear || !new_card.cvv" style="border-radius: 20px;color:#fff !important;font-size:14px;width: 100%;background-color: rgb(216, 141, 1) !important;" class="button button-full button-dark">
+                Add Card
+            </button>
+            <br>
+            <br>
+            <div class="text-center" style="width:100% !important;margin:auto;line-height: 13px !important;color: #686767;">
+                    <small>secured by <b> <img src="/img/fw.png" height="17" />&nbsp;&nbsp;Flutterwave</b></small>
+                </div>
+                <br>
+  </form>
+  
+  
+    </ion-content>
+  
+    </ion-modal-view>

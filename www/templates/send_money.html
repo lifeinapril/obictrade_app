@@ -1,0 +1,81 @@
+
+<ion-view>
+
+    <ion-nav-bar class="bar bg-blue">
+  
+      <ion-nav-title>
+        Transfer to bank
+      </ion-nav-title>
+  
+      <ion-nav-buttons side="left">
+        <button title="button" class="button button-clear" back-button>
+          <i class="icon ion-ios-arrow-back light"></i></button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+  
+    <ion-content class="text-left padding">
+      <br>
+        <h4>Amount</h4>
+        <div class="item item-input">
+         <b>₦ &nbsp;</b>
+         <input type="number" ng-model="money.amount" placeholder="0">
+         <button ng-click="max_naira()" class="button button-sm button-small button-energized">&nbsp;&nbsp;MAX&nbsp;&nbsp;</button>&nbsp;&nbsp;&nbsp;
+        </div>
+         <small ng-if="money.amount" class="text-center balanced">USD {{ng_usd(money.amount) | number:2}}</small>
+        <br>
+
+        <!-- <div class="list">
+          <b class="dark">Send to</b><br>
+          <div class="item item-input">
+            <select ng-model="addressed"
+            ng-options="o.v as o.n for o in [{ n: 'Username', v: false }, { n: 'Bank Account', v: true }]">
+            </select>
+           </div>
+         </div> -->
+
+
+<div>
+    <h4 class="black">Select Bank</h4>
+    <label class="item item-input">
+    <select title="bank" ng-change="verify_bank(money)" style="width: 100%; color:black !important;padding:5px;height: 30px !important;border:1px solid rgba(255, 166, 0, 0) !important;" ng-model="money.bank" ng-options="bank as bank.Name for bank in banks">
+    </select>
+    </label>
+    <br>
+    <h4>Account Number</h4>
+    <h6>Must be nuban number, that means 10 digits.</h6>
+    <div class="item item-input">
+        <input type="text" ng-keyup="verify_bank(money)" ng-model="money.account_number" placeholder="Account Number">
+    </div>
+</div>
+
+<!-- <div ng-if="!addressed">
+    <h4>Username</h4>
+    <div class="item item-input">
+        <b class="oran">@</b>
+        <input type="text" ng-keyup="verify_uname(money.user_name)" ng-model="money.user_name" placeholder="username">
+    </div>
+</div> -->
+      <br>
+      <ion-spinner ng-show="checking"></ion-spinner>
+      <div class="padding text-center" ng-show="verified_name">
+        <b>{{verified_name | uppercase}}</b>
+      </div>
+  <br>
+  <br>
+  <div class="item item-divider item-light" width="100%">
+   <h4 class="dark">Fee
+   <b class="badge-stable oran" style="float: right;">{{100 || 0  | currency}}</b>
+   </h4>
+</div>
+
+<div class="item item-divider item-light" width="100%">
+   <h4 class="dark">Total
+   <b class="badge-stable oran" style="float: right;">{{100+money.amount || 0  | currency}}</b>
+   </h4>
+</div>
+  <br>
+        <button ng-disabled="!verified_name || !money.bank || (addressed && (!money.account_number || money.account_number.length < 10)) || (!addressed && money.user_name)" ng-click="send_money(money)" class="button button-block button-balanced">Send</button>
+    </ion-content>
+  </ion-view>
+  
+  

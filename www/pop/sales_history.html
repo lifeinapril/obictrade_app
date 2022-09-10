@@ -1,0 +1,142 @@
+<ion-modal-view class="bg-black">
+    <ion-header-bar class="bar bar-header bar-dark bg-black">       
+        <button ng-click="sales_box.hide()" class="button button-clear"  style="float:left;font-weight: bold;">&nbsp;<b><i class="ti ti-close light"></i></b>&nbsp;</button>          
+        <ion-title><b>Sales</b></ion-title>
+      </ion-header-bar>
+    <ion-content class="padding text-left bg-white">
+
+
+        <div class="padding text-center">
+            <h5>You
+                <b class="balanced" ng-if="!transaction.credited"> bought </b>
+                <b class="assertive" ng-if="transaction.credited"> sold </b>
+                <v ng-if="transaction.type=='gift card'"> {{transaction.name}} gift card</v>
+                <v ng-if="transaction.type=='cryptocurrency'"> {{transaction.symbol || 'BTC'}} </v>
+            </h5>
+        </div>
+
+        <div class="list"> 
+
+            
+
+            <div ng-if="transaction.type=='cryptocurrency'">
+                <div class="item item-divider">
+                    <v>Amount</v> 
+                    <div class="pull-right" style="float: right !important;">
+                    <h3 ng-class="!transaction.credited ? 'green':'red'">
+                        <v ng-if="transaction.credited">-</v>  
+                        <v ng-if="!transaction.credited">+</v>               
+                         {{transaction.amount || 0 | number:8}} {{transaction.symbol || '$'}}
+                    </h3> 
+                    <small style="float: right !important;"> &nbsp;(${{coin_usd(transaction.amount,transaction.symbol) || 0 | limitTo:4}})</small>
+                    </div>
+                </div>
+            </div>
+
+
+            <div ng-if="transaction.cards.length > 0">
+                <div class="item item-divider" ng-if="card.quantity > 0" ng-repeat="card in transaction.cards">
+                    <v>Card Value (<b class="green">{{transaction.symbol || '$'}} {{card.amount || 0}} </b>)</v>
+                    <div class="pull-right" style="float: right !important;">
+                        <small>(x{{card.quantity || 1}}) </small>
+                        <b class="green" style="font-size:15px !important;">{{card.total || transaction.rates * (card.amount * card.quantity) || 0 | currency:'₦':0}}</b>
+                    </div>
+                </div>
+            </div>
+
+           
+
+                <div ng-if="selected_transaction.type=='gift card'" class="item item-divider">
+                    <v>Total Payout</v>
+                    <b class="green pull-right" style="float:right !important;font-size:20px !important;">{{selected_transaction.payout || total_card(selected_transaction.cards) || 0 | currency:'₦'}}</b>
+                </div>
+                <div ng-if="transaction.type=='cryptocurrency'" class="item item-divider">
+                    <v>Value</v>
+                    <b class="pull-right" style="float:right !important;" ng-class="!transaction.credited ? 'red':'green'">
+                        <small ng-if="transaction.credited">(Received)</small>
+                        <small ng-if="!transaction.credited">(Debited)</small>
+                        <v ng-if="!transaction.credited">-</v>  
+                        <v ng-if="transaction.credited">+</v>  
+                        {{transaction.payout || 0 | currency:'₦'}}
+                    </b>
+                </div>
+                <div ng-if="transaction.hash" class="item item-divider">
+                    <v class="dark">Hash</v>
+                    <div class="item-body orange">{{transaction.hash}}</div>
+                </div>
+
+                <div ng-if="selected_transaction.fee" class="item item-divider">
+                    <v class="dark">Fee</v>
+                    <h6 class="pull-right" style="float:right !important;" ng-class="!transaction.credited ? 'green':'red'">${{coin_usd(transaction.fee,transaction.symbol)}}</h6>
+                </div>
+
+            </div>
+            
+
+
+
+
+
+
+
+
+
+
+            
+
+
+
+          <div ng-if="transaction.affiliate" class="item item-light">
+              <b>Traded with</b> 
+              <b class="orange pull-right text-right" style="float: right !important;">
+                      <b> {{transaction.bank.full_name}}</b>
+                      <h6 class="oran" ng-click="view_profile(transaction.affiliate)"> {{transaction.affiliate.user_name}}</h6>
+              </b>
+          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="list"> 
+            <b style="color: black !important;">Trade details</b>  
+                    <div class="item item-divider">
+                        <v>Transaction ID</v>
+                        <v class="pull-right">{{transaction.transaction_id}}</v>
+                    </div>
+                    <div class="item item-divider">
+                       <v>Rates</v>
+                       <v class="green pull-right">₦{{transaction.rates || 0}}/$</v>
+                    </div>
+                    <div class="item item-divider">
+                       <v>Status</v>
+                       <b ng-if="transaction.status==1" class="pull-right">Pending...</b>
+                       <b ng-if="transaction.status==2" class="green pull-right">Successful</b>
+                       <b ng-if="transaction.status==0" class="red pull-right">Declined</b>
+                    </div>
+                   
+                    <div class="item item-divider">
+                       <v>Date</v> 
+                       <small class="pull-right" style="float:right !important;">{{transaction.date_created | date:"MMMM d, y,  hh:mm a"}}</small>
+                    </div>
+
+           <br>
+       </div>
+
+
+
+
+        <div class="item-body" ng-if="transaction.message">
+        <v>{{selected_transaction.message}}</v>
+        </div>
+
+    </ion-content>
+
+</ion-modal-view>

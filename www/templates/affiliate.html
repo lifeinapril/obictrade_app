@@ -1,0 +1,26 @@
+<ion-view class="bg-blue">
+   
+    <ion-nav-bar class="bar-grey bg-blue" style="display:block;">
+          
+        <ion-nav-title class="text-center" align="center">
+              <b>Affiliate</b>
+              </ion-nav-title>
+           <ion-nav-buttons side="left">
+            <button class="button button-clear" back-button>
+              <i class="icon ion-ios-arrow-back light"></i></button>
+              </ion-nav-buttons>
+        </ion-nav-bar>
+     
+    <ion-content class="padding text-center bg-blue">
+        <br>
+       <img src="img/a2.png" height="110" />
+      <br>
+      <h4 class="light"><b>Become an Affiliate</b></h4>
+      <h6 class="light">Are you a trader? start your trading journey and control your market with obic as you register for the affiliate program. The affiliate programme lets you sell and buy coins at your rate from other obic traders, with tools for analytics and to grow your connections. Each trade incures a $1 charge but other than that, it's FREE.</h6>
+    
+   <e ng-if="user.naira_wallet.balance < 2000">You balance is too low, please topup should be more than NGN 2,000</e>
+       <button  ng-disabled="user.naira_wallet.balance < 2000" ui-sref="register_affiliate" class="button button-full button-dark">Get Started</button> 
+      <br>
+    </ion-content>
+  </ion-view>
+  

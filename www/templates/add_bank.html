@@ -1,0 +1,55 @@
+
+<ion-view>
+
+    <ion-nav-bar class="bar bg-blue">
+  
+      <ion-nav-title>
+        Bank Details
+      </ion-nav-title>
+  
+      <ion-nav-buttons side="left">
+        <button class="button button-clear" back-button>
+          <i class="icon ion-ios-arrow-back light"></i></button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+  
+    <ion-content ng-init="verify_bank(user.bank_account)" class="text-center padding discoboy">
+  
+      <form ng-submit="profile_update(user)" class="list" enctype="application/x-www-form-urlencoded">
+  
+        <br>
+  <h5 class="text-center">
+  Adding your bank account allows you to withdraw from your wallet.
+  </h5>
+        <br><br>
+        <small><b style="float: left !important;" class="text-left">Select Your Bank</b></small> &nbsp;&nbsp;
+       
+        <label class="item item-input">
+        <select ng-change="verify_bank(user.bank_account)" style="width: 100%; color:black !important;padding:5px;height: 30px !important;border:1px solid rgba(255, 255, 255, 0) !important;" ng-model="user.bank_account.bank" ng-options="bank as bank.Name for bank in banks">
+        <option disabled selected>{{user.bank_account.bank.Name}}</option>
+        </select>
+        </label>
+     <br>
+     <h6><small>Must be nuban number, that means 10 digits.</small></h6>
+     <b style="float: left !important;" class="text-left">Account Number</b>
+     <br>
+     <br>
+     <label class="item item-input">
+          <input type="text" ng-keyup="verify_bank(user.bank_account)" ng-model="user.bank_account.account_number" value="" placeholder="Account Number">
+        </label>
+  <br>
+
+  <ion-spinner ng-show="checking"></ion-spinner>
+
+  <div class="padding text-center" ng-show="verified_name">
+    <b>{{verified_name | uppercase}}</b>
+    <h5>{{user.bank_account.bank.Name}}</h5>
+  </div>
+  <br>
+  <br>
+        <button ng-disabled="!verified_name && !user.bank_account.bank && (!user.bank_account.account_number || user.bank_account.account_number.length < 10)" type="submit" class="button button-block button-balanced">Save</button>
+      </form>
+    </ion-content>
+  </ion-view>
+  
+  

@@ -1,6 +1,6 @@
 {
   "name": "obictrade",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "description": "Trade Cryptocurrency Exchange",
   "dependencies": {
     "@ionic-native/core": "^5.31.1",

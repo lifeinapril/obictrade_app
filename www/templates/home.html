@@ -1,0 +1,89 @@
+<ion-view cache-view="false" class="bg-white">
+
+  
+  
+  <div ng-init="username_auth()" style="height: 120px !important;width: 100vw !important;margin-top: 0px;padding-top:0px !important;" class="bg-white">
+      
+    <div class="row" style="margin-top: 5px !important;">
+        <!-- <div class="item item-avatar item-dark" style="border: none !important;background-color: transparent !important; width: 100vw !important;">
+            <img ui-sref="edit_profile" src="{{media+user.photo}}" height="40" style="opacity: 1 !important;float: left !important;"/>
+              <label ng-click="search_box.show()" class="item item-input" style="border-radius: 360px !important;box-shadow: 0px 1px 5px 0px #0000003f !important; height: 38px !important;margin-top: 2px !important;">
+                <input type="text" style="color:black;background-color: transparent;" disabled ng-model="srch" placeholder="Search" value="" />
+                <i style="margin:10px" class="icon icon-placeholder ion-search orange"></i>
+              </label>
+        </div> -->
+        <div class="item item-avatar item-light" style="border: none !important;background-color: transparent !important; width: 100vw !important;">
+          <img ui-sref="front.profile" src="{{media+user.photo }}" height="40" style="display: block !important;opacity: 1 !important;"/>
+          <button ui-sref="orders" class="button button-clear button-dark pull-right button-icon" style="float: right !important;">
+             <div ng-if="(trades | filter:{status:1}).length > 0" class="badge badge-energized" style="position: absolute !important;">{{(trades | filter:{status:1}).length}}</div>
+             <span class="icon ti-layout-list-post"></span>
+          </button> 
+          <h3 ui-sref="front.profile" class="dark" style="margin-top:15px !important;">Hi, <b>{{user.full_name || user.first_name | capitalize}}</b></h3>
+        </div>
+    </div>
+  
+    <label ng-click="search_box.show()" class="item item-input" style="border-radius: 5px !important; height: 38px !important;margin: 15px !important;margin-top: -15px !important;">
+      <input type="text" style="color:black;background-color: transparent;" disabled ng-model="srch" placeholder="Search for traders and digital assets" value="" />
+      <i style="margin:10px" class="icon icon-placeholder ion-search orange"></i>
+    </label>   
+    
+  </div>
+
+
+
+  
+    <ion-content has-header style="margin-top: 120px !important;" class="bg-white padding" ng-init="refresh_profile()"> 
+  
+  
+          <ion-refresher  icon="ion-loading-d" 
+          pulling-text="Pull to refresh"
+          on-refresh="fetch_cards()">
+          </ion-refresher>
+        
+
+  <div class="list">
+    
+    <div ng-include="'components/verification_alert.html'"></div>
+
+
+    <div ng-include="'components/ads/ad_affiliate.html'">
+    </div>
+    <div ng-include="'components/ads/dashboard.html'">
+    </div>
+    <div ng-include="'components/ads/ad_spotlight.html'"></div>
+      <div ng-include="'components/ads/ad_giftcards.html'">
+      </div>
+
+
+      <div ng-include="'components/ads/ad_coin.html'">
+      </div>
+
+
+      <!-- <div ng-include="'components/top_giftcards.html'">
+      </div>
+      <div ng-include="'components/best_rates.html'">
+      </div> -->
+
+
+      <div ng-include="'components/ads/send_direct.html'"></div>
+
+    <br>
+    
+
+  
+        
+    <div ng-show="srch">
+    <div ng-include="'components/giftcard.html'"  ng-repeat="card in assets | filter:srch"></div>
+    <br>
+    </div>
+  
+  
+    </div>
+  
+    <br><br>
+      </ion-content>
+  
+  
+  </ion-view>
+  
+  

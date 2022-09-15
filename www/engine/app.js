@@ -1,4 +1,4 @@
-var app=angular.module('obicwallet', ['ionic','chart.js','ionic.native','monospaced.qrcode', 'ngCordova', 'ngStorage','ngFileUpload'])
+var app=angular.module('obicwallet', ['ionic','chart.js','ionic-segment','ionic.native','monospaced.qrcode', 'ngCordova', 'ngStorage','ngFileUpload'])
 .constant('Config', {  
     API:'https://obictrade.com/api/',
     media:'https://storage.googleapis.com/obicstorage/',

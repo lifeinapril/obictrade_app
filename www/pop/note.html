@@ -6,7 +6,7 @@
       <ion-title><b>Activity</b></ion-title>
     </ion-header-bar>
  
-   <ion-content class="padding text-center" style="background-color: #fff !important;">
+   <ion-content class="padding text-left" style="background-color: #fff !important;">
     <br>
     <h2 class="oran" style="font-size: 20px !important;">{{note.title}}</h2>
     <a class="dark" style="font-size: 12px !important;">{{note.message}}</a>
@@ -23,7 +23,7 @@
       </div>
     </div>
 
-    <h6 class="orange">{{note.date | date:"MMMM d, y,  hh:mm a"}}</h6>
+    <small>{{note.date | date:"MMMM d, y,  hh:mm a"}}</small>
 
    </ion-content>
 

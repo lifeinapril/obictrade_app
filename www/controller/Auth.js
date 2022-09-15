@@ -1,4 +1,4 @@
-app.controller('Auth', function($scope,$state,$http,account,$sessionStorage,$timeout,$ionicPopup,$rootScope,$localStorage) {
+app.controller('Auth', function($scope,$state,$http,account,$timeout,$ionicPopup,$rootScope,$localStorage) {
   
   $scope.$watch(function(){
     return $rootScope.user;
@@ -53,7 +53,7 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
         if(Data.status==true){
           $localStorage.user=Data.data;
           $rootScope.user=Data.data;
-          $state.go("front.cards");
+          $state.go("front.home");
         }else{
         $scope.error=Data.message;
         }

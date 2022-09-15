@@ -1,7 +1,10 @@
 <ion-modal-view class="bg-blue-2">
-    <ion-header-bar class="bar bar-header bg-blue-2">    
+    <ion-header-bar class="bar bg-dark-blue">    
         <button ng-click="sell_box.hide()" class="button button-clear" style="float:left;font-weight: bold;color: rgb(248, 247, 247) !important;">&nbsp;<i class="ti ti-close light"></i>&nbsp;</button>
-        <ion-title><b>Sell {{coin.symbol || '...' | uppercase}}</b></ion-title>
+        <ion-title>
+          <img src="{{media+coin.icon + '?token='+token}}" height="30" />
+          <b>Sell</b>
+        </ion-title>
       </ion-header-bar>
    
     <ion-content class="padding text-left bg-grey">

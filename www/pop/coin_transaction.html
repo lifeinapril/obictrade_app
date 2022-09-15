@@ -22,6 +22,12 @@
 
             
 
+            <div class="item item-light">
+                <b>Status</b>
+                <b ng-if="transaction.pending" class="dark pull-right" style="float: right !important;">Pending....</b>
+                <b ng-if="!transaction.pending" class="balanced pull-right" style="float: right !important;">Successful</b>
+                <b ng-if="!transaction.pending && transaction.failed" class="assertive pull-right" style="float: right !important;">Failed</b>
+            </div>
 
 
             <div ng-if="transaction.fee" class="item item-light">
@@ -31,24 +37,23 @@
 
 
             <div ng-if="transaction.to" class="item item-body">
-                <b>Address Sent</b>
+                <b>Reciever Address</b>
                 <h6 class="orange">{{transaction.to}}</h6>
             </div>
 
 
             <div ng-if="transaction.user_name" class="item item-body">
-                <b>Sent To</b>
+                <b>Address Username</b>
                 <h6 class="orange" ng-click="view_profile(transaction.username)">@{{transaction.user_name}}</h6>
             </div>
 
 
 
-                <div class="item item-body" ng-if="transaction.hash">
+                <div class="item item-body" ng-if="!transaction.pending">
                     <button ng-click="copy(transaction.hash)" style="float: right;" class="button button-small button-dark">copy</button>
                     <b class="dark">Hash</b>
                     <h6 class="dark">{{transaction.hash}}</h6>
                 </div>
-
 
                 <div class="item item-light" ng-if="transaction.date">
                     <b class="dark">Date Created</b>
@@ -58,10 +63,10 @@
 
         </div>
 
-<!-- 
-      <button ng-click="coin_transaction_box.hide()" style="border-radius: 20px;color:#fff !important;font-size:14px;width: 100%;background-color: rgb(1, 51, 216) !important;" class="button button-full button-dark">
-        Okay
-     </button> -->
+
+      <button ng-click="confirm_trade(transaction)" style="border-radius: 20px;color:#fff !important;font-size:14px;width: 100%;background-color: rgb(1, 51, 216) !important;" class="button button-full button-dark">
+        Confirm
+     </button>
     </ion-content>
 
 </ion-modal-view>

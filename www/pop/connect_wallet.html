@@ -1,0 +1,22 @@
+<ion-modal-view class="bg-blue">
+    <ion-header-bar class="bar bg-dark-blue">       
+        <button ng-click="connect_wallet_box.hide()" class="button button-clear"  style="float:left;font-weight: bold;">&nbsp;<b><i class="ti ti-close light"></i></b>&nbsp;</button>          
+        <ion-title><b>Configure {{coin.symbol || '...' | uppercase}} wallet</b></ion-title>
+    </ion-header-bar>
+    <ion-content class="padding text-left bg-white">
+        <br>
+        
+        <div class="list">
+            <h6>Input your wallet address to connect your obic wallet</h6>
+            <b class="dark">Wallet Address</b>
+            <div class="item item-input">
+                <input type="text" ng-model="coin.address" placeholder="{{coin.symbol | capitalize}} Address">
+            </div>
+        </div>
+
+        <button ng-click="connect_wallet(coin)" style="border-radius: 20px;color:#fff !important;font-size:14px;width: 100%;background-color: rgb(0, 165, 58) !important;" class="button button-full button-dark">
+         Update
+        </button>
+    </ion-content>
+
+</ion-modal-view>

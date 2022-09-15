@@ -1,0 +1,173 @@
+<ion-modal-view class="bg-black">
+    <ion-header-bar class="bar bar-header bar-dark bg-black">       
+        <button ng-click="order_box.hide()" class="button button-clear"  style="float:left;font-weight: bold;">&nbsp;<b><i class="ti ti-close light"></i></b>&nbsp;</button>          
+        <ion-title><b>Order</b></ion-title>
+      </ion-header-bar>
+    <ion-content class="padding text-left bg-white">
+
+
+        <div class="text-center padding">
+            <h6 ng-if="transaction.trader.o_id==user.o_id">
+              You <v>{{transaction.credited ? 'sold':'bought'}}</v> asset
+            </h6>
+            <h6 ng-if="transaction.trader.o_id!=user.o_id">
+                You <v>{{transaction.credited ? 'bought':'sold'}}</v> asset
+            </h6>
+            <h4 ng-if="transaction.type=='gift card'"> {{transaction.name}} gift card</h4>
+            <div  ng-if="transaction.type=='cryptocurrency'">
+                <h2 class="oran">
+                     {{transaction.amount || 0.00000000 | number:8}}&nbsp;{{transaction.symbol | uppercase}}
+                </h2>
+                <small>(${{coin_usd(transaction.amount,transaction.symbol) || 0 | limitTo:4}})</small>      
+            </div>
+        </div>
+
+
+                <div class="list" ng-if="transaction.cards.length > 0">
+                    <div class="item" ng-repeat="card in transaction.cards">
+                    <v>Card Value ({{transaction.symbol || '$'}})</v>
+                    <div class="pull-right" style="float: right !important;">
+                        <b>{{transaction.symbol || '$'}} {{card.amount || 0}}</b>
+                        <small>(x{{card.quantity || 1}}) </small>
+                        <b class="green" style="font-size:15px !important;">{{card.total || transaction.rates * (card.amount * card.quantity) || 0 | currency:'₦':0}}</b>
+                    </div>
+                    </div>
+
+                    <div class="item item-divider">
+                        <v>Total Payout</v>
+                        <b class="green pull-right" style="font-size:20px !important;">{{transaction.payout || total_card(transaction.cards) || 0 | currency:'₦'}}</b>
+                    </div>
+                </div>
+
+
+                <div class="list"  ng-if="transaction.type=='cryptocurrency'">
+                <div class="item item-divider">
+                    <v>Value</v>
+                    <b class="pull-right" style="float:right !important;" ng-class="((transaction.trader.o_id!=user.o_id && !transaction.credited) || (transaction.trader.o_id==user.o_id && transaction.credited)) ? 'green':'red'">
+                    <small ng-if="transaction.trader.o_id==user.o_id">
+                        {{transaction.credited ? '(Received) +':'(Debited) -'}}
+                    </small>
+                    <small ng-if="transaction.trader.o_id!=user.o_id">
+                        {{transaction.credited ? '(Debited) -':'(Received) +'}}
+                    </small>
+                    {{transaction.payout || 0 | currency:'₦'}}
+                    </b>
+                </div>
+                </div>
+
+
+
+
+
+
+
+            
+            <div ng-if="transaction.trader.o_id!=user.o_id && transaction.trader" class="item item-body">
+                <b>Trader Account</b>
+                <div ng-include="'components/user.html'" ng-if="transaction.trader" ng-click="view_profile(transaction.trader.username) && order_box.hide()" ng-init="user==transaction.trader">
+                </div>
+                <h6 ng-if="!transaction.trader">You are trading with obic</h6>
+            </div>
+
+            <div ng-if="transaction.trader.o_id==user.o_id && transaction.customer" class="item item-body">
+                <div ng-if="transaction.customer">
+                    <div style="background-color: black;width: 150px;height: 150px;margin: auto !important;direction: ltr;">
+                        <qrcode data="{{transaction.to || '...'}}" size="150"></qrcode>
+                      </div>
+                      <br>
+                    <button ng-click="copy(transaction.to)" style="float: right;" class="button button-small button-dark">copy</button>
+                    <b class="dark">Scan the code or copy address:</b>
+                    <h6 class="dark">{{transaction.to}}</h6>
+                </div>
+                <div>
+                    <h6 ng-if="!transaction.customer">you are trading with obic</h6>
+                </div>
+            </div>
+
+
+
+            <div class="item item-body" ng-if="transaction.hash">
+                <button ng-click="copy(transaction.hash)" style="float: right;" class="button button-small button-dark">copy</button>
+                <b class="dark">Hash</b>
+                <h6 class="dark">{{transaction.hash}}</h6>
+            </div>
+
+
+            <div ng-if="transaction.status==1 && transaction.trader.o_id==user.o_id">
+                <div class="item item-input text-left">
+                    <input ng-model="transaction.hash" name="hash" type="text" style="font-size: 15px;border:none !important;" placeholder="Transaction ID/ Hash key (optional)">
+                </div>
+            </div>
+
+
+
+            <div class="item item-light" ng-if="transaction.date">
+                <b class="dark">Date Created</b>
+                <v class="dark pull-right" style="float: right !important;">{{transaction.date | date}}</v>
+            </div>
+
+            <div ng-if="transaction.message" class="item item-body">
+            {{transaction.message}}
+            </div>
+
+            <div ng-show="transaction.status==1" ng-if="transaction.trader.o_id!=user.o_id && ((user.naira_wallet.balance < transaction.payout) || (user.naira_wallet.balance < 1))" class="item item-body">
+                <h3>You have to fund your naira wallet with : 
+                    <br>
+                <b class="balanced">NGN {{transaction.payout+transaction.order_fee || 0 | number:2}}</b></h3>
+            </div>
+
+
+
+
+        <div class="list"> 
+                    <div class="item item-divider">
+                        <v>Transaction ID</v>
+                        <v class="pull-right">{{transaction.transaction_id}}</v>
+                    </div>
+                    <div class="item item-divider">
+                       <v>Rates</v>
+                       <v class="green pull-right">₦{{transaction.rates || 0}}/$</v>
+                    </div>
+                    <div class="item item-divider">
+                       <v>Status</v>
+                       <b ng-if="transaction.status==1" class="pull-right">Pending...</b>
+                       <b ng-if="transaction.status==2" class="green pull-right">Successful</b>
+                       <b ng-if="transaction.status==0" class="red pull-right">Declined</b>
+                    </div>
+                   
+                    <div ng-if="transaction.order_fee" class="item item-divider">
+                        <v>Order Fee</v> <b class="orange pull-right" style="float: right !important;">NGN {{transaction.order_fee || 0 | number:2}}</b>
+                    </div>
+
+                    <div class="item item-divider">
+                       <v>Date</v> 
+                       <small class="pull-right" style="float:right !important;">{{transaction.date_created | date:"MMMM d, y,  hh:mm a"}}</small>
+                    </div>
+
+           <br>
+       </div>
+
+
+
+
+    <div ng-if="transaction.status==1">
+        <button ng-if="transaction.trader.o_id==user.o_id && !transaction.confirmed" ng-click="confirm_order(transaction)" style="border-radius: 20px;color:#fff !important;font-size:14px;width: 100%;background-color: rgb(1, 51, 216) !important;" class="button button-full button-dark">
+            Confirm
+         </button>
+    
+         <button ng-disabled="transaction.trader.o_id!=user.o_id && !transaction.confirmed" ng-click="approve_order(transaction)" style="border-radius: 20px;color:#fff !important;font-size:14px;width: 100%;background-color: rgb(1, 51, 216) !important;" class="button button-full button-dark">
+           Confirm
+        </button>
+    
+    
+        <button ng-if="transaction.trader.o_id==user.o_id && !transaction.confirmed" ng-click="cancel_order(transaction)" style="border-radius: 20px;color:#fff !important;font-size:14px;width: 100%;background-color: rgb(216, 1, 48) !important;" class="button button-full button-dark">
+            cancel
+          </button>
+          <button ng-if="transaction.trader.o_id!=user.o_id && transaction.confirmed" ng-click="report_order(transaction)" style="border-radius: 20px;color:#fff !important;font-size:14px;width: 100%;background-color: rgb(216, 1, 48) !important;" class="button button-full button-dark">
+             Report
+           </button>
+    </div>
+
+    </ion-content>
+
+</ion-modal-view>

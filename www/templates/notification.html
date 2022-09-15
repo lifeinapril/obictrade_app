@@ -27,8 +27,8 @@
         <div class="item" ng-class="note.user.o_id ? 'item-avatar':''" ng-click="open_note(note)" ng-repeat="note in notifications | orderBy:'-date'" style="margin: 5px !important;">
           <img ng-if="note.user.o_id" src="{{media + note.user.photo}}" class="avatar" />  
           <h3 class="oran">{{note.title}}</h3>
-            <small style="color: #2f2f2f">{{note.message}}</small>
-            <h6 class="orange">{{note.date | date:"MMMM d, y,  hh:mm a"}}</h6>
+            <h4 style="color: #2f2f2f">{{note.message}}</h4>
+            <small class="grey">{{note.date | date:"MMMM d, y,  hh:mm a"}}</small>
         </div>
       </div>
 

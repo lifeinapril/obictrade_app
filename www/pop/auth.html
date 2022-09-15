@@ -1,0 +1,28 @@
+<ion-modal-view class="bg-rage">
+    <ion-header-bar class="bar bar-header bg-rage">       
+        <button ng-click="auth_box.hide()"  back-button nav-direction="back" class="button button-clear"  style="float:left;font-weight: bold;">&nbsp;<b><i class="ti ti-close light"></i></b>&nbsp;</button>          
+        <ion-title><b>Authentication</b></ion-title>
+      </ion-header-bar>
+  
+    <ion-content class="padding text-left bg-rage">
+
+        <form ng-submit="auth(password)">  
+            <br/>   
+            <div class="text-center padding">
+                <span style="font-size:50px !important;" class="icon ti-lock light"></span>
+            </div>  
+            <label class="light">Your Password</label>
+            <br/>
+            <br/>
+            <div class="item item-input">
+                <input type="password" name="password" ng-model="password" placeholder="Input your password"/>
+             </div>
+            <br/>
+            <button type="submit" ng-disabled="!password" style="color:#fff !important;font-size:14px;width: 100%;background-color: rgb(216, 141, 1) !important;" class="button button-full button-dark">
+                confirm
+            </button>
+        </form>
+
+    </ion-content>
+
+</ion-modal-view>

@@ -1,4 +1,4 @@
-app.controller('finance', function($scope,$ionicModal,$stateParams,Transaction,Upload,Assets,$rootScope,wallet,account,$state,$timeout,$localStorage,$sessionStorage,$ionicPopup,BTC,ETH,USDT,MP) {
+app.controller('finance', function($scope,$ionicModal,$stateParams,Upload,Giftcards,$rootScope,wallet,account,$state,$timeout,$localStorage,$ionicPopup,MP) {
   
   $scope.hidden_balance=true;
   $rootScope.card_type=null;
@@ -112,8 +112,8 @@ app.controller('finance', function($scope,$ionicModal,$stateParams,Transaction,U
         
     
     $rootScope.trade_with=function(trader){
+      $rootScope.trader=trader;
   if($rootScope.user.o_id!=trader.o_id){
-    $rootScope.trader=trader;
       $rootScope.trade_box.show();
   }
     };
@@ -122,31 +122,24 @@ app.controller('finance', function($scope,$ionicModal,$stateParams,Transaction,U
 
 
     $rootScope.affiliate_buy_coin=function(amt){
+      $rootScope.request_pin().then(function(auth){
+      if(auth){
   $rootScope.show();  
   var data={
       o_id:$rootScope.user.o_id,
       amount:amt,
       pool_id:$rootScope.trader.pool_id,
-      fee:$rootScope.coin.fee,
-      rate:$rootScope.coin.buying.usd * $rootScope.trader.coin.affiliate.buy_rate
+      rates:$rootScope.trader.coin.affiliate.buy_rate,
+      usd:$rootScope.coin.buying.usd,
+      coin:$rootScope.coin.coin,
+      name:$rootScope.coin.name
   };
-  var Cx=BTC;
-  if($rootScope.coin.symbol=="BTC"){
-    Cx=BTC;
-  }else
-  if($rootScope.coin.symbol=="ETH"){
-  Cx=ETH;
-  }else
-  if($rootScope.coin.symbol=="USDT"){
-  Cx=USDT;
-  }
-    if(Cx){
-      Cx.affiliate_buy(data).success(function(Data){
+  MP.affiliate_buy(data).success(function(Data){
       $rootScope.hide();  
          if(Data.status==true){
           $rootScope.abuy_box.hide();      
           $rootScope.trade_box.hide();      
-          $scope.view_coin_transaction(Data.data);
+          $rootScope.view_order(Data.data);
           $rootScope.refresh_profile();
         }else{
           $ionicPopup.alert({template:Data.message});
@@ -155,7 +148,8 @@ app.controller('finance', function($scope,$ionicModal,$stateParams,Transaction,U
         $rootScope.hide();  
         $ionicPopup.alert({template:"Network Error please try again later"});
       });     
-    } 
+  }
+});
 
     }
 
@@ -164,31 +158,24 @@ app.controller('finance', function($scope,$ionicModal,$stateParams,Transaction,U
 
 
     $rootScope.affiliate_sell_coin=function(amt){
+      $rootScope.request_pin().then(function(auth){
+      if(auth){
       $rootScope.show();  
       var data={
           o_id:$rootScope.user.o_id,
           amount:amt,
           pool_id:$rootScope.trader.pool_id,
-          fee:$rootScope.coin.fee,
-          rate:$rootScope.coin.selling.usd * $rootScope.trader.coin.affiliate.sell_rate
+          rates:$rootScope.trader.coin.affiliate.sell_rate,
+          usd:$rootScope.coin.selling.usd,
+          coin:$rootScope.coin.coin,
+          name:$rootScope.coin.name
       };
-      var Cx=BTC;
-    if($rootScope.coin.symbol=="BTC"){
-      Cx=BTC;
-    }else
-    if($rootScope.coin.symbol=="ETH"){
-    Cx=ETH;
-    }else
-    if($rootScope.coin.symbol=="USDT"){
-    Cx=USDT;
-    }
-        if(Cx){
-          Cx.affiliate_sell(data).success(function(Data){
+     MP.affiliate_sell(data).success(function(Data){
           $rootScope.hide();  
              if(Data.status==true){
               $rootScope.abuy_box.hide();    
               $rootScope.trade_box.hide();       
-              $scope.view_coin_transaction(Data.data);
+              $rootScope.view_order(Data.data);
               $rootScope.refresh_profile();
             }else{
               $ionicPopup.alert({template:Data.message});
@@ -197,63 +184,13 @@ app.controller('finance', function($scope,$ionicModal,$stateParams,Transaction,U
             $rootScope.hide();  
             $ionicPopup.alert({template:"Network Error please try again later"});
           });     
-        } 
+      }
+    });
     
         }
 
 
 
-
-$rootScope.send_pay=function(amt,ngn){
-  $rootScope.show();
-  var Cx=wallet;
-  var amount=ngn;
-  var fee=0;
-  var rate=$rootScope.btc.sell_rates;
-if($rootScope.coin){  
-    amount=amt;  
-    fee=$rootScope.coin.fee;
-    rate=$rootScope.coin.sell_rates; 
-    if($rootScope.coin.symbol=="BTC"){
-          Cx=BTC;
-        }else
-        if($rootScope.coin.symbol=="ETH"){
-        Cx=ETH;
-        }else
-        if($rootScope.coin.symbol="USDT"){
-        Cx=USDT;
-        }
-  }
-  var data={
-      o_id:$rootScope.user.o_id,
-      amount:amount,
-      to:$rootScope.trader.o_id,
-      fee:fee,
-      rate:rate
-    };  
-    console.log(data);
-    if(Cx){
-      Cx.direct_send(data).success(function(Data){
-        $rootScope.hide(); 
-        $ionicPopup.alert({template:Data.message}); 
-           if(Data.status==true){
-            $rootScope.send_coin_box.hide(); 
-            $rootScope.pay_box.hide(); 
-            $rootScope.funds_box.hide();   
-            if(Cx==wallet){
-              $scope.view_transaction(Data.data);
-            }else{
-            $scope.view_coin_transaction(Data.data);
-            }
-            $rootScope.refresh_profile();
-          }
-        }).error(function(){
-          $rootScope.hide();  
-          $ionicPopup.alert({template:"Network Error please try again later"});
-        });  
-      }
-}
-      
 
 
 
@@ -639,6 +576,8 @@ $rootScope.fund_peer=function(peer){
 
   
   $rootScope.withdraw=function(transaction) {
+    $rootScope.request_pin().then(function(auth){
+    if(auth){
     if(transaction.amount < 5000){
        $ionicPopup.alert({template:"Please enter an amount that is above 5000"});
      }else{
@@ -657,6 +596,8 @@ $rootScope.fund_peer=function(peer){
            $ionicPopup.alert({template:"error in connection, check your internet connection"});
          });
        }
+      }
+    });
    };
  
  
@@ -668,6 +609,8 @@ $rootScope.fund_peer=function(peer){
 
   
   $rootScope.cashout=function(transaction) {
+    $rootScope.request_pin().then(function(auth){
+    if(auth){
    if(transaction.amount < 2){
       $ionicPopup.alert({template:"Please enter an amount that is above 100"});
     }else{
@@ -686,6 +629,8 @@ $rootScope.fund_peer=function(peer){
           $ionicPopup.alert({template:"error in connection, check your internet connection"});
         });
       }
+    }
+  });
   };
 
 
@@ -878,7 +823,7 @@ $rootScope.sell_asset=function(asset){
   $rootScope.show();
   formData.append('files',$rootScope.files);
           Upload.upload({
-            url: Config.API+"users/sell_asset",
+            url: Config.API+"users/giftcard/sell",
             headers: {'Content-Type' : 'multipart/form-data'},
             data: asset
           }).then(function(resp) {
@@ -902,7 +847,7 @@ $rootScope.sell_asset=function(asset){
                           }
                           console.log("updating trx:");
                           console.log(dc);
-                      Transaction.update(dc).success(function(Data){
+                      Giftcards.update_sales(dc).success(function(Data){
                         $rootScope.hide();
                         $rootScope.sell_giftcard_box.hide();
                         $ionicPopup.alert({
@@ -1006,7 +951,7 @@ buttons: [
 };
 
 
-Assets.all().success(function(Data){
+Giftcards.all().success(function(Data){
      if(Data.status==true){
        $rootScope.assets=Data.data;
     }else{
@@ -1055,6 +1000,111 @@ Assets.all().success(function(Data){
     }
   }
 }
+
+
+
+
+
+
+
+
+
+$rootScope.confirm_order=function(transaction) {
+  $rootScope.demand_pin().then(function(auth){
+  if(auth){
+     $rootScope.show();
+     transaction.o_id=$rootScope.user.o_id;
+     MP.confirm_order(transaction).success(function(Data){
+     $rootScope.hide();
+     $ionicPopup.alert({template:Data.message});
+     if(Data.status==true){
+      $ionicPopup.alert({template:Data.message});
+      $rootScope.refresh_profile();
+      $rootScope.order_box.hide();
+     }
+       }).error(function () {
+         $rootScope.hide();
+         $ionicPopup.alert({template:"error in connection, check your internet connection"});
+       });
+      }
+    });
+ };
+
+
+
+
+
+
+ $rootScope.approve_order=function(transaction) {
+  $rootScope.demand_pin().then(function(auth){
+  if(auth){
+  $rootScope.show();
+  transaction.o_id=$rootScope.user.o_id;
+  MP.approve_order(transaction).success(function(Data){
+  $rootScope.hide();
+  $ionicPopup.alert({template:Data.message});
+  if(Data.status==true){
+   $ionicPopup.alert({template:Data.message});
+   $rootScope.refresh_profile();
+   $rootScope.order_box.hide();
+  }
+    }).error(function () {
+      $rootScope.hide();
+      $ionicPopup.alert({template:"error in connection, check your internet connection"});
+    });
+  }
+});
+};
+
+
+
+
+
+
+
+
+$rootScope.report_order=function(transaction) {
+  $rootScope.show();
+  transaction.o_id=$rootScope.user.o_id;
+  MP.report_order(transaction).success(function(Data){
+  $rootScope.hide();
+  $ionicPopup.alert({template:Data.message});
+  if(Data.status==true){
+   $ionicPopup.alert({template:Data.message});
+   $rootScope.refresh_profile();
+   $rootScope.order_box.hide();
+  }
+    }).error(function () {
+      $rootScope.hide();
+      $ionicPopup.alert({template:"error in connection, check your internet connection"});
+    });
+};
+
+
+
+
+
+
+$rootScope.cancel_order=function(transaction) {
+  $rootScope.show();
+  if(transaction.confirmed){
+    $ionicPopup.alert({template:"You can't cancel order at this time, try reporting this order"});
+  }else{
+  MP.cancel_order(transaction).success(function(Data){
+  $rootScope.hide();
+  $ionicPopup.alert({template:Data.message});
+  if(Data.status==true){
+   $ionicPopup.alert({template:Data.message});
+   $rootScope.refresh_profile();
+   $rootScope.order_box.hide();
+  }
+    }).error(function () {
+      $rootScope.hide();
+      $ionicPopup.alert({template:"error in connection, check your internet connection"});
+    });
+  }
+};
+
 
 
 

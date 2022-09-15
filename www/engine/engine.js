@@ -1,5 +1,5 @@
 
-app.run(function($ionicPlatform,Config,$cordovaClipboard,USDT,BTC,ETH,Banks,$localStorage,$timeout,$location,$rootScope,$ionicHistory,$state,$ionicPopup,account,$ionicLoading,$sce,$ionicModal,$cordovaToast){
+app.run(function($ionicPlatform,Config,$cordovaClipboard,Crypto,$localStorage,$timeout,$location,$rootScope,$ionicHistory,$state,$ionicPopup,account,$ionicLoading,$sce,$ionicModal,$cordovaToast){
   $rootScope.media=Config.media;
   $rootScope.token=Config.token;
   $rootScope.countries=countries;
@@ -45,11 +45,11 @@ app.run(function($ionicPlatform,Config,$cordovaClipboard,USDT,BTC,ETH,Banks,$loc
     $rootScope.naira_transaction_box = modal;
   });
 
-  $ionicModal.fromTemplateUrl('pop/sales_history.html', {
+  $ionicModal.fromTemplateUrl('pop/order.html', {
     scope: $rootScope,
     animation: 'slide-in-up'
   }).then(function(modal) {
-    $rootScope.sales_box = modal;
+    $rootScope.order_box = modal;
   });
 
 
@@ -135,8 +135,8 @@ app.run(function($ionicPlatform,Config,$cordovaClipboard,USDT,BTC,ETH,Banks,$loc
 
   
   $rootScope.send_to=function(trader){
-    if($rootScope.user.o_id!=trader.o_id){
     $rootScope.trader=trader;
+    if($rootScope.user.o_id!=trader.o_id){
     $rootScope.pay_box.show();
     }else{
       $state.go("edit_profile");
@@ -343,7 +343,7 @@ $rootScope.coin_usd=function(amount,symbol){
 
 
 
-    $rootScope.refresh_sales=function(){
+    $rootScope.refresh_orders=function(){
       if($rootScope.user){
       var id=$rootScope.user.o_id;
       account.sales(id).success(function(Data){
@@ -357,7 +357,7 @@ $rootScope.coin_usd=function(amount,symbol){
     }
     };
 
-    $rootScope.refresh_sales();
+    $rootScope.refresh_orders();
 
     $rootScope.refresh_contacts=function(){
       if($rootScope.user){
@@ -455,85 +455,154 @@ $rootScope.remove_contact=function(contact){
   
   
   $rootScope.view_wallet=function(wallet) {
-    $rootScope.coin=null;
-  $rootScope.refresh_profile();
+    $rootScope.coin=wallet;
     if(!wallet){
        $ionicPopup.alert({template:"Please select a valid wallet"});
      }else{
-       $timeout(function(){
-       $rootScope.coin=wallet;
-  if($rootScope.coin){
-    if($rootScope.coin.symbol=="BTC"){
+    if($rootScope.coin.coin=="BTC"){
+      $rootScope.coin=$rootScope.user.bitcoin_wallet;
       $rootScope.coin.fee=$rootScope.btc.fee;
       $rootScope.coin.buying=$rootScope.btc.buying;
       $rootScope.coin.selling=$rootScope.btc.selling;
       $rootScope.coin.buy_rates=$rootScope.btc.buy_rates;
       $rootScope.coin.sell_rates=$rootScope.btc.sell_rates;
     }else
-    if($rootScope.coin.symbol=="ETH"){
+    if($rootScope.coin.coin=="ETH"){
+      $rootScope.coin=$rootScope.user.ethereum_wallet;
       $rootScope.coin.fee=$rootScope.eth.fee;
       $rootScope.coin.buying=$rootScope.eth.buying;
       $rootScope.coin.selling=$rootScope.eth.selling;
       $rootScope.coin.buy_rates=$rootScope.eth.buy_rates;
       $rootScope.coin.sell_rates=$rootScope.eth.sell_rates;
     }else
-    if($rootScope.coin.symbol=="USDT"){
+    if($rootScope.coin.coin=="USDT"){
+      $rootScope.coin=$rootScope.user.usdt_wallet;
       $rootScope.coin.fee=$rootScope.usdt.fee;
       $rootScope.coin.buying=$rootScope.usdt.buying;
       $rootScope.coin.selling=$rootScope.usdt.selling;
       $rootScope.coin.buy_rates=$rootScope.usdt.buy_rates;
       $rootScope.coin.sell_rates=$rootScope.usdt.sell_rates;
     }
-    console.log($rootScope.coin);
-  }
-       $state.go("crypto_wallet");
-       },500);
+    console.log("wallet:");
+    console.log($rootScope.user);
+      $state.go("crypto_wallet");
      }
      }
  
 
+     $ionicModal.fromTemplateUrl('pop/connect_wallet.html', {
+      scope: $rootScope,
+      animation: 'slide-in-up'
+    }).then(function(modal) {
+      $rootScope.connect_wallet_box = modal;
+    });
+    
 
 
-  $ionicModal.fromTemplateUrl('pop/authpay.html', {
-    scope: $rootScope,
-    animation: 'slide-in-up'
-  }).then(function(modal) {
-    $rootScope.authpay_box = modal;
-  });
+
+
+
+    $ionicModal.fromTemplateUrl('pop/auth.html', {
+      scope: $rootScope,
+      animation: 'slide-in-up'
+    }).then(function(modal) {
+      $rootScope.auth_box = modal;
+    });
+
+    $ionicModal.fromTemplateUrl('pop/pin.html', {
+      scope: $rootScope,
+      animation: 'slide-in-up'
+    }).then(function(modal) {
+      $rootScope.pin_box = modal;
+    });
   
-$rootScope.open_auth=function(){
-  $rootScope.munchpay_box.hide();
-  $timeout(function(){
-    $rootScope.authpay_box.show();
-  },1000);
+  $rootScope.request_password=function(){
+    return new Promise(function (resolve, reject) {
+      $rootScope.auth_box.show();
+      $rootScope.validate=resolve;
+    });
+    }
+
+
+$rootScope.request_pin=function(){
+  return new Promise(function (resolve, reject) {
+  if($rootScope.user.protected){
+    $rootScope.pin_box.show();
+    $rootScope.validate=resolve;
+  }
+  })
 }
 
 
-  $rootScope.authpay=function(data) {
+
+
+$rootScope.demand_pin=function(){
+  return new Promise(function (resolve, reject) {
+  if($rootScope.user.pin){
+    $rootScope.pin_box.show();
+    $rootScope.validate=resolve;
+  }else{ 
+     $ionicPopup.alert({
+        template: "Please set a pin before you can complete this transaction, go to security settings to set a pin"
+      });
+  }
+  })
+}
+
+  $rootScope.auth=function(password){
+      if(!password){
+          $ionicPopup.alert({
+        template: "Please provide your password."
+      });
+      }else{
     $rootScope.show();
-   if(!data.password){
-      $ionicPopup.alert({
-     template: "Please provide your password."
-   });
-  }else{
-      data.ip=$rootScope.user.ip;
-      data.device=$rootScope.user.device;
-      data.email=$rootScope.user.email;
-      data.o_id=$rootScope.user.o_id;
-    account.auth2(data).success(function(Data){
+      var data={
+      o_id:$rootScope.user.o_id,
+      password:password
+      }
+    account.auth(data).success(function(Data){
       $rootScope.hide();
       if(Data.status==true){
-        $rootScope.authpay_box.hide();
-        
+        $rootScope.auth_box.hide();
+        $rootScope.validate(true);
       }else{
-      $scope.error=Data.message;
+      $ionicPopup.alert({template:Data.message});
       }
-    }).error(function(data){
+    }).error(function(){
       $rootScope.hide();
-      $scope.error="OOPS! , CHECK YOUR INTERNET CONNECTION AND TRY AGAIN.";
+      $ionicPopup.alert({template:"OOPS! , CHECK YOUR INTERNET CONNECTION AND TRY AGAIN."});
     });
   }
-  };
+}
+  
+
+$rootScope.request_pin=function(){
+  $rootScope.validated=false;
+  return new Promise(function (resolve, reject) {
+  if($rootScope.user.protected){
+    $rootScope.pin_box.show();
+    $rootScope.validate=resolve;
+  }
+  })
+}
+
+$rootScope.auth_pin=function(pin){
+    if(!pin){
+      $rootScope.hide();
+      $ionicPopup.alert({
+        template: "Please provide your pin."
+      });
+    }else{
+      if($rootScope.user.pin==pin){
+        $rootScope.pin_box.hide();
+        $rootScope.validate(true);
+        }else{
+        $ionicPopup.alert({template:"Pin incorrect"});
+        }
+    }
+}
+ 
+
 
 
 
@@ -602,9 +671,9 @@ $rootScope.read_notes=function(){
 
 
 
-    $rootScope.view_sales=function(transaction){
+    $rootScope.view_order=function(transaction){
       $rootScope.transaction=transaction;
-      $rootScope.sales_box.show();
+      $rootScope.order_box.show();
       }
   
 
@@ -639,15 +708,15 @@ $rootScope.read_notes=function(){
   
   
   
-  $rootScope.buy_affiliate=function(trader,coin){
+  $rootScope.buy_affiliate=function(coin){
+    console.log("buying from affiliate:");
+    console.log(coin);
+    $rootScope.coin=coin;
   $rootScope.usd_amount=0;
   $rootScope.coin_amount=0;
   $rootScope.naira_amount=0;
+  var trader=$rootScope.trader;
     if($rootScope.user.o_id!=trader.o_id){
-    $rootScope.trader=trader;
-    $rootScope.coin=coin;
-    console.log("buying from affiliate:");
-    console.log(coin);
     if(coin.coin=="BTC"){
       $rootScope.trader.coin=$rootScope.trader.bitcoin_wallet;
     }else 
@@ -656,8 +725,6 @@ $rootScope.read_notes=function(){
     }else
     if(coin.coin=="USDT"){
       $rootScope.trader.coin=$rootScope.trader.usdt_wallet;
-    }else{
-      $rootScope.coin=$rootScope.btc;
     }
     $rootScope.abuy_box.show();
   }
@@ -667,15 +734,16 @@ $rootScope.read_notes=function(){
 
 
   
-  $rootScope.sell_affiliate=function(trader,coin){
+  $rootScope.sell_affiliate=function(coin){
+    console.log("selling from affiliate:");
+    console.log(coin);
+    $rootScope.coin=coin;
   $rootScope.usd_amount=0;
   $rootScope.coin_amount=0;
   $rootScope.naira_amount=0;
+  var trader=$rootScope.trader;
     if($rootScope.user.o_id!=trader.o_id){
     $rootScope.trader=trader;
-    $rootScope.coin=coin;
-    console.log("selling from affiliate:");
-    console.log(coin);
     if(coin.coin=="BTC"){
       $rootScope.trader.coin=$rootScope.trader.bitcoin_wallet;
     }else 
@@ -684,8 +752,6 @@ $rootScope.read_notes=function(){
     }else
     if(coin.coin=="USDT"){
       $rootScope.trader.coin=$rootScope.trader.usdt_wallet;
-    }else{
-      $rootScope.coin=$rootScope.btc;
     }
     $rootScope.asell_box.show();
   }
@@ -694,30 +760,30 @@ $rootScope.read_notes=function(){
 
 
 
-  $rootScope.send_funds=function(trader,coin){
+  $rootScope.send_funds=function(coin){
     $rootScope.usd_amount=0;
     $rootScope.coin_amount=0;
     $rootScope.naira_amount=0;
     $rootScope.search_pay.hide();
     $rootScope.search_pay2.hide();
     $rootScope.pay_box.hide();
+    var trader=$rootScope.trader;
     $timeout(function(){
     if($rootScope.user.o_id!=trader.o_id){
-    $rootScope.trader=trader;
     if(coin){
-          if(coin.symbol=="BTC" || coin.coin=="BTC"){
+          if(coin.coin=="BTC" || coin.coin=="BTC"){
             $rootScope.coin=coin;
-            $rootScope.coin.symbol="BTC";
+            $rootScope.coin.coin="BTC";
             $rootScope.trader.coin=trader.bitcoin_wallet;
           }else 
-          if(coin.symbol=="ETH" || coin.coin=="ETH"){
+          if(coin.coin=="ETH" || coin.coin=="ETH"){
             $rootScope.coin=coin;
-            $rootScope.coin.symbol="ETH";
+            $rootScope.coin.coin="ETH";
             $rootScope.trader.coin=trader.ethereum_wallet;
           }else
-          if(coin.symbol=="USDT" || coin.coin=="USDT"){
+          if(coin.coin=="USDT" || coin.coin=="USDT"){
             $rootScope.coin=coin;
-            $rootScope.coin.symbol="USDT";
+            $rootScope.coin.coin="USDT";
             $rootScope.trader.coin=trader.usdt_wallet;
           }
         }else{
@@ -856,18 +922,15 @@ $rootScope.show_coin_input();
 
 
 $rootScope.fetch_rates=function(){
-  BTC.rates().success(function(Data){
+  Crypto.rates("BTC").success(function(Data){
     $rootScope.btc=Data.rates;
   });
-  ETH.rates().success(function(Data){
+  Crypto.rates("ETH").success(function(Data){
     $rootScope.eth=Data.rates;
   });
-  USDT.rates().success(function(Data){
+  Crypto.rates("USDT").success(function(Data){
     $rootScope.usdt=Data.rates;
   });
-  $timeout(function(){
-    $rootScope.hide();
-  },5000);
 };
 
 
@@ -920,7 +983,7 @@ $rootScope.refresh_profile=function(){
   $rootScope.fetch_rates();
   if($rootScope.user){
   var id=$rootScope.user.o_id;
-  $rootScope.refresh_sales();
+  $rootScope.refresh_orders();
   $rootScope.refresh_contacts();
   account.info(id).success(function(Data){
     $rootScope.hide();
@@ -996,7 +1059,7 @@ $rootScope.range=function(min,max,step){
 
 
   
-Banks.all().success(function(Data){
+account.banks().success(function(Data){
   if(Data.status==true){
       $rootScope.banks=Data.data;
   }

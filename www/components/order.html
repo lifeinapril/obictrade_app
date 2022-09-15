@@ -1,0 +1,17 @@
+<div class="item" ng-click="view_order(trade)">
+    <div class="pull-right text-right" style="float: right;margin-top: 10px !important;">
+      <h2>
+      <div ng-if="trade.type=='cryptocurrency'">
+        <b>{{trade.symbol || '$'}} {{trade.amount || 0 | number:8}}</b>
+        <h6> ${{coin_usd(trade.amount,trade.symbol) || 0 | limitTo:4}}</h6>
+      </div>
+      <div ng-if="trade.type=='gift card'">
+        <b ng-if="card.quantity > 0" ng-repeat="card in trade.cards">{{trade.symbol || '$'}} {{card.amount || 0}} ,</b>
+      </div>
+      </h2> 
+    </div>
+    <div style="color: #2f2f2f" class="item-body">
+      <h2><b>{{trade.name}}</b></h2>
+       <h6 class="dark">{{trade.date_created | date}}</h6>
+    </div>
+</div>

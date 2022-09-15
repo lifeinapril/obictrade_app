@@ -1,0 +1,85 @@
+<ion-view>
+    <ion-nav-bar class="bar bar-dark bg-black">
+    
+      <ion-nav-buttons side="left">
+        <button class="button button-clear" back-button>
+          <i class="icon ion-ios-arrow-back oran"></i>
+         </button>
+      </ion-nav-buttons>
+       <ion-nav-title>
+         <b>Orders</b>
+       </ion-nav-title>
+    </ion-nav-bar>
+     
+        <div class="padding" style="margin-top: 50px !important;">
+            <ion-segment ng-model="order_status" full="true" dark>
+                <ion-segment-button value="1">
+                Pending ({{(trades | filter:{status:1}).length}})
+                </ion-segment-button>
+                <ion-segment-button value="2">
+                Successful
+                </ion-segment-button>
+                <ion-segment-button value="0">
+                Failed
+                </ion-segment-button>
+            </ion-segment>    
+        </div>
+
+
+    <ion-content class="padding" style="background-color: #fff !important;margin-top: 60px !important;" ng-init="refresh_orders()">
+
+
+            <ion-refresher  icon="ion-loading-d" 
+            pulling-text="Pull to refresh"
+            on-refresh="refresh_orders()">
+            </ion-refresher>
+    
+<div ng-switch="order_status">
+   
+    <ion-list ng-switch-when="1">
+         
+        <div ng-include="'components/order.html'" ng-repeat="trade in trades | filter:{status:1} | filter:srch | orderBy:'-date_created'">
+        </div>
+        <div ng-show="!trades || (trades | filter:{status:1}).length < 1" class="text-center item item-light">
+            <span style="font-size: 50px !important;" class="ti ti-eraser"></span>
+            <h2>No orders yet</h2> 
+        </div>
+    </ion-list>
+
+    <ion-list ng-switch-when="2">
+
+        <div ng-include="'components/order.html'" ng-repeat="trade in trades | filter:{status:2} | filter:srch | orderBy:'-date_created'">
+        </div>
+        <div ng-show="!trades || (trades | filter:{status:2}).length < 1" class="text-center item item-light">
+            <span style="font-size: 30px !important;" class="ti ti-eraser"></span>
+            <h2>No orders yet</h2> 
+        </div>
+    </ion-list>
+
+    <ion-list ng-switch-when="0">
+
+        <div ng-include="'components/order.html'" ng-repeat="trade in trades | filter:{status:0} | filter:srch | orderBy:'-date_created'">
+        </div>
+        <div ng-show="!trades || (trades | filter:{status:0}).length < 1" class="text-center item item-light">
+            <span class="icon ti-eraser"></span>
+            <h2>No orders yet</h2> 
+        </div>
+
+    </ion-list>
+  
+
+</div>
+
+<div ng-show="!trades || trades.length < 1">
+    <div class=" text-center item item-light">
+      <div class="padding">
+        <h2><b>No Sales Yet.</b></h2> 
+      </div> 
+       <br>
+
+    </div>
+  </div>
+
+    </ion-content>
+
+    </ion-view>

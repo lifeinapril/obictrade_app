@@ -1,7 +1,7 @@
 <ion-view cache-view="false">
 
   
-    <ion-nav-bar class="bar bg-blue" style="border: none !important;">
+    <ion-nav-bar class="bar bg-dark-blue" style="border: none !important;">
 
             <ion-nav-buttons side="left">
               <button title="back" class="button button-clear" back-button>
@@ -9,7 +9,7 @@
             </ion-nav-buttons>
 
             <ion-nav-title>
-               <b>{{coin.symbol}}</b>
+               <!-- <b>Wallet</b> -->
             </ion-nav-title>
 
             <ion-nav-buttons side="right">
@@ -59,38 +59,17 @@
   </div> -->
   
   
-  
-  
-    
-      <ion-content style="background-color: rgb(235, 232, 232);">
-        <ion-refresher pulling-text="Pull to refresh" on-refresh="refresh_profile()"></ion-refresher>
-                  <div class="padding">
+  <div style="margin-top: 50px !important;">
 
-        <div class="item item-avatar item-light" style="border:1px solid #d4d1d100 !important;margin-bottom: 0px !important;border-radius: 5px !important;">  
-          <img title="coin" src="{{media+coin.icon}}" class="avatar"/>
-          <div class="pull-right dark text-right" style="float: right !important;;">
-            <h6 ng-if="coin.connected" class="balanced">wallet connected</h6>
-            <h6 ng-if="!coin.connected" class="assertive">wallet disconnected</h6>
-            <button ng-if="coin.connected" class="button button-small button-dark">&nbsp;&nbsp;&nbsp;Edit wallet&nbsp;&nbsp;&nbsp;</button>
-            <button ng-if="!coin.connected" class="button button-small button-balanced">&nbsp;&nbsp;&nbsp;Connect&nbsp;&nbsp;&nbsp;</button>
-          </div>
+    <div ng-include="'components/connect_wallet.html'"></div>
         </div>
   
-        <div class="button-bar">
-          <button ng-click="buy_box.show()" ng-disabled="user.isagent" class="button button-block button-dark-blue">
-            Buy&nbsp;&nbsp;
-            <i class="icon ion-arrow-up-b pull-right"></i>
-           </button>
-          &nbsp;&nbsp;
-           <button ng-click="sell_box.show()" class="button button-block button-outline button-oran">
-            Sell&nbsp;&nbsp;
-            <i class="icon ion-arrow-down-b pull-right"></i>
-            </button>
-          </div>
+    
+      <ion-content style="background-color: rgb(235, 232, 232); margin-top: 140px !important;">
+        <ion-refresher pulling-text="Pull to refresh" on-refresh="refresh_profile()"></ion-refresher>
+          
   
-          </div>
-  
-          <div class="list">
+          <div class="list" ng-show="coin.address">
             <div ng-if="user.pool_id && coin.affiliate">
             <div class="item item-divider">
               <h3 class="black">Set your rates</h3>
@@ -125,28 +104,27 @@
     </div>   -->
 
         
-<div class="padding">
+<!-- <div class="padding"> -->
   
-  <div ng-click="recieve_coin_box.show()" class="item item-light text-left item-icon-left">
+  <!-- <div ng-click="recieve_coin_box.show()" class="item item-light text-left item-icon-left">
     <i class="ti-angle-right pull-right" style="float: right !important;"></i>
-    <i class="icon ion-android-add-circle oran"></i> Deposit {{coin.symbol | uppercase}}
-  </div>
+    <i class="icon ion-arrow-down-a oran"></i> Deposit {{coin.symbol | uppercase}}
+  </div> -->
 
   <!-- <div ng-click="send_coin_box.show()" ng-hide="user.isagent" class="item item-light text-left item-icon-left">
     <i class="ti-angle-right pull-right" style="float: right !important;"></i>
     <i class="icon ti-download oran"></i> Withdraw {{coin.symbol | uppercase}}
   </div> -->
         
-  <div ng-click="search_pay.show()" ng-hide="user.isagent" class="item item-light text-left item-icon-left">
+  <!-- <div ng-click="search_pay.show()" ng-hide="user.isagent" class="item item-light text-left item-icon-left">
     <i class="ti-angle-right pull-right" style="float: right !important;"></i>
-    <i class="icon ion-at oran"></i> Send to username
-  </div>
+    <i class="icon ion-forward orange"></i> Make Payment
+  </div> -->
         
 
-  </div>
+  <!-- </div> -->
 
 
-<br>
 
   <div class="item item-divider">
     <a class="pull-right orange" style="float:right;" ui-sref="coin_history">See All</a>

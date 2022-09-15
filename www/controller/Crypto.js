@@ -1,4 +1,4 @@
-app.controller('Crypto', function($cordovaSocialSharing,$ionicModal,USDT,BTC,ETH,$scope,$state,$timeout,$ionicPopup,$rootScope) {
+app.controller('Crypto', function($cordovaSocialSharing,$ionicModal,MP,$scope,Crypto,$ionicPopup,$rootScope) {
   
   $rootScope.usd_amount=0;
   $rootScope.coin_amount=0;
@@ -88,25 +88,18 @@ $rootScope.scan_code=function(){
 
   
 $rootScope.sell_coin=function(amt){
+  $rootScope.request_pin().then(function(auth){
+  if(auth){
   $rootScope.show();  
   var data={
       o_id:$rootScope.user.o_id,
       amount:amt,
-      fee:$rootScope.coin.fee,
-      rate:$rootScope.coin.selling.usd * $rootScope.coin.sell_rates
+      rates:$rootScope.coin.sell_rates,
+      usd:$rootScope.coin.selling.usd,
+      coin:$rootScope.coin.coin,
+      name:$rootScope.coin.name
   };
-  var Cx=BTC;
-  if($rootScope.coin.name="Bitcoin"){
-        Cx=BTC;
-    } else
-    if($rootScope.coin.name="Ethereum"){
-      Cx=ETH;
-    }else
-    if($rootScope.coin.name="USDT"){
-      Cx=USDT;
-    }
-    if(Cx){
-      Cx.sell(data).success(function(Data){
+  MP.sell(data).success(function(Data){
       $rootScope.hide();  
          if(Data.status==true){
           $rootScope.sell_box.hide();      
@@ -119,38 +112,47 @@ $rootScope.sell_coin=function(amt){
         $rootScope.hide();  
         $ionicPopup.alert({template:"Network Error please try again later"});
       });     
-    } 
+  }
+});
 }
       
 
 
+$rootScope.connect_wallet=function(coin){
+      $rootScope.show();  
+      coin.o_id=$rootScope.user.o_id;
+      Crypto.connect(coin).success(function(Data){
+        $rootScope.hide();  
+        $ionicPopup.alert({template:Data.message});
+           if(Data.status==true){ 
+              $rootScope.refresh_profile();
+              $rootScope.connect_wallet_box.hide();
+          }
+        }).error(function(){
+          $rootScope.hide();  
+          $ionicPopup.alert({template:"Network Error please try again later"});
+        });  
+}
 
 
 
 $rootScope.buy_coin=function(amt){
-  $rootScope.show();  
+  $rootScope.request_pin().then(function(auth){
+  if(auth){
+  $rootScope.show();
   var data={
       o_id:$rootScope.user.o_id,
       amount:amt,
-      fee:$rootScope.coin.fee,
-      rate:$rootScope.coin.buying.usd * $rootScope.coin.buy_rates
+      rates:$rootScope.coin.sell_rates,
+      usd:$rootScope.coin.selling.usd,
+      coin:$rootScope.coin.coin,
+      name:$rootScope.coin.name
   };
-  var Cx=BTC;
-  if($rootScope.coin.name="Bitcoin"){
-        Cx=BTC;
-    } else
-    if($rootScope.coin.name="Ethereum"){
-      Cx=ETH;
-    } else
-    if($rootScope.coin.name="USDT"){
-      Cx=USDT;
-    }
-    if(Cx){
-      Cx.buy(data).success(function(Data){
+  MP.buy(data).success(function(Data){
       $rootScope.hide();  
          if(Data.status==true){
           $rootScope.buy_box.hide();      
-          $scope.view_transaction(Data.data);
+          $rootScope.view_order(Data.data);
           $rootScope.refresh_profile();
         }else{
           $ionicPopup.alert({template:Data.message});
@@ -158,49 +160,14 @@ $rootScope.buy_coin=function(amt){
       }).error(function(){
         $rootScope.hide();  
         $ionicPopup.alert({template:"Network Error please try again later"});
-      });     
-    } 
-}
-      
-
-
-
-$rootScope.send_coin=function(amt,address){
-  $rootScope.show();  
-  var data={
-      o_id:$rootScope.user.o_id,
-      address:address,
-      amount:amt,
-      fee:$rootScope.coin.fee || 0.00001,
-      rate:$rootScope.coin.selling.usd * $rootScope.coin.sell_rates
-    };  
-    var Cx=BTC;
-  if($rootScope.coin.name="Bitcoin"){
-        Cx=BTC;
-    }else
-    if($rootScope.coin.name="Ethereum"){
-      Cx=ETH;
-    }else
-    if($rootScope.coin.name="USDT"){
-      Cx=USDT;
+      });   
     }
-    if(Cx){
-      Cx.send(data).success(function(Data){
-        $rootScope.hide();  
-           if(Data.status==true){
-            $rootScope.send_coin_box.hide();   
-            $scope.view_transaction(Data.data);
-            $rootScope.refresh_profile();
-          }else{
-            $ionicPopup.alert({template:Data.message});
-          }
-        }).error(function(){
-          $rootScope.hide();  
-          $ionicPopup.alert({template:"Network Error please try again later"});
-        });  
-      }
+});
 }
       
+
+
+ 
 
 
 
@@ -210,22 +177,9 @@ $rootScope.send_coin=function(amt,address){
 
 $rootScope.start_selling=function(coin){
   $rootScope.coin.affiliate.allow_buy=true;
-  $rootScope.show();  
-    var Cx=null;
-  if(coin.symbol=="BTC"){
-        Cx=BTC;
-    }else
-    if(coin.symbol=="ETH"){
-      Cx=ETH;
-    }else
-    if(coin.symbol=="USDT"){
-      Cx=USDT;
-    }
-    if(Cx){
-      console.log("Cx:");
-      console.log(Cx);
+      $rootScope.show();
       coin.o_id=$rootScope.user.o_id;
-      Cx.start_selling(coin).success(function(Data){
+      Crypto.start_selling(coin).success(function(Data){
         $rootScope.hide();  
         $ionicPopup.alert({template:Data.message});
            if(Data.status==true){ 
@@ -235,10 +189,7 @@ $rootScope.start_selling=function(coin){
         }).error(function(){
           $rootScope.hide();  
           $ionicPopup.alert({template:"Network Error please try again later"});
-        });  
-      }else{
-        $ionicPopup.alert({template:"could not read action"});
-      }
+        }); 
 }
       
 
@@ -247,20 +198,9 @@ $rootScope.start_selling=function(coin){
 $rootScope.stop_selling=function(coin){
   $rootScope.coin.affiliate.allow_buy=false;
   coin.affiliate.allow_buy=false;
-  $rootScope.show();  
-    var Cx=null;
-  if(coin.symbol=="BTC"){
-        Cx=BTC;
-    }else
-    if(coin.symbol=="ETH"){
-      Cx=ETH;
-    }else
-    if(coin.symbol=="USDT"){
-      Cx=USDT;
-    }
-    if(Cx){
+      $rootScope.show();  
       coin.o_id=$rootScope.user.o_id;
-      Cx.stop_selling(coin).success(function(Data){
+      Crypto.stop_selling(coin).success(function(Data){
         $rootScope.hide();  
         $ionicPopup.alert({template:Data.message});
            if(Data.status==true){ 
@@ -270,7 +210,6 @@ $rootScope.stop_selling=function(coin){
           $rootScope.hide();  
           $ionicPopup.alert({template:"Network Error please try again later"});
         });  
-      }
 }
       
 
@@ -286,21 +225,10 @@ $rootScope.stop_selling=function(coin){
 
 
 $rootScope.start_buying=function(coin){
-  $rootScope.coin.affiliate.allow_sell=true;
-  $rootScope.show();  
-  var Cx=null;
-  if(coin.symbol=="BTC"){
-        Cx=BTC;
-    }else
-    if(coin.symbol=="ETH"){
-      Cx=ETH;
-    }else
-    if(coin.symbol=="USDT"){
-      Cx=USDT;
-    }
-    if(Cx){
+      $rootScope.coin.affiliate.allow_sell=true;
+      $rootScope.show();  
       coin.o_id=$rootScope.user.o_id;
-      Cx.start_buying(coin).success(function(Data){
+      Crypto.start_buying(coin).success(function(Data){
         $rootScope.hide();  
         $ionicPopup.alert({template:Data.message});
            if(Data.status==true){ 
@@ -311,7 +239,6 @@ $rootScope.start_buying=function(coin){
           $rootScope.hide();  
           $ionicPopup.alert({template:"Network Error please try again later"});
         });  
-      }
 }
       
 
@@ -321,19 +248,8 @@ $rootScope.stop_buying=function(coin){
   $rootScope.coin.affiliate.allow_sell=false;
   coin.affiliate.allow_sell=false;
   $rootScope.show();  
-  var Cx=null;
-  if(coin.symbol=="BTC"){
-        Cx=BTC;
-    }else
-    if(coin.symbol=="ETH"){
-      Cx=ETH;
-    }else
-    if(coin.symbol=="USDT"){
-      Cx=USDT;
-    }
-    if(Cx){
       coin.o_id=$rootScope.user.o_id;
-      Cx.stop_buying(coin).success(function(Data){
+      Crypto.stop_buying(coin).success(function(Data){
         $rootScope.hide();  
         $ionicPopup.alert({template:Data.message});
            if(Data.status==true){ 
@@ -343,7 +259,6 @@ $rootScope.stop_buying=function(coin){
           $rootScope.hide();  
           $ionicPopup.alert({template:"Network Error please try again later"});
         });  
-      }
 }
       
 

@@ -1,7 +1,7 @@
 <ion-modal-view class="bg-blue-2">
     <ion-header-bar class="bar bar-header bg-blue-2">    
         <button ng-click="funds_box.hide()" class="button button-clear button-light"  style="float:left;font-weight: bold;">&nbsp;<i class="ti ti-close light"></i>&nbsp;</button>
-        <ion-title><b>send {{coin.symbol || 'NGN' | uppercase}}</b></ion-title>
+        <ion-title><b>Pay</b></ion-title>
       </ion-header-bar>
    
     <ion-content class="padding text-left bg-grey">
@@ -16,18 +16,25 @@
       </div> -->
 
       <br>
-      <b class="black">Sending to</b>
+      <b class="black">Make payment to</b>
       <div class="item item-avatar" style="margin: 5px !important;">
         <img src="{{media + trader.photo}}" class="avatar" />  
         <h3 class="dark">{{trader.full_name}}</h3>
           <small class="oran">@{{trader.user_name}}</small>
       </div>
-      <div ng-show="coin" class="item item-divider"> 
+      <div ng-show="trader.coin" class="item item-divider"> 
         <h3 class="dark">Address</h3>
+        <div style="background-color: black;width: 150px;height: 150px;margin: auto !important;direction: ltr;">
+          <qrcode data="{{trader.coin.address || '...'}}" size="150"></qrcode>
+        </div>
+        <br>
         <div class="item-body"> 
           <button ng-click="copy(trader.coin.address)" style="float: right;" class="button button-small button-dark">copy</button>
           <small class="oran">{{trader.coin.address}}</small>
           </div>
+      </div>
+      <div class="padding text-center" ng-show="!trader.coin || !trader.coin.address">
+          <h3>This user has no connected wallet to accept payments</h3>
       </div>
 <br>
        

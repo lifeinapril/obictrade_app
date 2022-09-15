@@ -1,7 +1,7 @@
 <div class="item item-body bg-grey" ng-if="trader.usdt_wallet.affiliate.allow_buy || trader.usdt_wallet.affiliate.allow_sell" style="margin-top: 28px;">
     <div class="pull-right" style="float: right;width: 120px;">
-        <button style="margin-bottom: 5px;float: right;" ng-disabled="!trader.usdt_wallet.affiliate.allow_sell" ng-click="buy_affiliate(trader,usdt)" class="button button-small button-dark-blue button-round">&nbsp;&nbsp; <span class="icon ion-arrow-up-b"></span> &nbsp;Buy&nbsp;&nbsp;&nbsp;</button>
-        <button style="margin-bottom: 5px;float: right;" ng-disabled="!trader.usdt_wallet.affiliate.allow_buy" ng-click="sell_affiliate(trader,usdt)" class="button button-small button-oran button-round">&nbsp;&nbsp; <span class="icon ion-arrow-down-b"></span> &nbsp;Sell&nbsp;&nbsp;&nbsp;</button>
+        <button style="margin-bottom: 5px;float: right;" ng-disabled="!trader.usdt_wallet.affiliate.allow_sell" ng-click="buy_affiliate(usdt)" class="button button-small button-dark-blue button-round">&nbsp;&nbsp; <span class="icon ion-arrow-up-b"></span> &nbsp;Buy&nbsp;&nbsp;&nbsp;</button>
+        <button style="margin-bottom: 5px;float: right;" ng-disabled="!trader.usdt_wallet.affiliate.allow_buy" ng-click="sell_affiliate(usdt)" class="button button-small button-oran button-round">&nbsp;&nbsp; <span class="icon ion-arrow-down-b"></span> &nbsp;Sell&nbsp;&nbsp;&nbsp;</button>
     </div>
 
     <div>

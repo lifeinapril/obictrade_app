@@ -1,0 +1,33 @@
+<ion-view cache-view="false">
+
+    <ion-nav-bar class="bar bg-blue">
+  
+  <ion-nav-title>
+    <b>Set Pin</b>
+  </ion-nav-title>
+      
+      <ion-nav-buttons side="left">
+        <button class="button button-clear" back-button>
+          <i class="icon ion-ios-arrow-back light"></i></button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+  
+    <ion-content class="padding text-left" ng-init="request_password()">
+      <br>
+      <form ng-submit="set_pin(pin)" class="list">
+  
+        <span class="dark">New Pin</span>
+      <label class="item item-input">
+                <input type="number" name="pin" pattern="[0-9]*" inputmode="numeric" ng-model="pin" maxlength="4" placeholder="1234" required>
+      </label>
+      <br/>
+      <ion-toggle class="no-border text-left" ng-change="account_update(user)" ng-model="user.protected">
+        Secure With Pin
+      <h6>Protects all your transactions</h6>
+      </ion-toggle>
+        <br>
+        <button ng-disabled="!pin" type="submit" class="button button-block button-dark">Update</button>
+      </form>
+    </ion-content>
+  </ion-view>
+  

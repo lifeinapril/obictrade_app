@@ -2,9 +2,10 @@
 <ion-view class="bg-purple">
     
   
-    <ion-nav-bar class="bar bg-purple">
+    <ion-nav-bar class="bar bg-dark-blue">
         <ion-nav-title>
-          <b>{{profile.full_name}}</b>
+          <!-- <b>{{profile.full_name}}</b> -->
+          Account
         </ion-nav-title>
       <ion-nav-buttons side="left">
         <button title="back" class="button button-clear" back-button>
@@ -23,23 +24,25 @@
   <ion-content style="margin-top: 0px !important;text-align: center;background-color: rgb(255, 255, 255) !important;">
       <ion-refresher pulling-text="Pull to refresh" on-refresh="fetch_pro(profile.o_id)"></ion-refresher>
   
-        <div class="item item-light text-center bg-purple box-bg" style="box-shadow: 0px 1px 8px 0px rgba(31, 30, 30, 0.144) !important;">
+        <div class="item" ng-style="{'background-image':'url('+media+profile.photo+')'}" style="padding:0px !important;">
+          <div class="profile_header">
+            <br>
             <div class="profile_photo_big" ng-style="{'background-image':'url('+media+profile.photo+')'}"></div>  
             
             <div class="text-center padding">
-              <h2 class="light"><b>{{profile.full_name}} <i ng-if="profile.verified" class="ion ion-checkmark-circled"></i></b></h2>
-              <h4><b class="orange">@{{profile.user_name}}</b></h4>
+              <h1 class="light"><b>{{profile.full_name}} <i ng-if="profile.verified" class="ion ion-checkmark-circled"></i></b></h1>
+              <h2><b class="orange">@{{profile.user_name}}</b></h2>
             </div>
 
             <div ng-if="profile.bio" class="padding">
-              <h5 class="light">{{profile.bio}}</h5>
+              <h4 class="light">{{profile.bio}}</h4>
           </div>
 
             <div class="row">
-              <div class="col text-center">
+              <div class="col text-center light">
                 <b>{{profile.connections.length || 0}}</b> Connections
               </div>
-              <div class="col">
+              <div class="col light">
                 <b>{{profile.trades.length || 0}}</b> Trades
               </div>
             </div>
@@ -55,6 +58,7 @@
               </button>
             </div>
         </div>
+        </div>
 
 <div ng-if="profile.user_name" style="min-height:55vh !important;background-color: rgba(240, 240, 240, 0.459) !important;" class="padding">
  
@@ -63,7 +67,7 @@
 
   <div ng-click="send_to(profile)" class="item item-light text-left item-icon-left">
     <i class="ti-angle-right pull-right" style="float: right !important;"></i>
-    <i class="icon ion-paper-airplane oran"></i> Send Funds
+    <i class="icon ion-paper-airplane oran"></i> Pay {{profile.full_name}}
   </div>
         
 

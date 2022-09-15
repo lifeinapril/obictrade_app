@@ -1,4 +1,4 @@
-app.controller('profile', function($cordovaSocialSharing,Config,$scope,Upload,$timeout,$ionicModal,Upload,$state,account,$sessionStorage,$localStorage,$ionicPopup,$rootScope) {
+app.controller('profile', function($cordovaSocialSharing,Config,$scope,Upload,$timeout,$ionicModal,Upload,$state,account,$localStorage,$ionicPopup,$rootScope) {
   $rootScope.$watch(function(){
     return $rootScope.user;
   }, function (n,o){
@@ -128,8 +128,8 @@ $rootScope.use_current_location=function(){
 
     
 
-    $rootScope.update_address=function(address){
-      $rootScope.user.addresses[$rootScope.address_index]=address;
+    $rootScope.set_pin=function(pin){
+      $rootScope.user.pin=pin;
       $rootScope.account_update($rootScope.user);
       $rootScope.refresh_profile();
       window.history.back();
@@ -396,7 +396,7 @@ $rootScope.verify_phone=function(user){
     $timeout(function(){
     $rootScope.refresh_profile();
     },1000);
-    $state.go("front.cards");
+    $state.go("front.home");
       }else{
         $rootScope.hide();
         $ionicPopup.alert({

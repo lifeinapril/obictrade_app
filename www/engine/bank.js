@@ -10,18 +10,6 @@ function thousands_separators(num)
   }
 
 
- 
-  app.factory('Banks',function($http,Config){
-    return  {
-    all:function(){
-      return $http.get(Config.API + "users/all_banks");
-    }
-  }
-    });
-
-
-
-
     app.factory('MP',function($http,Config){
       return  { 
       spotlight: function(){
@@ -29,22 +17,49 @@ function thousands_separators(num)
        },
        topten: function(coin){
          return $http.get(Config.API+"market/topten/"+ coin);
+       },
+       buy: function(coin){
+         return $http.post(Config.API+"market/buy",coin);
+       },
+       sell: function(coin){
+         return $http.post(Config.API+"market/sell",coin);
+       },
+       affiliate_buy: function(coin){
+         return $http.post(Config.API+"market/affiliate/buy",coin);
+       },
+       affiliate_sell: function(coin){
+         return $http.post(Config.API+"market/affiliate/sell",coin);
+       },
+       confirm_order: function(coin){
+         return $http.post(Config.API+"market/orders/confirm",coin);
+       },
+      approve_order: function(coin){
+         return $http.post(Config.API+"market/orders/approve",coin);
+       },
+       cancel_order: function(coin){
+         return $http.post(Config.API+"market/orders/cancel",coin);
+       },
+       report_order: function(coin){
+         return $http.post(Config.API+"market/orders/report",coin);
        }
       }          
       });
 
 
 
-    app.factory('Assets',function($http,Config){
+    app.factory('Giftcards',function($http,Config){
       return  { 
         all: function(){
-          return $http.get(Config.API+ "admin/all_assets");
+          return $http.get(Config.API+ "users/giftcard/all");
         },
-        single: function(id){
-          return $http.get(Config.API+"users/single_asset/"+ id);
+        info: function(id){
+          return $http.get(Config.API+"users/giftcard/"+ id);
         },
-        trade: function(asset){
-          return $http.post(Config.API+"users/trade_asset",asset);
+        sell: function(asset){
+          return $http.post(Config.API+"users/giftcard/sell",asset);
+        },
+        update_sales: function(data){
+        return $http.post(Config.API + "users/update_transaction",data);
         }
       }          
       });
@@ -55,9 +70,15 @@ app.factory('account',function($http,Config){
   return  {
     login: function(v){
       return  $http.post(Config.API + 'users/login', v);
+    }, 
+    banks: function(v){
+      return $http.get(Config.API + "users/all_banks");
     },
     register: function(v){
       return  $http.post(Config.API + 'users/register', v);
+    },
+    auth: function(v){
+      return  $http.post(Config.API + 'users/auth', v);
     },
     update: function(v){
       return  $http.post(Config.API + 'users/update_profile', v);
@@ -151,14 +172,6 @@ app.factory('account',function($http,Config){
 
 
 
-app.factory('Transaction',function($http,Config){
-	return  {
-		update: function(data){
-		return $http.post(Config.API + "users/update_transaction",data);
-		}
-	}
-  })
-
 
 .factory('wallet',function($http,Config){
   return  {
@@ -191,128 +204,54 @@ app.factory('Transaction',function($http,Config){
 
 
 
-.factory('BTC',function($http,Config){
+
+
+
+.factory('Crypto',function($http,Config){
   return  {
-    rates: function(){
-      return $http.get(Config.API + "users/btc/rates");
+    connect: function(){
+      return $http.get(Config.API + "users/coin/connect");
     },
-    sell: function(data){
-      return $http.post(Config.API + "users/btc/sell",data);
+    rates: function(coin){
+      return $http.get(Config.API + "rates/"+coin);
     },
     start_selling: function(data){
-      return $http.post(Config.API + "users/btc/start_selling",data);
+      return $http.post(Config.API + "users/coin/sell",data);
     },
     stop_selling: function(data){
-      return $http.post(Config.API + "users/btc/stop_selling",data);
-    },
-    buy: function(data){
-      return $http.post(Config.API + "users/btc/buy",data);
-    },
-    affiliate_buy: function(data){
-      return $http.post(Config.API + "users/btc/affiliate/buy",data);
-    },
-    affiliate_sell: function(data){
-      return $http.post(Config.API + "users/btc/affiliate/sell",data);
+      return $http.post(Config.API + "users/coin/stop_selling",data);
     },
     start_buying: function(data){
-      return $http.post(Config.API + "users/btc/start_buying",data);
+      return $http.post(Config.API + "users/coin/buy",data);
     },
     stop_buying: function(data){
-      return $http.post(Config.API + "users/btc/stop_buying",data);
-    },
-    send: function(data){
-      return $http.post(Config.API + "users/btc/send",data);
-    },
-    direct_send: function(data){
-      return $http.post(Config.API + "users/btc/affiliate/send",data);
+      return $http.post(Config.API + "users/coin/stop_buying",data);
     }
   };
-})
+});
 
 
 
 
 
 
-.factory('ETH',function($http,Config){
-  return  {
-    rates: function(){
-      return $http.get(Config.API + "users/eth/rates");
-    },
-    sell: function(data){
-      return $http.post(Config.API + "users/eth/sell",data);
-    },
-    start_selling: function(data){
-      return $http.post(Config.API + "users/eth/start_selling",data);
-    },
-    stop_selling: function(data){
-      return $http.post(Config.API + "users/eth/stop_selling",data);
-    },
-    buy: function(data){
-      return $http.post(Config.API + "users/eth/buy",data);
-    },
-    start_buying: function(data){
-      return $http.post(Config.API + "users/eth/start_buying",data);
-    },
-    stop_buying: function(data){
-      return $http.post(Config.API + "users/eth/stop_buying",data);
-    },
-    send: function(data){
-      return $http.post(Config.API + "users/eth/send",data);
-    },
-    direct_send: function(data){
-      return $http.post(Config.API + "users/eth/affiliate/send",data);
-    },
-    affiliate_buy: function(data){
-      return $http.post(Config.API + "users/eth/affiliate/buy",data);
-    },
-    affiliate_sell: function(data){
-      return $http.post(Config.API + "users/eth/affiliate/sell",data);
-    }
-  };
-})
 
 
 
 
 
-.factory('USDT',function($http,Config){
-  return  {
-    rates: function(){
-      return $http.get(Config.API + "users/usdt/rates");
-    },
-    sell: function(data){
-      return $http.post(Config.API + "users/usdt/sell",data);
-    },
-    start_selling: function(data){
-      return $http.post(Config.API + "users/usdt/start_selling",data);
-    },
-    stop_selling: function(data){
-      return $http.post(Config.API + "users/usdt/stop_selling",data);
-    },
-    buy: function(data){
-      return $http.post(Config.API + "users/usdt/buy",data);
-    },
-    start_buying: function(data){
-      return $http.post(Config.API + "users/usdt/start_buying",data);
-    },
-    stop_buying: function(data){
-      return $http.post(Config.API + "users/usdt/stop_buying",data);
-    },
-    send: function(data){
-      return $http.post(Config.API + "users/usdt/send",data);
-    },
-    direct_send: function(data){
-      return $http.post(Config.API + "users/usdt/affiliate/send",data);
-    },
-    affiliate_buy: function(data){
-      return $http.post(Config.API + "users/usdt/affiliate/buy",data);
-    },
-    affiliate_sell: function(data){
-      return $http.post(Config.API + "users/usdt/affiliate/sell",data);
-    }
-  };
-})
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

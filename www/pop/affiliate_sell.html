@@ -1,7 +1,10 @@
 <ion-modal-view class="bg-blue-2">
     <ion-header-bar class="bar bar-header bg-blue-2">    
         <button ng-click="asell_box.hide()" class="button button-clear button-light"  style="float:left;font-weight: bold;">&nbsp;<i class="ti ti-close light"></i>&nbsp;</button>
-        <ion-title><b>Sell {{coin.symbol || 'BTC' | uppercase}}</b></ion-title>
+        <ion-title>
+          <img src="{{media+coin.icon + '?token='+token}}" height="30" />
+          <b>Sell</b>
+        </ion-title>
       </ion-header-bar>
    
     <ion-content class="padding text-left bg-grey">
@@ -9,7 +12,7 @@
         <br>
         <b class="black">Selling to</b>
         <div class="item item-avatar" style="margin: 5px !important;">
-          <img src="{{media + trader.photon}}" class="avatar" />  
+          <img src="{{media + trader.photo}}" class="avatar" />  
           <h3 class="dark">{{trader.full_name}}</h3>
             <small class="oran">@{{trader.user_name}}</small>
       </div>
@@ -30,20 +33,20 @@
     <v>Naira value</v> <b class="balanced pull-right" style="float: right !important;">{{naira_amount || 0 | currency}}</b>
     </div>
     <div class="item item-divider" ng-if="!show_coin">
-        <v>Selling</v> <b class="orange pull-right" style="float: right !important;">{{coin_amount || 0 | number:8}} {{coin.symbol | uppercase}}</b>
+        <v>Selling</v> <b class="orange pull-right" style="float: right !important;">{{coin_amount || 0 | number:8}} {{coin.coin | uppercase}}</b>
         </div>
     
   <div class="item item-divider" ng-if="!show_coin">
-    <v>Fee</v> <b class="orange pull-right" style="float: right !important;">{{coin.fee || 0 | number:8}} {{coin.symbol | uppercase}}</b><br>
+    <v>Fee</v> <b class="orange pull-right" style="float: right !important;">{{coin.fee || 0 | number:8}} {{coin.coin | uppercase}}</b><br>
     <h5 class="text-center pull-right" style="float: right !important;">
-      <b class="balanced">${{coin_usd(int(coin.fee,coin.symbol) || 0 | number:2}}</b>
+      <b class="balanced">${{coin_usd(int(coin.fee,coin.coin) || 0 | number:2}}</b>
     </h5>
     </div>
 
     <div class="item item-divider" ng-if="!show_coin">
-        <v>Total</v> <b class="orange pull-right" style="float: right !important;">{{(coin.fee +coin_amount) || 0 | number:8}} {{coin.symbol | uppercase}}</b><br>
+        <v>Total</v> <b class="orange pull-right" style="float: right !important;">{{(coin.fee +coin_amount) || 0 | number:8}} {{coin.coin | uppercase}}</b><br>
         <h5 class="text-center pull-right" style="float: right !important;">
-          <b class="balanced">${{coin_usd(int(coin_amount) + coin.fee,coin.symbol) || 0 | number:2}}</b>
+          <b class="balanced">${{coin_usd(int(coin_amount) + coin.fee,coin.coin) || 0 | number:2}}</b>
         </h5>
         </div>
     

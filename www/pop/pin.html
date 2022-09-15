@@ -1,34 +1,25 @@
-<ion-modal-view class="bg-blue-2">
-    <ion-header-bar class="bar bar-header bg-blue-2"> 
-              <ion-title><small><b>Card Pin</b></small></ion-title>
-              <button ng-click="pin_box.hide()" class="button button-light"  style="float:right;font-weight: bold;border:none !important;">&nbsp;X&nbsp;</button>          
-        </ion-header-bar>
-      
-        <ion-content class="padding text-left">
+<ion-modal-view class="bg-rage">
+
+    <ion-header-bar class="bar bar-header bg-rage">       
+        <button ng-click="pin_box.hide()" class="button button-clear"  style="float:left;font-weight: bold;">&nbsp;<b><i class="ti ti-close light"></i></b>&nbsp;</button>          
+        <ion-title><b>Pin</b></ion-title>
+    </ion-header-bar>
   
-  <form id="paynote" class="card padding" ng-submit="add_creditcard(new_card)">       
-    
-          <br>
-          <div class="row">
-              <div class="col col-90">
-              <label for="ccnum">Card Pin</label>
-              <input type="password" name="pin" ng-model="new_card.pin" maxlength="6" placeholder="1234">
-              </div>
-          </div>
-  
-    <Br>
-  
-      <button type="submit" ng-disabled="!new_card.pin" style="border-radius: 20px;color:#fff !important;font-size:14px;width: 100%;background-color: rgb(216, 141, 1) !important;" class="button button-full button-dark">
-          confirm
-      </button>
-          <br>
-      <div class="text-center" style="width:100% !important;margin:auto;line-height: 13px !important;color: #686767;">
-              <small>secured by <b>MunchPay</b>&trade;</small>
-          </div>
-          <br>
-  </form>
-  
+    <ion-content class="padding text-left bg-rage">
+            <br/>
+            <form ng-submit="auth_pin(pin)">    
+                    <b class="light">Input 4 digit Pin</b>
+                    <br/>
+                    <br/>
+                    <div class="item item-input">
+                        <input type="password" name="pin" pattern="[0-9]*" inputmode="numeric" ng-model="pin" maxlength="4" placeholder="1234"/>
+                    </div>
+                <br/>
+                <button type="submit" ng-disabled="!pin" style="color:#fff !important;font-size:14px;width: 100%;background-color: rgb(216, 141, 1) !important;border:none !important;" class="button button-full button-dark">
+                    confirm
+                </button>
+            </form>
   
     </ion-content>
   
-    </ion-modal-view>
+</ion-modal-view>

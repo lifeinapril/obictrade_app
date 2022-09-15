@@ -176,13 +176,6 @@ app.config(function($stateProvider, $urlRouterProvider,$httpProvider,Config,$ion
       })
 
 
-      .state('giftcards', {
-        url: '/giftcards',
-        templateUrl: 'templates/giftcards.html',
-        controller:"finance"
-      })
-
-
   
         .state('reset', {
           url: '/reset',
@@ -266,10 +259,17 @@ app.config(function($stateProvider, $urlRouterProvider,$httpProvider,Config,$ion
         })
 
         
-        .state('sales_history', {
-          url: '/sales_history',
-          templateUrl: 'templates/sales_history.html',
+        .state('orders', {
+          url: '/orders',
+          templateUrl: 'templates/orders.html',
           controller:"finance"
+        })
+  
+       
+        .state('set_pin', {
+          url: '/set_pin',
+          templateUrl: 'templates/set_pin.html',
+          controller:"profile"
         })
   
        
@@ -356,7 +356,7 @@ app.config(function($stateProvider, $urlRouterProvider,$httpProvider,Config,$ion
           url: '/seller',
           cache:true,
           views: {
-            'front-cards': {
+            'front-home': {
               templateUrl: 'templates/seller.html',
               controller:"finance"
             }
@@ -367,7 +367,7 @@ app.config(function($stateProvider, $urlRouterProvider,$httpProvider,Config,$ion
           url: '/marketplace',
           cache:true,
           views: {
-            'front-cards': {
+            'front-home': {
               templateUrl: 'templates/marketplace.html',
               controller:"finance"
             }
@@ -377,19 +377,19 @@ app.config(function($stateProvider, $urlRouterProvider,$httpProvider,Config,$ion
           url: '/dashboard',
           cache:false,
           views: {
-            'front-cards': {
+            'front-home': {
               templateUrl: 'templates/dashboard.html',
               controller:"finance"
             }
           }
         })
   
-        .state('front.cards', {
-          url: '/cards',
+        .state('front.home', {
+          url: '/home',
           cache:true,
           views: {
-            'front-cards': {
-              templateUrl: 'templates/giftcards.html',
+            'front-home': {
+              templateUrl: 'templates/home.html',
               controller:"finance"
             }
           }

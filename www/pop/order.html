@@ -62,25 +62,33 @@
 
 
             
-            <div ng-if="transaction.trader.o_id!=user.o_id && transaction.trader" class="item item-body">
+            <div ng-if="transaction.trader.o_id!=user.o_id || transaction.trader" class="item item-body">
                 <b>Trader Account</b>
-                <div ng-include="'components/user.html'" ng-if="transaction.trader" ng-click="view_profile(transaction.trader.username) && order_box.hide()" ng-init="user==transaction.trader">
+                <div ng-if="transaction.trader">
+                    <div ng-include="'components/user.html'" ng-click="view_profile(transaction.trader.username) && order_box.hide()" ng-init="user==transaction.trader">
+                    </div>
                 </div>
-                <h6 ng-if="!transaction.trader">You are trading with obic</h6>
+                <div ng-if="!transaction.trader">
+                    <h6>You are trading with obic</h6>
+                </div>
             </div>
 
-            <div ng-if="transaction.trader.o_id==user.o_id && transaction.customer" class="item item-body">
+            <div ng-if="transaction.trader.o_id==user.o_id || transaction.customer" class="item item-body">
+                <b>Customer</b>
                 <div ng-if="transaction.customer">
-                    <div style="background-color: black;width: 150px;height: 150px;margin: auto !important;direction: ltr;">
-                        <qrcode data="{{transaction.to || '...'}}" size="150"></qrcode>
-                      </div>
-                      <br>
-                    <button ng-click="copy(transaction.to)" style="float: right;" class="button button-small button-dark">copy</button>
-                    <b class="dark">Scan the code or copy address:</b>
-                    <h6 class="dark">{{transaction.to}}</h6>
+                    <div ng-include="'components/user.html'" ng-click="view_profile(transaction.customer.username) && order_box.hide()" ng-init="user==transaction.customer">
+                    </div>    
                 </div>
-                <div>
-                    <h6 ng-if="!transaction.customer">you are trading with obic</h6>
+                <div ng-if="!transaction.customer">
+                    <h6>you are trading with obic</h6>
+                </div>
+                <div class="media">
+                <div style="background-color: black;width: 150px;height: 150px;margin: auto !important;direction: ltr;">
+                    <qrcode data="{{transaction.to || '...'}}" size="150"></qrcode>
+                </div>
+                <button ng-click="copy(transaction.to)" style="float: right;" class="button button-small button-dark">copy</button>
+                <b class="dark">Scan the code or copy address:</b>
+                <h6 class="dark">{{transaction.to}}</h6>
                 </div>
             </div>
 

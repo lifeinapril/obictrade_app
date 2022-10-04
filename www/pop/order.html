@@ -38,14 +38,14 @@
 
                 <div ng-if="transaction.trader.o_id==user.o_id && (!transaction.confirmed && transaction.status==1)" class="item text-center">  
              
-                    <div class="item-body" ng-if="(!transaction.customer && transaction.to) || transaction.customer">   
-                         <h3 ng-if="transaction.customer">Please make a transfer to this wallet address to confirm order</h3>
+                    <div class="item-body" ng-if="transaction.to || transaction.customer">   
+                         <h3 ng-if="transaction.to">Please make a transfer to this wallet address to confirm order</h3>
                         <div ng-if="transaction.customer.o_id" class="text-left">
                             <div ng-include="'components/user.html'" ng-click="view_profile(transaction.customer.username) && order_box.hide()" ng-init="profile=transaction.customer">
                             </div>    
                         </div>
                         <br/>
-                        <div ng-if="(!transaction.customer && transaction.to) && (transaction.customer.naira_wallet.balance >= transaction.payout)">
+                        <div ng-if="transaction.to">
                                 <div style="background-color: black;width: 150px;height: 150px;margin: auto !important;direction: ltr;">
                                     <qrcode data="{{transaction.to || '...'}}" size="150"></qrcode>
                                 </div>
@@ -168,10 +168,14 @@
             </button>
             </div>
             
-            <div ng-show="transaction.status==1" ng-if="transaction.trader.o_id!=user.o_id && ((user.naira_wallet.balance < transaction.payout) || (user.naira_wallet.balance < 1))" class="item-body text-center">
-                <h4>
+            <div ng-show="transaction.status==1">
+            <div class="item-body text-center">
+                <h4 ng-if="transaction.trader.o_id!=user.o_id && ((user.naira_wallet.balance < transaction.payout) || (user.naira_wallet.balance < 1))">
                     You have to fund your naira wallet with <b class="balanced">NGN {{(transaction.payout - user.naira_wallet.balance) || 0 | number:2}}</b> to process this transaction  
                 </h4>
+                <h4 ng-if="transaction.trader.o_id==user.o_id && ((user.naira_wallet.balance < transaction.payout) || (user.naira_wallet.balance < 1))">
+                 </h4>
+            </div>
             </div>
             <button ng-if="transaction.customer.o_id==user.o_id" ng-disabled="(transaction.customer.o_id==user.o_id && !transaction.confirmed) || (transaction.payout > user.naira_wallet.balance)" ng-click="approve_order(transaction)" style="border-radius: 20px;color:#fff !important;font-size:14px;width: 100%;background-color: rgb(6, 158, 31) !important;" class="button button-full button-dark">
             Approve

@@ -1023,6 +1023,7 @@ $rootScope.confirm_order=function(transaction) {
      if(Data.status==true){
       $ionicPopup.alert({template:Data.message});
       $rootScope.refresh_orders();
+      $rootScope.refresh_profile();
       $rootScope.order_box.hide();
      }
        }).error(function () {
@@ -1049,6 +1050,7 @@ $rootScope.confirm_order=function(transaction) {
   if(Data.status==true){
    $ionicPopup.alert({template:Data.message});
    $rootScope.refresh_orders();
+   $rootScope.refresh_profile();
    $rootScope.order_box.hide();
   }
     }).error(function () {
@@ -1075,6 +1077,7 @@ $rootScope.report_order=function(transaction) {
   if(Data.status==true){
    $ionicPopup.alert({template:Data.message});
    $rootScope.refresh_orders();
+   $rootScope.refresh_profile();
    $rootScope.order_box.hide();
   }
     }).error(function () {
@@ -1096,6 +1099,7 @@ $rootScope.cancel_order=function(transaction) {
   }else{
   MP.cancel_order(transaction).success(function(Data){
     $rootScope.refresh_orders();
+    $rootScope.refresh_profile();
   $rootScope.hide();
   $ionicPopup.alert({template:Data.message});
   if(Data.status==true){

@@ -1091,13 +1091,14 @@ $rootScope.report_order=function(transaction) {
 $rootScope.cancel_order=function(transaction) {
   $rootScope.show();
   if(transaction.confirmed){
+    $rootScope.hide();
     $ionicPopup.alert({template:"You can't cancel order at this time, try reporting this order"});
   }else{
   MP.cancel_order(transaction).success(function(Data){
+    $rootScope.refresh_orders();
   $rootScope.hide();
   $ionicPopup.alert({template:Data.message});
   if(Data.status==true){
-   $rootScope.refresh_orders();
    $rootScope.order_box.hide();
   }
     }).error(function () {

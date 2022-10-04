@@ -3,9 +3,9 @@
       <div  ng-if="show_coin">     
         <a class="pull-right link" style="float: right !important;" ng-click="show_usd_input()">Enter amount in US Dollars</a>
         <br>
-        <b class="dark">Amount in <small>{{coin.coin || coin.symbol | uppercase}}</small>*</b>
+        <b class="dark">Amount in <small>{{coin.symbol || coin.coin | uppercase}}</small>*</b>
         <div class="item item-input">
-          <input ng-model="coin_amount" maxlength="10" ng-keyup="selling_converter('',coin_amount)" type="text" placeholder="0.000000" required>
+          <input ng-model="coin_amount" maxlength="10" ng-keyup="selling_converter(coin.coin,coin_amount)" type="text" placeholder="0.000000" required>
           <button ng-click="max_coin()" class="button button-sm button-small button-energized">&nbsp;&nbsp;MAX&nbsp;&nbsp;</button>&nbsp;&nbsp;&nbsp;
         </div>
          <h5 class="text-center"><b class="balanced">${{usd_amount || 0 | number:2}}</b></h5>
@@ -15,7 +15,7 @@
 
 
     <div ng-if="!show_coin && !show_usd">
-        <a class="pull-right link" style="float: right !important;" ng-click="show_coin_input()">Enter amount in {{coin.coin | capitalize}}</a>
+        <a class="pull-right link" style="float: right !important;" ng-click="show_coin_input()">Enter amount in {{coin.symbol || coin.coin | capitalize}}</a>
         <br>
         <b class="dark">Amount in naira <small>(₦)</small>*</b>
         <div class="item item-input">

@@ -16,7 +16,7 @@
           <img ui-sref="front.profile" src="{{media+user.photo }}" height="40" style="display: block !important;opacity: 1 !important;"/>
           <button ui-sref="orders" class="button button-clear button-dark pull-right button-icon" style="float: right !important;">
              <div ng-if="(trades | filter:{status:1}).length > 0" class="badge badge-energized" style="position: absolute !important;">{{(trades | filter:{status:1}).length}}</div>
-             <span class="icon ti-layout-list-post"></span>
+             <span class="icon ion-drag"></span>
           </button> 
           <h3 ui-sref="front.profile" class="dark" style="margin-top:15px !important;">Hi, <b>{{user.full_name || user.first_name | capitalize}}</b></h3>
         </div>

@@ -14,7 +14,7 @@
         <div class="padding" style="margin-top: 50px !important;">
             <ion-segment ng-model="order_status" full="true" dark>
                 <ion-segment-button value="1">
-                Pending ({{(trades | filter:{status:1}).length}})
+                Pending ({{(trades | filter:{status:1}).length || 0}})
                 </ion-segment-button>
                 <ion-segment-button value="2">
                 Successful
@@ -40,7 +40,7 @@
          
         <div ng-include="'components/order.html'" ng-repeat="trade in trades | filter:{status:1} | filter:srch | orderBy:'-date_created'">
         </div>
-        <div ng-show="!trades || (trades | filter:{status:1}).length < 1" class="text-center item item-light">
+        <div ng-show="(trades | filter:{status:1}).length < 1" class="text-center item item-light">
             <span style="font-size: 50px !important;" class="ti ti-eraser"></span>
             <h2>No orders yet</h2> 
         </div>
@@ -50,7 +50,7 @@
 
         <div ng-include="'components/order.html'" ng-repeat="trade in trades | filter:{status:2} | filter:srch | orderBy:'-date_created'">
         </div>
-        <div ng-show="!trades || (trades | filter:{status:2}).length < 1" class="text-center item item-light">
+        <div ng-show="(trades | filter:{status:2}).length < 1" class="text-center item item-light">
             <span style="font-size: 30px !important;" class="ti ti-eraser"></span>
             <h2>No orders yet</h2> 
         </div>
@@ -60,7 +60,7 @@
 
         <div ng-include="'components/order.html'" ng-repeat="trade in trades | filter:{status:0} | filter:srch | orderBy:'-date_created'">
         </div>
-        <div ng-show="!trades || (trades | filter:{status:0}).length < 1" class="text-center item item-light">
+        <div ng-show="(trades | filter:{status:0}).length < 1" class="text-center item item-light">
             <span class="icon ti-eraser"></span>
             <h2>No orders yet</h2> 
         </div>

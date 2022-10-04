@@ -262,6 +262,7 @@ $rootScope.coin_usd=function(amount,symbol){
   $rootScope.search_box.hide();
   $rootScope.coin_transaction_box.hide();
   $rootScope.naira_transaction_box.hide();
+  $rootScope.order_box.hide();
   if($rootScope.user.o_id==profile.o_id){
      $state.go("edit_profile");
   }else{
@@ -524,15 +525,6 @@ $rootScope.remove_contact=function(contact){
     }
 
 
-$rootScope.request_pin=function(){
-  return new Promise(function (resolve, reject) {
-  if($rootScope.user.protected){
-    $rootScope.pin_box.show();
-    $rootScope.validate=resolve;
-  }
-  })
-}
-
 
 
 
@@ -582,6 +574,8 @@ $rootScope.request_pin=function(){
   if($rootScope.user.protected){
     $rootScope.pin_box.show();
     $rootScope.validate=resolve;
+  }else{
+    $ionicPopup.alert({template:"To complete this transaction, please set your transaction pin in security settings"});
   }
   })
 }
@@ -742,7 +736,8 @@ $rootScope.read_notes=function(){
   $rootScope.coin_amount=0;
   $rootScope.naira_amount=0;
   var trader=$rootScope.trader;
-    if($rootScope.user.o_id!=trader.o_id){
+    if(trader){
+      if($rootScope.user.o_id!=trader.o_id){
     $rootScope.trader=trader;
     if(coin.coin=="BTC"){
       $rootScope.trader.coin=$rootScope.trader.bitcoin_wallet;
@@ -755,6 +750,7 @@ $rootScope.read_notes=function(){
     }
     $rootScope.asell_box.show();
   }
+}
   }
   
 
@@ -820,23 +816,19 @@ $rootScope.show_coin_input();
 
 
   $rootScope.selling_converter=function(currency,amt){
-    var rate=$rootScope.btc.buy_rates;
-    if($rootScope.coin){
-      var rate=$rootScope.coin.buy_rates;
-    }
     if(currency=="usd"){
       $rootScope.usd_amount=amt;
-     $rootScope.naira_amount=amt*rate;
+     $rootScope.naira_amount=amt*$rootScope.coin.buy_rates;
      $rootScope.coin_amount=amt/$rootScope.coin.buying.usd;
     }else 
     if(currency=="ngn"){
       $rootScope.naira_amount=amt;
-      $rootScope.usd_amount=(amt/rate);
+      $rootScope.usd_amount=amt/$rootScope.coin.buy_rates;
       $rootScope.coin_amount=$rootScope.usd_amount/$rootScope.coin.buying.usd;
     }else{
       $rootScope.coin_amount=amt;
-      $rootScope.naira_amount=$rootScope.usd_amount*rate;
       $rootScope.usd_amount=amt*$rootScope.coin.buying.usd;
+      $rootScope.naira_amount=$rootScope.usd_amount*$rootScope.coin.buy_rates;
     }
   }
   

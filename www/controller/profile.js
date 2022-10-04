@@ -169,6 +169,7 @@ $ionicPopup.show({
     onTap: function(e) {    
       $localStorage.user=null;
       $rootScope.user=null;
+      $rootScope.t_user=null;
       $rootScope.det=null;
       $scope.user=null;    
       $localStorage.phone=null;

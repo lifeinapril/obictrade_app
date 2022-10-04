@@ -121,7 +121,7 @@ app.controller('finance', function($scope,$ionicModal,$stateParams,Upload,Giftca
    
 
 
-    $rootScope.affiliate_buy_coin=function(amt){
+    $rootScope.affiliate_buy=function(amt){
       $rootScope.request_pin().then(function(auth){
       if(auth){
   $rootScope.show();  
@@ -132,7 +132,9 @@ app.controller('finance', function($scope,$ionicModal,$stateParams,Upload,Giftca
       rates:$rootScope.trader.coin.affiliate.buy_rate,
       usd:$rootScope.coin.buying.usd,
       coin:$rootScope.coin.coin,
-      name:$rootScope.coin.name
+      symbol:$rootScope.coin.coin,
+      name:$rootScope.coin.name,
+      symbol:$rootScope.coin.symbol
   };
   MP.affiliate_buy(data).success(function(Data){
       $rootScope.hide();  
@@ -157,7 +159,7 @@ app.controller('finance', function($scope,$ionicModal,$stateParams,Upload,Giftca
 
 
 
-    $rootScope.affiliate_sell_coin=function(amt){
+    $rootScope.affiliate_sell=function(amt){
       $rootScope.request_pin().then(function(auth){
       if(auth){
       $rootScope.show();  
@@ -168,7 +170,8 @@ app.controller('finance', function($scope,$ionicModal,$stateParams,Upload,Giftca
           rates:$rootScope.trader.coin.affiliate.sell_rate,
           usd:$rootScope.coin.selling.usd,
           coin:$rootScope.coin.coin,
-          name:$rootScope.coin.name
+          name:$rootScope.coin.name,
+          symbol:$rootScope.coin.symbol
       };
      MP.affiliate_sell(data).success(function(Data){
           $rootScope.hide();  
@@ -1019,7 +1022,7 @@ $rootScope.confirm_order=function(transaction) {
      $ionicPopup.alert({template:Data.message});
      if(Data.status==true){
       $ionicPopup.alert({template:Data.message});
-      $rootScope.refresh_profile();
+      $rootScope.refresh_orders();
       $rootScope.order_box.hide();
      }
        }).error(function () {
@@ -1045,7 +1048,7 @@ $rootScope.confirm_order=function(transaction) {
   $ionicPopup.alert({template:Data.message});
   if(Data.status==true){
    $ionicPopup.alert({template:Data.message});
-   $rootScope.refresh_profile();
+   $rootScope.refresh_orders();
    $rootScope.order_box.hide();
   }
     }).error(function () {
@@ -1071,7 +1074,7 @@ $rootScope.report_order=function(transaction) {
   $ionicPopup.alert({template:Data.message});
   if(Data.status==true){
    $ionicPopup.alert({template:Data.message});
-   $rootScope.refresh_profile();
+   $rootScope.refresh_orders();
    $rootScope.order_box.hide();
   }
     }).error(function () {
@@ -1094,8 +1097,7 @@ $rootScope.cancel_order=function(transaction) {
   $rootScope.hide();
   $ionicPopup.alert({template:Data.message});
   if(Data.status==true){
-   $ionicPopup.alert({template:Data.message});
-   $rootScope.refresh_profile();
+   $rootScope.refresh_orders();
    $rootScope.order_box.hide();
   }
     }).error(function () {

@@ -16,7 +16,7 @@ function thousands_separators(num)
         return $http.get(Config.API+ "users/market/spotlight");
        },
        topten: function(coin){
-         return $http.get(Config.API+"market/topten/"+ coin);
+         return $http.get(Config.API+"users/market/topten/"+ coin);
        },
        buy: function(coin){
          return $http.post(Config.API+"market/buy",coin);
@@ -209,8 +209,8 @@ app.factory('account',function($http,Config){
 
 .factory('Crypto',function($http,Config){
   return  {
-    connect: function(){
-      return $http.get(Config.API + "users/coin/connect");
+    connect: function(data){
+      return $http.post(Config.API + "users/coin/connect",data);
     },
     rates: function(coin){
       return $http.get(Config.API + "rates/"+coin);

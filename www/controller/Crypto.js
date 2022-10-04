@@ -97,13 +97,15 @@ $rootScope.sell_coin=function(amt){
       rates:$rootScope.coin.sell_rates,
       usd:$rootScope.coin.selling.usd,
       coin:$rootScope.coin.coin,
-      name:$rootScope.coin.name
+      name:$rootScope.coin.name,
+      symbol:$rootScope.coin.symbol
   };
+  console.log(data);
   MP.sell(data).success(function(Data){
       $rootScope.hide();  
          if(Data.status==true){
           $rootScope.sell_box.hide();      
-          $scope.view_transaction(Data.data);
+          $rootScope.view_order(Data.data);
           $rootScope.refresh_profile();
         }else{
           $ionicPopup.alert({template:Data.message});
@@ -146,7 +148,8 @@ $rootScope.buy_coin=function(amt){
       rates:$rootScope.coin.sell_rates,
       usd:$rootScope.coin.selling.usd,
       coin:$rootScope.coin.coin,
-      name:$rootScope.coin.name
+      name:$rootScope.coin.name,
+      symbol:$rootScope.coin.symbol
   };
   MP.buy(data).success(function(Data){
       $rootScope.hide();  

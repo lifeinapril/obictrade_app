@@ -2,8 +2,8 @@
     <div class="pull-right text-right" style="float: right;margin-top: 10px !important;">
       <h2>
       <div ng-if="trade.type=='cryptocurrency'">
-        <b>{{trade.symbol || '$'}} {{trade.amount || 0 | number:8}}</b>
-        <h6> ${{coin_usd(trade.amount,trade.symbol) || 0 | limitTo:4}}</h6>
+        <b>{{trade.amount || 0 | limitTo:10}} {{trade.coin || trade.symbol}}</b>
+        <h6> ${{coin_usd(trade.amount,(trade.coin || trade.symbol)) || 0 | limitTo:5}}</h6>
       </div>
       <div ng-if="trade.type=='gift card'">
         <b ng-if="card.quantity > 0" ng-repeat="card in trade.cards">{{trade.symbol || '$'}} {{card.amount || 0}} ,</b>

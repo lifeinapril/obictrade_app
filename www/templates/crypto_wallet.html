@@ -127,32 +127,20 @@
 
 
   <div class="item item-divider">
-    <a class="pull-right orange" style="float:right;" ui-sref="coin_history">See All</a>
+    <a class="pull-right orange" style="float:right;" ui-sref="orders">See All</a>
     <h3 class="dark">Most Recent</h3>
   </div>
   
-        <div ng-show="coin.transactions.length < 1">
+        <div ng-show="(trades | filter:{coin:coin.coin}).length < 1">
           <div class=" text-center item item-light">
             <div class="padding">
-              <h2><b>No Transactions Yet.</b></h2> 
+              <h2><b>No Trades Yet.</b></h2> 
             </div>  <br>
           </div>
         </div>
     
         <div class="list">
-          <div class="item" ng-click="view_transaction(payment)" ng-repeat="payment in coin.transactions | orderBy:'-date' | limitTo:6">
-                  <h4 class="pull-right text-right" style="float: right;" ng-class="payment.credit ? 'balanced':'assertive'">
-                    <v ng-if="!payment.credit">-</v>  
-                    <v ng-if="payment.credit">+</v>  
-                    {{payment.amount || 0.00000000 | number:8}} {{coin.symbol}}
-                    <br>
-                    <small ng-if="user.in_currency=='ngn'" class="dark">NGN {{payment.amount * (coin.sell_rates * coin.selling.usd) || 0 | number:2}}</small>
-                    <small ng-if="user.in_currency=='usd'" class="dark">USD {{payment.amount * coin.selling.usd || 0 | number:2}}</small>  
-                  </h4>
-                  <div style="color: #2f2f2f">
-                    <small>{{payment.description}}</small>    
-                    <h6 class="dark">{{payment.date | date}}</h6>
-                  </div>
+          <div ng-include="'components/order.html'" ng-repeat="trade in trades | filter:{symbol:coin.symbol} | orderBy:'-date_created' | limitTo:6">
           </div>
         </div>
   

@@ -950,19 +950,6 @@ $rootScope.fetch_rates();
 
 
 
-  
-  $rootScope.get_notifications=function(){
-    if($rootScope.user){
-    var id=$rootScope.user.o_id;
-  account.notifications(id).success(function(Note){
-    if(Note.status==true){
-      $rootScope.notifications=Note.data;
-      $rootScope.read_notes();
-    }
-  });
-}
-}
-
 
 
 $rootScope.verification_status=function(){
@@ -1010,6 +997,21 @@ $rootScope.refresh_profile=function(){
 
 
 
+
+  
+$rootScope.get_notifications=function(){
+  $rootScope.refresh_profile();
+  if($rootScope.user){
+account.notifications($rootScope.user.o_id).success(function(Note){
+  console.log("Note:");
+  console.log(Note);
+  if(Note.status==true){
+    $rootScope.notifications=Note.data;
+    $rootScope.read_notes();
+  }
+});
+}
+}
 
 
 $rootScope.contacted=function(user){

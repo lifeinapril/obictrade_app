@@ -124,33 +124,38 @@ app.controller('finance', function($scope,$ionicModal,$stateParams,Upload,Giftca
     $rootScope.affiliate_buy=function(amt){
       $rootScope.request_pin().then(function(auth){
       if(auth){
-  $rootScope.show();  
-  var data={
-      o_id:$rootScope.user.o_id,
-      amount:amt,
-      pool_id:$rootScope.trader.pool_id,
-      rates:$rootScope.trader.coin.affiliate.buy_rate,
-      usd:$rootScope.coin.buying.usd,
-      coin:$rootScope.coin.coin,
-      symbol:$rootScope.coin.coin,
-      name:$rootScope.coin.name,
-      symbol:$rootScope.coin.symbol
-  };
-  MP.affiliate_buy(data).success(function(Data){
-      $rootScope.hide();  
-         if(Data.status==true){
-          $rootScope.abuy_box.hide();      
-          $rootScope.trade_box.hide();      
-          $rootScope.view_order(Data.data);
-          $rootScope.refresh_profile();
-        }else{
-          $ionicPopup.alert({template:Data.message});
-        }
-      }).error(function(){
-        $rootScope.hide();  
-        $ionicPopup.alert({template:"Network Error please try again later"});
-      });     
-  }
+        if($rootScope.coin.address){
+                $rootScope.show();  
+                var data={
+                    o_id:$rootScope.user.o_id,
+                    amount:amt,
+                    pool_id:$rootScope.trader.pool_id,
+                    rates:$rootScope.trader.coin.affiliate.buy_rate,
+                    usd:$rootScope.coin.buying.usd,
+                    coin:$rootScope.coin.coin,
+                    symbol:$rootScope.coin.coin,
+                    name:$rootScope.coin.name,
+                    symbol:$rootScope.coin.symbol
+                };
+                MP.affiliate_buy(data).success(function(Data){
+                    $rootScope.hide();  
+                      if(Data.status==true){
+                        $rootScope.abuy_box.hide();      
+                        $rootScope.trade_box.hide();      
+                        $rootScope.view_order(Data.data);
+                        $rootScope.refresh_profile();
+                      }else{
+                        $ionicPopup.alert({template:Data.message});
+                      }
+                    }).error(function(){
+                      $rootScope.hide();  
+                      $ionicPopup.alert({template:"Network Error please try again later"});
+                    }); 
+                  }else{
+                    $ionicPopup.alert({template:"Your wallet is not connected, please provide a wallet address to trade."});
+                    $rootScope.connect_wallet_box.show();
+                  } 
+            }
 });
 
     }

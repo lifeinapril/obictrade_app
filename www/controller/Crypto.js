@@ -120,50 +120,39 @@ $rootScope.sell_coin=function(amt){
       
 
 
-$rootScope.connect_wallet=function(coin){
-      $rootScope.show();  
-      coin.o_id=$rootScope.user.o_id;
-      Crypto.connect(coin).success(function(Data){
-        $rootScope.hide();  
-        $ionicPopup.alert({template:Data.message});
-           if(Data.status==true){ 
-              $rootScope.refresh_profile();
-              $rootScope.connect_wallet_box.hide();
-          }
-        }).error(function(){
-          $rootScope.hide();  
-          $ionicPopup.alert({template:"Network Error please try again later"});
-        });  
-}
-
 
 
 $rootScope.buy_coin=function(amt){
   $rootScope.request_pin().then(function(auth){
   if(auth){
-  $rootScope.show();
-  var data={
-      o_id:$rootScope.user.o_id,
-      amount:amt,
-      rates:$rootScope.coin.sell_rates,
-      usd:$rootScope.coin.selling.usd,
-      coin:$rootScope.coin.coin,
-      name:$rootScope.coin.name,
-      symbol:$rootScope.coin.symbol
-  };
-  MP.buy(data).success(function(Data){
-      $rootScope.hide();  
-         if(Data.status==true){
-          $rootScope.buy_box.hide();      
-          $rootScope.view_order(Data.data);
-          $rootScope.refresh_profile();
-        }else{
-          $ionicPopup.alert({template:Data.message});
-        }
-      }).error(function(){
-        $rootScope.hide();  
-        $ionicPopup.alert({template:"Network Error please try again later"});
-      });   
+      if($rootScope.coin.address){
+          $rootScope.show();
+          var data={
+              o_id:$rootScope.user.o_id,
+              amount:amt,
+              rates:$rootScope.coin.sell_rates,
+              usd:$rootScope.coin.selling.usd,
+              coin:$rootScope.coin.coin,
+              name:$rootScope.coin.name,
+              symbol:$rootScope.coin.symbol
+          };
+          MP.buy(data).success(function(Data){
+              $rootScope.hide();  
+                if(Data.status==true){
+                  $rootScope.buy_box.hide();      
+                  $rootScope.view_order(Data.data);
+                  $rootScope.refresh_profile();
+                }else{
+                  $ionicPopup.alert({template:Data.message});
+                }
+              }).error(function(){
+                $rootScope.hide();  
+                $ionicPopup.alert({template:"Network Error please try again later"});
+              });   
+            }else{
+              $ionicPopup.alert({template:"Your wallet is not connected, please provide a wallet address to trade."});
+              $rootScope.connect_wallet_box.show();
+            }
     }
 });
 }
@@ -179,6 +168,7 @@ $rootScope.buy_coin=function(amt){
 
 
 $rootScope.start_selling=function(coin){
+  if($rootScope.coin.address){
   $rootScope.coin.affiliate.allow_buy=true;
       $rootScope.show();
       coin.o_id=$rootScope.user.o_id;
@@ -193,6 +183,10 @@ $rootScope.start_selling=function(coin){
           $rootScope.hide();  
           $ionicPopup.alert({template:"Network Error please try again later"});
         }); 
+      }else{
+        $ionicPopup.alert({template:"Your wallet is not connected, please provide a wallet address to trade."});
+        $rootScope.connect_wallet_box.show();
+      }
 }
       
 

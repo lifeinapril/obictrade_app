@@ -727,6 +727,21 @@ $rootScope.read_notes=function(){
 
 
 
+  $rootScope.connect_wallet=function(coin){
+    $rootScope.show();  
+    coin.o_id=$rootScope.user.o_id;
+    Crypto.connect(coin).success(function(Data){
+      $rootScope.hide();  
+      $ionicPopup.alert({template:Data.message});
+         if(Data.status==true){ 
+            $rootScope.connect_wallet_box.hide();
+        }
+      }).error(function(){
+        $rootScope.hide();  
+        $ionicPopup.alert({template:"Network Error please try again later"});
+      });  
+}
+
   
   $rootScope.sell_affiliate=function(coin){
     console.log("selling from affiliate:");

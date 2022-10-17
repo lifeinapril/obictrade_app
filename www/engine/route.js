@@ -18,9 +18,6 @@ app.config(function($stateProvider, $urlRouterProvider,$httpProvider,Config,$ion
   
   
       $stateProvider
-  
-  
-  
       .state('splash', {
         url: '/splash',
         templateUrl: 'templates/splash.html',

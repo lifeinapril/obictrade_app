@@ -171,16 +171,6 @@
     "is_top_level": true,
     "variables": {}
   },
-  "cordova-plugin-googleplus": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-googleplus"
-    },
-    "is_top_level": true,
-    "variables": {
-      "PLAY_SERVICES_VERSION": "15.0.1"
-    }
-  },
   "cordova-plugin-qr-barcode-scanner": {
     "source": {
       "type": "registry",

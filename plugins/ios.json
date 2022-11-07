@@ -46,7 +46,37 @@
     "cordova-plugin-geolocation": {
       "GPS_REQUIRED": "true",
       "PACKAGE_NAME": "com.obic.wallet"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "com.obic.wallet"
+    },
+    "cordova-plugin-intercom": {
+      "PACKAGE_NAME": "com.obic.wallet"
+    },
+    "cordova-plugin-ionic-webview": {
+      "PACKAGE_NAME": "com.obic.wallet"
+    },
+    "cordova-plugin-navigationbar-color": {
+      "PACKAGE_NAME": "com.obic.wallet"
+    },
+    "cordova-plugin-proguard": {
+      "PACKAGE_NAME": "com.obic.wallet"
+    },
+    "cordova-plugin-qr-barcode-scanner": {
+      "PACKAGE_NAME": "com.obic.wallet"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.obic.wallet"
+    },
+    "cordova-plugin-x-socialsharing": {
+      "PHOTO_LIBRARY_ADD_USAGE_DESCRIPTION": "This app requires photo library access for artists to post their works and photos for users requesting",
+      "PHOTO_LIBRARY_USAGE_DESCRIPTION": "This app requires photo library access for artists to post their works and photos for users requesting",
+      "PACKAGE_NAME": "com.obic.wallet"
     }
   },
-  "dependent_plugins": {}
+  "dependent_plugins": {
+    "es6-promise-plugin": {
+      "PACKAGE_NAME": "com.obic.wallet"
+    }
+  }
 }

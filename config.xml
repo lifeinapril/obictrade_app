@@ -78,7 +78,7 @@
         <edit-config file="AndroidManifest.xml" mode="merge" target="/manifest/application">
             <application android:usesCleartextTraffic="true" />
         </edit-config>
-        <preference name="android-minSdkVersion" value="16" />
+        <preference name="android-minSdkVersion" value="21" />
         <preference name="android-targetSdkVersion" value="31" />
         <preference name="android-compileSdkVersion" value="31" />
         <edit-config file="AndroidManifest.xml" mode="merge" target="/manifest/application/activity[@android:name='MainActivity']">

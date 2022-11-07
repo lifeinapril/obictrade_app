@@ -143,6 +143,10 @@
       "GPS_REQUIRED": "true",
       "PACKAGE_NAME": "com.obic.wallet"
     },
+    "cordova-plugin-googleplus": {
+      "PLAY_SERVICES_VERSION": "15.0.1",
+      "PACKAGE_NAME": "com.obic.wallet"
+    },
     "cordova-plugin-inappbrowser": {
       "PACKAGE_NAME": "com.obic.wallet"
     },

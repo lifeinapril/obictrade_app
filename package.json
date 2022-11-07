@@ -54,6 +54,7 @@
     "cordova-android": "^10.1.2",
     "cordova-android-firebase-gradle-release": "^4.0.0",
     "cordova-clipboard-plugin": "git+https://github.com/Anuj-Raghuvanshi/cordova-clipboard-plugin.git",
+    "cordova-ios": "^6.2.0",
     "cordova-plugin-cocoapod-support": "^1.6.2",
     "cordova-plugin-codeplay-in-app-update": "0.0.4",
     "cordova-plugin-googleplus": "^8.5.2",

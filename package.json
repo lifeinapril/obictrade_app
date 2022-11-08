@@ -188,7 +188,8 @@
       "cordova-plugin-intercom": {}
     },
     "platforms": [
-      "android"
+      "android",
+      "ios"
     ]
   }
 }

@@ -1,5 +1,5 @@
 
-app.run(function($ionicPlatform,Config,$cordovaClipboard,Crypto,$localStorage,$timeout,$location,$rootScope,$ionicHistory,$state,$ionicPopup,account,$ionicLoading,$sce,$ionicModal,$cordovaToast){
+app.run(function($ionicPlatform,Config,$cordovaClipboard,$cordovaSocialSharing,Crypto,$cordovaDeeplinks,$localStorage,$timeout,$location,$rootScope,$ionicHistory,$state,$ionicPopup,account,$ionicLoading,$sce,$ionicModal,$cordovaToast){
   $rootScope.media=Config.media;
   $rootScope.token=Config.token;
   $rootScope.countries=countries;
@@ -12,6 +12,12 @@ app.run(function($ionicPlatform,Config,$cordovaClipboard,Crypto,$localStorage,$t
   $rootScope.usdt={};
   $rootScope.coin={};
   $rootScope.contacts=[];
+  $rootScope.direct={
+    user:{},
+    user_id:null,
+    amount:0,
+    o_id:null
+  }
 
   $rootScope.settings={
     dark_mode:false
@@ -73,6 +79,16 @@ app.run(function($ionicPlatform,Config,$cordovaClipboard,Crypto,$localStorage,$t
   }).then(function(modal) {
     $rootScope.search_pay2 = modal;
   });
+
+
+  $ionicModal.fromTemplateUrl('pop/select_user.html', {
+    scope: $rootScope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $rootScope.select_user = modal;
+  });
+
+
 
   $ionicModal.fromTemplateUrl('pop/choose_username.html', {
     scope: $rootScope,
@@ -142,7 +158,11 @@ app.run(function($ionicPlatform,Config,$cordovaClipboard,Crypto,$localStorage,$t
       $state.go("edit_profile");
     }
   };
-
+  $rootScope.user_choice=function(trader){
+    $rootScope.direct.user=trader;
+    $rootScope.direct.to=trader.o_id;
+    $rootScope.select_user.hide();
+  };
 
   $rootScope.int=function(x){
     return parseFloat(x);
@@ -253,6 +273,12 @@ $rootScope.coin_usd=function(amount,symbol){
   $rootScope.to=user.user_name;
   $rootScope.coin=coin;
   $rootScope.send_coin_box.show();
+}
+
+
+$rootScope.internal_transfer=function(){
+  $state.go("transfer");
+  $rootScope.select_user.show();
 }
 
 
@@ -1198,6 +1224,15 @@ $rootScope.market_gain=function(){
 
 
 
+$rootScope.share_code = function (code) {
+  var m="ObicTrade:Trade digital assets and cryptocurrency";
+  var s="Use my promo code get free #500 and your registration , Join our digital community and start trading digital assets";
+  var l="https://obictrade.com/promo/"+code;
+  $cordovaSocialSharing.share(m,s,null,l);
+};
+
+
+
 
 
  
@@ -1217,36 +1252,46 @@ $rootScope.today=date;
      }
    }, 100);
  
-  //  $cordovaDeeplinks.route({
-  //   '/': {
-  //       target: 'front.notification',
-  //       parent: 'front.shop'
-  //   },
-  // }).subscribe(function(match) {
-  //   $timeout(function() {
-  //     $state.go(match.$route.target);
-  //     $timeout(function() {
-  //       $state.go(match.$route.target, {id: match.$args.id});
-  //     }, 800);
-  //   }, 100);
-  // }, function(nomatch) {
-  //   console.warn('No match', nomatch);
-  // });
+
+
  
- 
-   $ionicPlatform.ready(function() {
-    console.log("application is ready sir!");
-    if (window.updatePlugin) {
-    window.updatePlugin.update({
-      flexibleUpdateStalenessDays: 0,
-      immediateUpdateStalenessDays: 5
+ $ionicPlatform.ready(function() {
+
+  cordova.plugins.AppReview.requestReview().catch(function() {
+    return cordova.plugins.AppReview.openStoreScreen();
+});
+
+      
+  $cordovaDeeplinks.route({
+    '/promo/:code': {
+      target: 'refferal'
+    },
+    '/profile/:id': {
+      target: 'obic_profile'
+    }
+  }).subscribe(function(match) {
+    console.log('Match deep route:', match);
+      $timeout(function() {  
+          $state.go(match.$route.target, {id: match.$args.id});
+      }, 2000);
+  }, function(nomatch) {
+    console.log('Deep Match none:', nomatch);
   });
-}
+
+
+  console.log("application is ready sir!");
+
+  if (window.updatePlugin) {
+        window.updatePlugin.update({
+          flexibleUpdateStalenessDays: 0,
+          immediateUpdateStalenessDays: 5
+        });
+  }
 
 
    if (window.FirebasePlugin) {
       console.log("FCMPlugin initiated!");
-  window.FirebasePlugin.grantPermission();
+      window.FirebasePlugin.grantPermission();
       window.FirebasePlugin.getToken(function(token) {
         console.log("...............jolieX signed fcm generated token:");
         console.log(token);
@@ -1260,22 +1305,22 @@ $rootScope.today=date;
           }
       window.FirebasePlugin.setBadgeNumber(0);
       window.FirebasePlugin.grantPermission();
-   });
+      });
 
-   window.FirebasePlugin.onTokenRefresh(function(token) {
-    console.log("...............jolieX signed fcm generated token:");
-    console.log(token);
-    $rootScope.pushtoken=token;
-    $localStorage.pushtoken=token;
-   if($localStorage.user){
-    $localStorage.user.pushtoken=token;
-    $rootScope.user.pushtoken=token;
-    console.log("fcmplugin stored with user............");
- }else{
-  console.log("FCMPlugin not functioning.....");
- }
-  window.FirebasePlugin.setBadgeNumber(0);
-});
+      window.FirebasePlugin.onTokenRefresh(function(token) {
+          console.log("...............jolieX signed fcm generated token:");
+          console.log(token);
+          $rootScope.pushtoken=token;
+          $localStorage.pushtoken=token;
+        if($localStorage.user){
+              $localStorage.user.pushtoken=token;
+              $rootScope.user.pushtoken=token;
+              console.log("fcmplugin stored with user............");
+          }else{
+            console.log("FCMPlugin not functioning.....");
+          }
+        window.FirebasePlugin.setBadgeNumber(0);
+      });
 
 window.FirebasePlugin.onMessageReceived(function(data) {
       window.FirebasePlugin.getBadgeNumber(function(n) {
@@ -1295,25 +1340,25 @@ window.FirebasePlugin.onMessageReceived(function(data) {
      }
  
  
-     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
- 
-       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
-       cordova.plugins.Keyboard.disableScroll(true);
- 
-     }
+if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
 
-     if (window.StatusBar) {
-       var bar=window.StatusBar || StatusBar;
-       bar.styleDefault();
-       bar.overlaysWebView(true);
-       bar.styleLightContent();
-     }
+  cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
+  cordova.plugins.Keyboard.disableScroll(true);
+
+}
+
+if (window.StatusBar) {
+  var bar=window.StatusBar || StatusBar;
+  bar.styleDefault();
+  bar.overlaysWebView(true);
+  bar.styleLightContent();
+}
 
 
-     if (window.Splashscreen) {
-      window.Splashscreen.hide();
-    }
+if (window.Splashscreen) {
+  window.Splashscreen.hide();
+}
 
-   });
- });
+});
+});
  

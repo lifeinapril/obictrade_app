@@ -1,6 +1,6 @@
 {
   "name": "obictrade",
-  "version": "3.0.0",
+  "version": "3.3.0",
   "description": "Trade Cryptocurrency Exchange",
   "dependencies": {
     "@ionic-native/core": "^5.31.1",
@@ -54,15 +54,17 @@
     "cordova-android": "^10.1.2",
     "cordova-android-firebase-gradle-release": "^4.0.0",
     "cordova-clipboard-plugin": "git+https://github.com/Anuj-Raghuvanshi/cordova-clipboard-plugin.git",
-    "cordova-ios": "^6.2.0",
+    "cordova-plugin-app-review": "^3.1.0",
     "cordova-plugin-cocoapod-support": "^1.6.2",
     "cordova-plugin-codeplay-in-app-update": "0.0.4",
+    "cordova-plugin-deeplinks": "^1.1.1",
     "cordova-plugin-googleplus": "^8.5.2",
     "cordova-plugin-intercom": "^12.1.0",
     "cordova-plugin-navigationbar-color": "0.0.8",
     "cordova-plugin-proguard": "^2.2.0",
     "cordova-plugin-qr-barcode-scanner": "^8.0.3",
     "cordova-plugin-qrscanner": "^3.0.1",
+    "cordova-support-android-plugin": "^2.0.4",
     "gulp": "^4.0.2",
     "gulp-sass": "^4.1.1",
     "gulp-util": "^3.0.8",
@@ -80,8 +82,8 @@
         "PHOTOLIBRARY_USAGE_DESCRIPTION": "This app requires photo library access for artists to post their works and photos for users requesting"
       },
       "cordova-plugin-x-socialsharing": {
-        "PHOTO_LIBRARY_ADD_USAGE_DESCRIPTION": "This app requires photo library access for artists to post their works and photos for users requesting",
-        "PHOTO_LIBRARY_USAGE_DESCRIPTION": "This app requires photo library access for artists to post their works and photos for users requesting",
+        "PHOTO_LIBRARY_ADD_USAGE_DESCRIPTION": "This app requires photo library access for artists to upload digital assets for sales",
+        "PHOTO_LIBRARY_USAGE_DESCRIPTION": "This app requires photo library access for artists to upload digital assets for sales",
         "ANDROID_SUPPORT_V4_VERSION": "24.1.1+"
       },
       "cordova-android-play-services-gradle-release": {
@@ -185,11 +187,14 @@
       "cordova-plugin-firebasex": {},
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-device": {},
-      "cordova-plugin-intercom": {}
+      "cordova-plugin-intercom": {},
+      "cordova-plugin-deeplinks": {},
+      "cordova-plugin-app-review": {
+        "ANDROID_PLAY_REVIEW_VERSION": "2.0.+"
+      }
     },
     "platforms": [
-      "android",
-      "ios"
+      "android"
     ]
   }
 }

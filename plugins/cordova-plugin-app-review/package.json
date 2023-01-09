@@ -1,0 +1,76 @@
+{
+  "_from": "cordova-plugin-app-review",
+  "_id": "cordova-plugin-app-review@3.1.0",
+  "_inBundle": false,
+  "_integrity": "sha512-DqdDuBrNuNgLh7laYRzhQ1z+eINEda6kzZ5WVrwf4eT3TClhbWMmpqZBDZimcpnX+0brJv1IkjwxHF1zX+S8cg==",
+  "_location": "/cordova-plugin-app-review",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "cordova-plugin-app-review",
+    "name": "cordova-plugin-app-review",
+    "escapedName": "cordova-plugin-app-review",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#DEV:/",
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-app-review/-/cordova-plugin-app-review-3.1.0.tgz",
+  "_shasum": "3bb0a57c2a2bbda5f042363ef767658149e73d60",
+  "_spec": "cordova-plugin-app-review",
+  "_where": "/Users/abraham/Desktop/Projects/ObicTrade/app",
+  "author": {
+    "name": "Maksim Chemerisuk",
+    "email": "chemerisuk@gmail.com",
+    "url": "https://github.com/chemerisuk"
+  },
+  "bugs": {
+    "url": "https://github.com/chemerisuk/cordova-plugin-app-review/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-plugin-app-review",
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  },
+  "deprecated": false,
+  "description": "Cordova plugin to review app",
+  "devDependencies": {
+    "typedoc": "^0.23.9",
+    "typedoc-plugin-markdown": "^3.13.4"
+  },
+  "funding": "https://github.com/chemerisuk/cordova-plugin-app-review?sponsor=1",
+  "homepage": "https://github.com/chemerisuk/cordova-plugin-app-review#readme",
+  "keywords": [
+    "cordova",
+    "review",
+    "review dialog",
+    "app review",
+    "inapp review",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios"
+  ],
+  "license": "MIT",
+  "name": "cordova-plugin-app-review",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chemerisuk/cordova-plugin-app-review.git"
+  },
+  "scripts": {
+    "docs": "typedoc && perl -i -pe 's/README.md#/#/g' ./docs/README.md",
+    "postdocs": "perl -i -0pe 's/(<!-- TypedocGenerated -->).*/$1\n\n/gms' README.md && cat ./docs/README.md >> README.md",
+    "postversion": "git push && git push --tags",
+    "predocs": "tsc www/* --declaration --allowJs --checkJs --lib es2015,dom --emitDeclarationOnly --outDir types",
+    "preversion": "npm run docs && rm -rf docs",
+    "version": "perl -i -pe 's/(version=)\"\\d+\\.\\d+\\.\\d+\"/$1\"'$npm_package_version'\"$2/' plugin.xml && git add ."
+  },
+  "types": "./types/index.d.ts",
+  "version": "3.1.0"
+}

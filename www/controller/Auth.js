@@ -27,6 +27,12 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
 
 
 
+if($stateParams.id){
+  $rootScope.det.reffered_by=$stateParams.id;
+}
+
+
+
 
 
   

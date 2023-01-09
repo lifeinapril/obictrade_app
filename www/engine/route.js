@@ -62,6 +62,12 @@ app.config(function($stateProvider, $urlRouterProvider,$httpProvider,Config,$ion
         controller:"Auth"
       })
   
+      .state('referral', {
+        url: '/refferal/:id',
+        templateUrl: 'templates/auth.html',
+        controller:"Auth"
+      })
+  
       .state('account', {
         url: '/account',
         templateUrl: 'templates/account.html',
@@ -252,6 +258,12 @@ app.config(function($stateProvider, $urlRouterProvider,$httpProvider,Config,$ion
         .state('transaction_history', {
           url: '/transaction_history',
           templateUrl: 'templates/transaction_history.html',
+          controller:"finance"
+        })
+  
+        .state('transfer', {
+          url: '/transfer',
+          templateUrl: 'templates/transfer.html',
           controller:"finance"
         })
 

@@ -2,15 +2,14 @@ const error_connection="Check your internet connection";
 const connection_error=error_connection;
 
 
-function thousands_separators(num)
-  {
+function thousands_separators(num){
     var num_parts = num.toString().split(".");
     num_parts[0] = num_parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     return num_parts.join(".");
-  }
+}
 
 
-    app.factory('MP',function($http,Config){
+app.factory('MP',function($http,Config){
       return  { 
       spotlight: function(){
         return $http.get(Config.API+ "users/market/spotlight");
@@ -43,11 +42,11 @@ function thousands_separators(num)
          return $http.post(Config.API+"market/orders/report",coin);
        }
       }          
-      });
+});
 
 
 
-    app.factory('Giftcards',function($http,Config){
+app.factory('Giftcards',function($http,Config){
       return  { 
         all: function(){
           return $http.get(Config.API+ "users/giftcard/all");
@@ -62,7 +61,7 @@ function thousands_separators(num)
         return $http.post(Config.API + "users/update_transaction",data);
         }
       }          
-      });
+});
 
 
   
@@ -168,12 +167,12 @@ app.factory('account',function($http,Config){
       return $http.post(Config.API +  "users/update_email",data);
     }
   };
-})
+});
 
 
 
 
-.factory('wallet',function($http,Config){
+app.factory('wallet',function($http,Config){
   return  {
     cashout: function(data){
       return $http.post(Config.API + "users/cashout",data);
@@ -190,14 +189,14 @@ app.factory('account',function($http,Config){
     send_money: function(data){
       return $http.post(Config.API + "users/transfer",data);
     },
-    direct_send: function(data){
+    transfer: function(data){
       return $http.post(Config.API + "users/direct_send",data);
     },
     p2p:function(){
       return $http.get(Config.API + "users/peer");
     }
   };
-})
+});
 
 
 
@@ -207,7 +206,7 @@ app.factory('account',function($http,Config){
 
 
 
-.factory('Crypto',function($http,Config){
+app.factory('Crypto',function($http,Config){
   return  {
     connect: function(data){
       return $http.post(Config.API + "users/coin/connect",data);

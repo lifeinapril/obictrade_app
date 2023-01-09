@@ -2,13 +2,13 @@
 <div class="item item-avatar no-border" style="background-color: transparent !important;">  
     <img title="coin" src="{{media+coin.icon}}" class="avatar"/>
     <div class="pull-right dark text-right" style="float: right !important;;">
-      <h6 ng-if="!coin.address" class="assertive">wallet disconnected</h6>
+      <!-- <h6 ng-if="!coin.address" class="assertive">wallet disconnected</h6> -->
       <button ng-if="coin.address" ng-click="connect_wallet_box.show()" class="button button-small button-dark no-border">&nbsp;&nbsp;&nbsp;<i class="ti ti-settings"></i> configure&nbsp;&nbsp;&nbsp;</button>
-      <button ng-if="!coin.address" ng-click="connect_wallet_box.show()" class="button button-small button-balanced no-border">&nbsp;&nbsp;&nbsp;connect&nbsp;&nbsp;&nbsp;</button>
+      <!-- <button ng-if="!coin.address" ng-click="connect_wallet_box.show()" class="button button-small button-balanced no-border">&nbsp;&nbsp;&nbsp;connect&nbsp;&nbsp;&nbsp;</button> -->
     </div>
      <h2 style="margin-top: 10px !important;" class="light">{{coin.symbol}}</h2>
 </div>
-<div class="button-bar" ng-show="coin.address">
+<div class="button-bar">
   <button ng-click="buy_box.show()" ng-disabled="user.isagent" class="button button-block button-dark-blue">
     Buy&nbsp;&nbsp;
     <i class="icon ion-arrow-up-b pull-right"></i>

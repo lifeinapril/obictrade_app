@@ -22,9 +22,10 @@
 
         <div ng-include="'components/earnings_wallet.html'"></div>
   
+        <h5 style="color: #666666;">You can only cashout when amount is above 5,000.</h5>
            <button ng-click="withdraw_box.show()" ng-disabled="(user.naira_wallet.earnings < 5000) || !user.naira_wallet.earnings" class="button button-block button-oran">
-             Withdraw &nbsp;&nbsp;
-             <i class="icon ti-download pull-right"></i>
+            Cashout &nbsp;&nbsp;
+             <i class="icon ti-angle-right pull-right"></i>
            </button>
   
           </div>
@@ -38,13 +39,17 @@
       <small>Thanks for using obic.</small>
       <small>Share your referral code</small>
       <br>
+      <button ng-click="share_code(user.o_id)" class="button button-outline button-dark">
+       Share Link &nbsp;&nbsp;
+        <i class="icon ti-link pull-right"></i>
+      </button>
       <br>
-      <div class="row">
+      <!-- <div class="row">
           <div class="col"><i style="font-size: 40px;" class="icon ti-facebook oran" ng-click="sharefb()"></i> </div>
           <div class="col"><i style="font-size:  40px;" class="icon ti-twitter oran" ng-click="sharetwitter()"></i> </div>
           <div class="col"><i style="font-size:  40px;" class="icon ti-email oran" ng-click="shareemail()"></i> </div>
           <div class="col"><i style="font-size:  40px;" class="icon ion-social-whatsapp oran" ng-click="sharewa()"></i> </div>
-      </div>
+      </div> -->
 
 
     

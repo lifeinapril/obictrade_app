@@ -673,7 +673,27 @@ $rootScope.fund_peer=function(peer){
  
  
 
-
+   $rootScope.transfer=function(transaction) {
+    if(transaction.amount < 2){
+       $ionicPopup.alert({template:"Please enter an amount that is above 2"});
+     }else{
+       $rootScope.show();
+       transaction.o_id=$rootScope.user.o_id;
+        wallet.transfer(transaction).success(function(Data){
+            $rootScope.hide();
+            $ionicPopup.alert({template:Data.message});
+            if(Data.status==true){
+              $ionicPopup.alert({template:Data.message});
+              $rootScope.refresh_profile();
+              $state.go("front.payment");
+            }
+          }).error(function () {
+                $rootScope.hide();
+                $ionicPopup.alert({template:"error in connection, check your internet connection"});
+          });
+       }
+   };
+ 
 
 
 

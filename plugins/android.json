@@ -168,10 +168,20 @@
     "cordova-plugin-x-socialsharing": {
       "ANDROID_SUPPORT_V4_VERSION": "24.1.1+",
       "PACKAGE_NAME": "com.obic.wallet"
+    },
+    "cordova-plugin-deeplinks": {
+      "PACKAGE_NAME": "com.obic.wallet"
+    },
+    "cordova-plugin-app-review": {
+      "ANDROID_PLAY_REVIEW_VERSION": "2.0.+",
+      "PACKAGE_NAME": "com.obic.wallet"
     }
   },
   "dependent_plugins": {
     "es6-promise-plugin": {
+      "PACKAGE_NAME": "com.obic.wallet"
+    },
+    "cordova-support-android-plugin": {
       "PACKAGE_NAME": "com.obic.wallet"
     }
   }
